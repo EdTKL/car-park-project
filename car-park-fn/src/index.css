@@ -11,3 +11,45 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* navbar */
+#root > div > div.MuiBox-root.css-k008qs > header > div {
+  background-color: #f2f4f4;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+/* car park name in navbar */
+#root > div > div.MuiBox-root.css-k008qs > header > div > .navbarCarparkName {
+  color: #000;
+  font-weight: bold;
+  background-color: #c1f36d;
+  padding: 3px 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+}
+/* navbar buttons */
+.navbarButtons {
+  width: 200px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+#root > div > div.MuiBox-root.css-k008qs > header > div > div > svg {
+  color: #000;
+  font-size: 24px;
+  margin: 5px 0;
+}
+#root > div > div.MuiBox-root.css-k008qs > header > div > div > div.staffProfile {
+  background-color: #d6d6d6;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #008399;
+}
