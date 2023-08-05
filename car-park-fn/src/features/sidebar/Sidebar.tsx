@@ -38,6 +38,7 @@ const MySidebar = (props: any) => {return(
           </div>
         </Toolbar>
       </AppBar>
+
       <Drawer
         sx={{
           width: drawerWidth,
@@ -53,7 +54,7 @@ const MySidebar = (props: any) => {return(
         <Toolbar />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['主頁', '停泊車輛', '編輯紀錄', '統計數據'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -66,7 +67,7 @@ const MySidebar = (props: any) => {return(
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['設定', '登出'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
