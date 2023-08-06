@@ -14,9 +14,6 @@ import { faBell, faCalendarDays, faMoon } from '@fortawesome/free-regular-svg-ic
 import { faChartSimple, faFilePen, faHouse, faP, faPhone, faRightFromBracket, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { CSSObject, Fab, Theme, styled, useTheme } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import { useState } from 'react';
-import SidebarOpen from './SidebarOpen';
-import SidebarMini from './SidebarMini';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 let drawerWidth = 200;
@@ -28,7 +25,6 @@ const openedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-  // width: 90,
 });
 const closedMixin = (theme: Theme): CSSObject => ({
   transition: theme.transitions.create('width', {
@@ -103,12 +99,8 @@ const MySidebar = (props: any) => {
   return(
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar
-        position="fixed" 
-        open={open}
-        elevation={0}
-        // sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-        >
+      {/* navbar */}
+      <AppBar position="fixed" open={open} elevation={0}>
         <Toolbar>
           <Typography className="navbarCarparkName" variant="h6" noWrap component="div">
             庇利街停車場
@@ -122,66 +114,54 @@ const MySidebar = (props: any) => {
           </div>
         </Toolbar>
       </AppBar>
-
+      {/* floating button */}
       {open ? <Fab className="fabExpanded" size="small"
         sx={{ zIndex: 'tooltip', boxShadow: 3 }} onClick={handleDrawerClose}><KeyboardArrowLeftIcon /></Fab> : <Fab className="fabClosed" size="small"
         sx={{ zIndex: 'tooltip', boxShadow: 3 }} onClick={handleDrawerOpen}> <KeyboardArrowRightIcon /></Fab>}
-      <Drawer
-          // sx={{
-          //     width: drawerWidth,
-          //     flexShrink: 0,
-          //     '& .MuiDrawer-paper': {
-          //         width: drawerWidth,
-          //         boxSizing: 'border-box',
-          //         overflowX: 'hidden'
-          //     },
-          // }}
-          variant="permanent"
-          anchor="left"
-          open={open}>
-          <List>
-              {open && <ListItem>GW</ListItem>}
-              {!open && <ListItem></ListItem>}
-              <ListItem key='mainpage' disablePadding sx={{ width: 160 }}>
-                  <ListItemButton>
-                      <div className='svg'><FontAwesomeIcon icon={faHouse} /></div>
-                      <ListItemText primary="主頁" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-              </ListItem>
-              <ListItem key='parkedVehicle' disablePadding sx={{ width: 160 }}>
-                  <ListItemButton>
-                      <div className='svg'><FontAwesomeIcon icon={faP} /></div>
-                      <ListItemText primary="停泊車輛" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-              </ListItem>
-              <ListItem key='editRecord' disablePadding sx={{ width: 160 }}>
-                  <ListItemButton>
-                      <div className='svg'><FontAwesomeIcon icon={faFilePen} /></div>
-                      <ListItemText primary="編輯紀錄" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-              </ListItem>
-              <ListItem key='statistics' disablePadding sx={{ width: 160 }}>
-                  <ListItemButton>
-                      <div className='svg'><FontAwesomeIcon icon={faChartSimple} /></div>
-                      <ListItemText primary="統計數據" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-              </ListItem>
-          </List>
-
-          <List>
-              <ListItem key='setting' disablePadding sx={{ width: 160 }}>
-                  <ListItemButton>
-                      <div className='svg'><FontAwesomeIcon icon={faScrewdriverWrench} /></div>
-                      <ListItemText primary="設定" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-              </ListItem>
-              <ListItem key='logout' disablePadding sx={{ width: 160 }}>
-                  <ListItemButton>
-                      <div className='svg'><FontAwesomeIcon icon={faRightFromBracket} /></div>
-                      <ListItemText primary="登出" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-              </ListItem>
-          </List>
+      {/* sidebar */}
+      <Drawer variant="permanent" anchor="left" open={open}>
+        <List>
+            {open && <ListItem>GW</ListItem>}
+            {!open && <ListItem></ListItem>}
+            <ListItem key='mainpage' disablePadding sx={{ width: 160 }}>
+                <ListItemButton>
+                    <div className='svg'><FontAwesomeIcon icon={faHouse} /></div>
+                    <ListItemText primary="主頁" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+            </ListItem>
+            <ListItem key='parkedVehicle' disablePadding sx={{ width: 160 }}>
+                <ListItemButton>
+                    <div className='svg'><FontAwesomeIcon icon={faP} /></div>
+                    <ListItemText primary="停泊車輛" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+            </ListItem>
+            <ListItem key='editRecord' disablePadding sx={{ width: 160 }}>
+                <ListItemButton>
+                    <div className='svg'><FontAwesomeIcon icon={faFilePen} /></div>
+                    <ListItemText primary="編輯紀錄" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+            </ListItem>
+            <ListItem key='statistics' disablePadding sx={{ width: 160 }}>
+                <ListItemButton>
+                    <div className='svg'><FontAwesomeIcon icon={faChartSimple} /></div>
+                    <ListItemText primary="統計數據" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+            </ListItem>
+        </List>
+        <List>
+            <ListItem key='setting' disablePadding sx={{ width: 160 }}>
+                <ListItemButton>
+                    <div className='svg'><FontAwesomeIcon icon={faScrewdriverWrench} /></div>
+                    <ListItemText primary="設定" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+            </ListItem>
+            <ListItem key='logout' disablePadding sx={{ width: 160 }}>
+                <ListItemButton>
+                    <div className='svg'><FontAwesomeIcon icon={faRightFromBracket} /></div>
+                    <ListItemText primary="登出" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+            </ListItem>
+        </List>
       </Drawer>
     </Box>
 )};
