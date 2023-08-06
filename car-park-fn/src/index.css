@@ -14,10 +14,10 @@ code {
 header.MuiPaper-root {
   background-color: #bdee69 !important;
 }
-.MuiBox-root.css-k008qs, .App, body {
-  background-color: #f2f4f4;
+body, #root, .App, .MuiBox-root.css-k008qs {
+  background-color: #f2f4f4 !important;
   height: 100%;
-  width: 100%;
+  width: auto;
 }
 
 /* navbar */
@@ -133,7 +133,4 @@ li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListI
 .MuiBox-root.css-k008qs > div > button > svg {
   color: #008399;
 }
-.car-list-component {
-  margin-top: 20% !important;
-  margin-bottom: 1.5% !important;
-}
+

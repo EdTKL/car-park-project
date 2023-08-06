@@ -16,6 +16,8 @@ import { CSSObject, Fab, Theme, styled, useTheme } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import CarList from '../features/home/CarList';
+import { useAppSelector } from '../app/hook';
+import { RootState } from '../app/store';
 
 let drawerWidth = 200;
 
@@ -78,23 +80,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const Mainpage = (props: any) => {
+  const carList = useAppSelector((state: RootState) => state.carState.carList);
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
     drawerWidth = 200
-    console.log("open clicked")
-    console.log(open)
-    console.log(drawerWidth)
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
     drawerWidth = 65
-    console.log("close clicked")
-    console.log(open)
-    console.log(drawerWidth)
   };
 
   return(
@@ -164,7 +162,7 @@ const Mainpage = (props: any) => {
             </ListItem>
         </List>
       </Drawer>
-        {/* <CarList carList={[]} /> */}
+        {/* <Box><CarList carList={carList} /></Box> */}
     </Box>
 )};
 
