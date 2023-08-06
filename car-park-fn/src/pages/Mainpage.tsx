@@ -15,6 +15,7 @@ import { faChartSimple, faFilePen, faHouse, faP, faPhone, faRightFromBracket, fa
 import { CSSObject, Fab, Theme, styled, useTheme } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import CarList from '../features/dashboard/CarList';
 
 let drawerWidth = 200;
 
@@ -76,7 +77,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const MySidebar = (props: any) => {
+const Mainpage = (props: any) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -119,7 +120,7 @@ const MySidebar = (props: any) => {
         sx={{ zIndex: 'tooltip', boxShadow: 3 }} onClick={handleDrawerClose}><KeyboardArrowLeftIcon /></Fab> : <Fab className="fabClosed" size="small"
         sx={{ zIndex: 'tooltip', boxShadow: 3 }} onClick={handleDrawerOpen}> <KeyboardArrowRightIcon /></Fab>}
       {/* sidebar */}
-      <Drawer variant="permanent" anchor="left" open={open}>
+      <Drawer className="sidebar" variant="permanent" anchor="left" open={open}>
         <List>
             {open && <ListItem>GW</ListItem>}
             {!open && <ListItem></ListItem>}
@@ -163,7 +164,8 @@ const MySidebar = (props: any) => {
             </ListItem>
         </List>
       </Drawer>
+        <CarList />
     </Box>
 )};
 
-export default MySidebar
+export default Mainpage
