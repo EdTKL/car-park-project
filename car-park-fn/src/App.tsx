@@ -1,10 +1,10 @@
 import React from 'react';
-import CarList from './features/dashboard/CarList';
+import Home from './features/home/Home';
 
 function App() {
   return (
     <div className='App'>
-      <CarList />
+      <Home />
     </div>
   );
 }

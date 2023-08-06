@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { Car } from "./model";
 import "./styles.scss";
 import Table from "react-bootstrap/Table";
-import { useSelector } from "react-redux";
-import { IRootState } from "../../app/store";
 
-const CarList = () => {
-  const carList = useSelector((state: IRootState) => state.cars.carList);
-  console.log(carList);
+interface Props {
+  carList: Car[];
+}
+
+const CarList = ({carList}:Props) => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className='car-list-component'>
+    <div className='car-list-comp'>
       <h5>所有進出車輛</h5>
       <div className='btns'>
         <button>排序</button>
@@ -21,8 +21,7 @@ const CarList = () => {
         </span>
       </div>
 
-      
-      <Table className="car-list" striped hover size="sm">
+      <Table className="car-list" striped hover >
         <thead>
           <tr>
             <th>次序</th>
