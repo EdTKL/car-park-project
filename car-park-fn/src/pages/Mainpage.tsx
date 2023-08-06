@@ -15,7 +15,7 @@ import { faChartSimple, faFilePen, faHouse, faP, faPhone, faRightFromBracket, fa
 import { CSSObject, Fab, Theme, styled, useTheme } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import CarList from '../features/dashboard/CarList';
+import CarList from '../features/home/CarList';
 
 let drawerWidth = 200;
 
@@ -164,7 +164,7 @@ const Mainpage = (props: any) => {
             </ListItem>
         </List>
       </Drawer>
-        <CarList />
+        {/* <CarList carList={[]} /> */}
     </Box>
 )};
 

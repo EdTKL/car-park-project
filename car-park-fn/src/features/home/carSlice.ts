@@ -53,7 +53,7 @@ const initialState: CarState = {
 
 
 export const carSlice = createSlice({
-  name: "cars",
+  name: "carList",
   initialState,
   reducers: {
     add_car: (state: CarState, action: PayloadAction<Car>) => {
