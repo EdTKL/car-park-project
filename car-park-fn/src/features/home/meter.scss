@@ -1,0 +1,44 @@
+.meter-comp {
+    background: #FFF;
+    margin: 10px;
+    padding: 10px 10px;
+    min-width: 430px;
+    height: 320px;
+    border-radius: 20px;
+
+    h5 {
+        color:#476800;
+        font-weight: 700;
+    }
+
+    div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+
+        #pie-num {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #131F00;
+            position: absolute;
+            left: 100px;
+            top: 95px;
+        }
+
+        span {
+            width: 33%;
+            padding-right: 5px;
+
+            p {
+                font-size: 22px;
+                font-weight: 700;
+                color: #131F00;
+            }
+        }
+    }
+
+
+
+}

@@ -8,7 +8,7 @@ export interface CarState {
 
 const initialState: CarState = {
   carList: [
-    {id: 1, invoice: "2300127800", plate: "AB1234", type: "私家車", 
+    {id: 1, invoice: "2300127800", plate: "AB1234", type: "電單車", 
     entryExit: "進", time: "8月1日 08:55", totalHrs: 10, 
     parkedHrs: 1, parkedDays: 1, parkedNights: 0, payment: 0, 
     status: "停泊中", staff_id: "C1508A83", edited: false },
