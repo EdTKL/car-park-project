@@ -17,6 +17,7 @@ import { CSSObject, Fab, Theme, styled } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Link } from 'react-router-dom'
+import Home from '../features/home/Home';
 
 let drawerWidth = 200;
 const appbarHeight = 64;
@@ -167,7 +168,7 @@ const Mainpage = (props: any) => {
         width: `calc(100% - ${drawerWidth}px)`,
         height: `calc(100% - ${appbarHeight}px)`,
       }}>
-        
+        <Home />
       </Box>
     </Box>
 )};
