@@ -122,25 +122,25 @@ const Mainpage = (props: any) => {
         <List>
             {open && <ListItem>GW</ListItem>}
             {!open && <ListItem></ListItem>}
-            <ListItem key='mainpage' disablePadding sx={{ width: 160 }}>
+            <ListItem key='mainpage' disablePadding sx={{ width: 190 }}>
                 <ListItemButton>
                     <div className='svg'><FontAwesomeIcon icon={faHouse} /></div>
                     <ListItemText primary="主頁" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
             </ListItem>
-            <ListItem key='parkedVehicle' disablePadding sx={{ width: 160 }}>
+            <ListItem key='parkedVehicle' disablePadding sx={{ width: 190 }}>
                 <ListItemButton>
                     <div className='svg'><FontAwesomeIcon icon={faP} /></div>
                     <ListItemText primary="停泊車輛" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
             </ListItem>
-            <ListItem key='editRecord' disablePadding sx={{ width: 160 }}>
+            <ListItem key='editRecord' disablePadding sx={{ width: 190 }}>
                 <ListItemButton>
                     <div className='svg'><FontAwesomeIcon icon={faFilePen} /></div>
                     <ListItemText primary="編輯紀錄" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
             </ListItem>
-            <ListItem key='statistics' disablePadding sx={{ width: 160 }}>
+            <ListItem key='statistics' disablePadding sx={{ width: 190 }}>
                 <ListItemButton>
                     <div className='svg'><FontAwesomeIcon icon={faChartSimple} /></div>
                     <ListItemText primary="統計數據" sx={{ opacity: open ? 1 : 0 }} />
@@ -148,13 +148,13 @@ const Mainpage = (props: any) => {
             </ListItem>
         </List>
         <List>
-            <ListItem key='setting' disablePadding sx={{ width: 160 }}>
+            <ListItem key='setting' disablePadding sx={{ width: 190 }}>
                 <ListItemButton>
                     <div className='svg'><FontAwesomeIcon icon={faScrewdriverWrench} /></div>
                     <ListItemText primary="設定" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
             </ListItem>
-            <ListItem key='logout' disablePadding sx={{ width: 160 }}>
+            <ListItem key='logout' disablePadding sx={{ width: 190 }}>
                 <ListItemButton>
                     <div className='svg'><FontAwesomeIcon icon={faRightFromBracket} /></div>
                     <ListItemText primary="登出" sx={{ opacity: open ? 1 : 0 }} />
