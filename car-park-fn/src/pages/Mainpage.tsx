@@ -12,11 +12,14 @@ import ListItemText from '@mui/material/ListItemText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCalendarDays, faMoon } from '@fortawesome/free-regular-svg-icons';
 import { faChartSimple, faFilePen, faHouse, faP, faPhone, faRightFromBracket, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
-import { CSSObject, Fab, Theme, styled, useTheme } from '@mui/material';
+//import { CSSObject, Fab, Theme, styled, useTheme } from '@mui/material';
+import { CSSObject, Fab, Theme, styled } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Link } from 'react-router-dom'
 
 let drawerWidth = 200;
+const appbarHeight = 64;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -76,24 +79,20 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const MySidebar = (props: any) => {
-  const theme = useTheme();
+const Mainpage = (props: any) => {
+  // const carList = useAppSelector((state: RootState) => state.carState.carList);
+
+  //const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
     drawerWidth = 200
-    console.log("open clicked")
-    console.log(open)
-    console.log(drawerWidth)
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
     drawerWidth = 65
-    console.log("close clicked")
-    console.log(open)
-    console.log(drawerWidth)
   };
 
   return(
@@ -119,51 +118,58 @@ const MySidebar = (props: any) => {
         sx={{ zIndex: 'tooltip', boxShadow: 3 }} onClick={handleDrawerClose}><KeyboardArrowLeftIcon /></Fab> : <Fab className="fabClosed" size="small"
         sx={{ zIndex: 'tooltip', boxShadow: 3 }} onClick={handleDrawerOpen}> <KeyboardArrowRightIcon /></Fab>}
       {/* sidebar */}
-      <Drawer variant="permanent" anchor="left" open={open}>
+      <Drawer className="sidebar" variant="permanent" anchor="left" open={open}>
         <List>
             {open && <ListItem>GW</ListItem>}
             {!open && <ListItem></ListItem>}
-            <ListItem key='mainpage' disablePadding sx={{ width: 160 }}>
-                <ListItemButton>
+            <ListItem key='homepage' disablePadding sx={{ width: 190}}>
+                <Link to="/home"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faHouse} /></div>
                     <ListItemText primary="主頁" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                </ListItemButton></Link>
             </ListItem>
-            <ListItem key='parkedVehicle' disablePadding sx={{ width: 160 }}>
-                <ListItemButton>
+            <ListItem key='parkedVehicle' disablePadding sx={{ width: 190 }}>
+                <Link to="/parked-vehicle"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faP} /></div>
                     <ListItemText primary="停泊車輛" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                </ListItemButton></Link>
             </ListItem>
-            <ListItem key='editRecord' disablePadding sx={{ width: 160 }}>
-                <ListItemButton>
+            <ListItem key='editRecord' disablePadding sx={{ width: 190 }}>
+                <Link to="/edit-record"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faFilePen} /></div>
                     <ListItemText primary="編輯紀錄" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                </ListItemButton></Link>
             </ListItem>
-            <ListItem key='statistics' disablePadding sx={{ width: 160 }}>
-                <ListItemButton>
+            <ListItem key='statistics' disablePadding sx={{ width: 190 }}>
+                <Link to="/statistic"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faChartSimple} /></div>
                     <ListItemText primary="統計數據" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                </ListItemButton></Link>
             </ListItem>
         </List>
         <List>
-            <ListItem key='setting' disablePadding sx={{ width: 160 }}>
-                <ListItemButton>
+            <ListItem key='setting' disablePadding sx={{ width: 190 }}>
+                <Link to="/setting"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faScrewdriverWrench} /></div>
                     <ListItemText primary="設定" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                </ListItemButton></Link>
             </ListItem>
-            <ListItem key='logout' disablePadding sx={{ width: 160 }}>
-                <ListItemButton>
+            <ListItem key='logout' disablePadding sx={{ width: 190 }}>
+                <Link to="/logout"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faRightFromBracket} /></div>
                     <ListItemText primary="登出" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                </ListItemButton></Link>
             </ListItem>
         </List>
       </Drawer>
+      {/* content */}
+      <Box sx={{
+        width: `calc(100% - ${drawerWidth}px)`,
+        height: `calc(100% - ${appbarHeight}px)`,
+      }}>
+        
+      </Box>
     </Box>
 )};
 
-export default MySidebar
+export default Mainpage
