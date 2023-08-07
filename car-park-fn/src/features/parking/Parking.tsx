@@ -9,14 +9,18 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent, {
   timelineOppositeContentClasses,
 } from "@mui/lab/TimelineOppositeContent";
-import { Car } from "./model";
-import "./ParkedTimeline.scss";
+import { Car } from "../model";
+import "./Parking.scss";
+import { useAppSelector } from "../../app/hook";
+import { RootState } from "../../app/store";
+
 
 interface Props {
-  parkedListOf5: Car[];
+  shortParkingList: Car[];
 }
 
-export default function ParkedTimeline({ parkedListOf5 }: Props) {
+export default function Parking({ shortParkingList }: Props) {
+
   return (
     <Paper
       elevation={3}
@@ -41,12 +45,12 @@ export default function ParkedTimeline({ parkedListOf5 }: Props) {
           <TimelineContent>車牌</TimelineContent>
           <TimelineContent>車型</TimelineContent>
         </TimelineItem>
-        {parkedListOf5.map((car, idx) => (
+        {shortParkingList.map((car, idx) => (
           <TimelineItem key={idx} sx={{ minHeight: "60px", padding: 0 }}>
             <TimelineOppositeContent>{car.time}</TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot sx={{ backgroundColor: "#EBC243" }} />
-              {idx !== parkedListOf5.length - 1 && <TimelineConnector />}
+              {idx !== shortParkingList.length - 1 && <TimelineConnector />}
             </TimelineSeparator>
             <TimelineContent sx={{ color: "#008399", fontWeight: 700 }}>
               {car.plate}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Car } from "./model";
-import './carList.scss'
+import { Car } from "../model";
+import './CarList.scss'
 import Table from "react-bootstrap/Table";
 
 interface Props {

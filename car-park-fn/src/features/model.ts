@@ -6,12 +6,21 @@ export interface Car {
     entryExit: string,
     time: string,
     totalHrs: number,
-    parkedHrs: number,
-    parkedDays: number,
-    parkedNights: number,
+    parkingHrs: number,
+    parkingDays: number,
+    parkingNights: number,
     payment: number,
     status: string,
     staff_id: string,
     edited: boolean,
 
+}
+
+export interface CarPark {
+    id: number,
+    name: string,
+    totalSpace: number,
+    smCarSpace: number,
+    mdCarSpace: number,
+    motoSpace: number,
 }

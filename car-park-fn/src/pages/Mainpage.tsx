@@ -17,7 +17,7 @@ import { CSSObject, Fab, Theme, styled } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Link } from 'react-router-dom'
-import Home from '../features/home/Home';
+import Home from './Home';
 
 let drawerWidth = 200;
 const appbarHeight = 64;
@@ -129,8 +129,8 @@ const Mainpage = (props: any) => {
                     <ListItemText primary="主頁" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton></Link>
             </ListItem>
-            <ListItem key='parkedVehicle' disablePadding sx={{ width: 190 }}>
-                <Link to="/parked-vehicle"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
+            <ListItem key='parkingVehicle' disablePadding sx={{ width: 190 }}>
+                <Link to="/parking-vehicle"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faP} /></div>
                     <ListItemText primary="停泊車輛" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton></Link>

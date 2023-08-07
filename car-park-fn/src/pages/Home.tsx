@@ -1,25 +1,26 @@
 import React, { useMemo } from 'react'
-import { useAppSelector } from '../../app/hook'
-import { RootState } from '../../app/store';
-import CarList from './CarList';
-import './home.scss'
-import ParkedTimeline from './ParkedTimeline';
-import Meter from './Meter';
+import './Home.scss'
+import { useAppSelector } from '../app/hook';
+import { RootState } from '../app/store';
+import CarList from '../features/cars/CarList';
+import Parking from '../features/parking/Parking';
+import Meter from '../features/parking/Space';
+
 
 
 const Home = () => {
     const carList = useAppSelector((state: RootState) => state.carState.carList);
-    const parkedList = useMemo(() => 
+    const parkingList = useMemo(() => 
       carList.filter((car) => car.status === "停泊中"), [carList]);
-    const parkedListOf5 = useMemo(() => 
+    const shortParkingList = useMemo(() => 
       carList.filter((car) => car.status === "停泊中").slice(0, 4), [carList]);
-      console.log(parkedList)
+      console.log(parkingList)
 
   return (
     <div className='home-container container-fluid d-flex flex-column justify-content-center align-items-center'>
       <div className='first-row'>
-        <Meter parkedList={parkedList}/>
-        <ParkedTimeline parkedListOf5={parkedListOf5}/>
+        <Meter parkingList={parkingList}/>
+        <Parking shortParkingList={shortParkingList}/>
       </div>
       <div className='second-row'>
         <CarList carList={carList}/>

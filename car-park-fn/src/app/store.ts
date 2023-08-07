@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import carReducer from "../features/home/carSlice";
+import carReducer from "../features/cars/carSlice";
+import spaceReducer from "../features/parking/spaceSlice";
 
 export const store = configureStore({
   reducer: { 
-    carState: carReducer 
+    carState: carReducer,
+    spaceState: spaceReducer,
   },
 });
 
