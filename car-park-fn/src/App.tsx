@@ -1,6 +1,8 @@
 import React from 'react';
 import Mainpage from './pages/Mainpage';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import WebcamVideo from './features/home/Camera';
+import "./App.css";
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
           <Route path="/logout" element={<Mainpage />} />
           {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
-      
+      <WebcamVideo/>
     </div>
   );
 }

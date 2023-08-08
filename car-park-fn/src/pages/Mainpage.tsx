@@ -17,6 +17,8 @@ import { CSSObject, Fab, Theme, styled } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Link } from 'react-router-dom'
+import Webcam from "react-webcam";
+import "../App.css";
 
 let drawerWidth = 200;
 const appbarHeight = 64;
