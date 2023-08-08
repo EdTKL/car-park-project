@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Car } from "../model";
+import { Car } from "../models";
 import './CarList.scss'
 import Table from "react-bootstrap/Table";
 

@@ -9,7 +9,7 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent, {
   timelineOppositeContentClasses,
 } from "@mui/lab/TimelineOppositeContent";
-import { Car } from "../model";
+import { Car } from "../models";
 import "./Parking.scss";
 import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";

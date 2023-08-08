@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import Paper from "@mui/material/Paper";
-import { Car } from "../model";
+import { Car } from "../models";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import AirportShuttleIcon from "@mui/icons-material/AirportShuttle";
 import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";

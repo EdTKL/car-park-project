@@ -1,3 +1,5 @@
+import { SvgIconProps } from "@mui/material"
+
 export interface Car {
     id: number,
     invoice: string,
@@ -23,4 +25,19 @@ export interface CarPark {
     smCarSpace: number,
     mdCarSpace: number,
     motoSpace: number,
+}
+
+export type SidebarButton = {
+    key: string,
+    linkTo: string,
+    icon: React.ReactElement<SvgIconProps>, 
+    primary: string
+}
+
+export type Price = {
+    key: string,
+    time: string, 
+    smallVehiclePrice: number, 
+    middleVehiclePrice: number, 
+    motorbikePrice: number
 }

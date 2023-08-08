@@ -14,7 +14,6 @@ const Home = () => {
       carList.filter((car) => car.status === "停泊中"), [carList]);
     const shortParkingList = useMemo(() => 
       carList.filter((car) => car.status === "停泊中").slice(0, 4), [carList]);
-      console.log(parkingList)
 
   return (
     <div className='home-container container-fluid d-flex flex-column justify-content-center align-items-center'>

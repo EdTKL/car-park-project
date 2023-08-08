@@ -1,0 +1,64 @@
+/* sidebar */
+li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 68px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 5px 5px 3px rgba(0,0,0,0.3);
+}
+.sidebar > div {
+  display: flex;
+  justify-content: space-between;
+  background-color: #bdee69;
+  border: none;
+}
+.sidebar > div > ul:nth-child(1) > li:nth-child(2) > div {
+  margin-top: 20px;
+}
+.sidebar > div > ul:nth-child(2) > li,
+.sidebar > div > div > ul:nth-child(2) > li,
+.sidebar > div > ul:nth-child(1) > li:not(:first-child), 
+.sidebar > div > div > ul:nth-child(1) > li:not(:first-child) {
+  margin: 10px 0 10px 10px;
+}
+.sidebar > div > ul:nth-child(2), 
+.sidebar > div > div > ul:nth-child(2) {
+  margin-bottom: 30px;
+}
+#root > div > div > div > div > ul > li > a > div > div.svg,
+.MuiBox-root.css-k008qs > div > div > ul > li > div > .svg {
+  width: 30px;
+  margin-right: 10px;
+}
+.sidebar > div > ul:nth-child(1) > li:not(:first-child) > a > div > div > span,
+.sidebar > div > ul:nth-child(2) > li > a > div > div > span {
+  font-weight: bold;
+}
+a {
+  text-decoration: none !important;
+  color: #131f00 !important;
+}
+.sidebar > div > ul:nth-child(1) > li:not(:first-child):hover,
+.sidebar > div > ul:nth-child(2) > li:hover {
+  background-color: #f2f4f4;
+  border-radius: 15px 0 0 15px;
+  color: #476800;
+}
+.MuiListItemText-root.css-1cag644-MuiListItemText-root {
+  opacity: 1 !important;
+} 
+.sidebar > div > ul:nth-child(1) > li:not(:first-child):hover .sidebarButtonText, 
+.sidebar > div > ul:nth-child(2) > li:hover .sidebarButtonText, 
+.sidebar > div > ul:nth-child(1) > li:not(:first-child):hover .svg, 
+.sidebar > div > ul:nth-child(2) > li:hover .svg {
+  color: #476800;
+}
+/* Mini variant drawer */
+li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
+  height: 118px;
+}
+.MuiBox-root.css-k008qs > div > div > div > ul > li > div > .svg {
+  width: 30px;
+  margin-left: 10px;
+}
