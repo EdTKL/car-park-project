@@ -13,7 +13,7 @@ const Home = () => {
     const parkingList = useMemo(() => 
       carList.filter((car) => car.status === "停泊中"), [carList]);
     const shortParkingList = useMemo(() => 
-      carList.filter((car) => car.status === "停泊中").slice(0, 4), [carList]);
+      parkingList.slice(0, 4), [parkingList]);
       console.log(parkingList)
 
   return (

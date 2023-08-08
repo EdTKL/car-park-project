@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Car, CarPark } from "../model";
+import { CarPark } from "../model";
 
 export interface ParkingState {
   space: CarPark[];

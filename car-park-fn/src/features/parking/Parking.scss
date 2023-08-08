@@ -1,31 +1,27 @@
 .timeline-comp {
-    background: #FFF;
-    margin: 10px;
-    padding: 10px 10px;
-    min-width: 430px;
-    height: 320px;
-    border-radius: 20px;
+  background: #fff;
+  margin: 10px;
+  padding: 10px 10px;
+  min-width: 430px;
+  height: 320px;
+  border-radius: 20px;
 
-    h5 {
-        color:#476800;
-        font-weight: 700;
+  h5 {
+    color: #476800;
+    font-weight: 700;
+  }
+
+  .labels {
+    min-height: 0;
+
+    div {
+      font-weight: 700;
+      margin: 0;
     }
 
-    .labels {
-        min-height: 0;
-
-        div {
-            font-weight: 700;
-            margin: 0;
-        }
-
-        span {
-            background-color: #FFFFFF;
-            box-shadow: none;
-        }
-
-
+    span {
+      background-color: #ffffff;
+      box-shadow: none;
     }
-
-
+  }
 }

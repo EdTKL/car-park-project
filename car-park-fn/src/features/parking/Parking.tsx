@@ -11,8 +11,6 @@ import TimelineOppositeContent, {
 } from "@mui/lab/TimelineOppositeContent";
 import { Car } from "../model";
 import "./Parking.scss";
-import { useAppSelector } from "../../app/hook";
-import { RootState } from "../../app/store";
 
 
 interface Props {
@@ -49,7 +47,7 @@ export default function Parking({ shortParkingList }: Props) {
           <TimelineItem key={idx} sx={{ minHeight: "60px", padding: 0 }}>
             <TimelineOppositeContent>{car.time}</TimelineOppositeContent>
             <TimelineSeparator>
-              <TimelineDot sx={{ backgroundColor: "#EBC243" }} />
+              <TimelineDot sx={{ backgroundColor: "#EBC243", boxShadow: "none" }} />
               {idx !== shortParkingList.length - 1 && <TimelineConnector />}
             </TimelineSeparator>
             <TimelineContent sx={{ color: "#008399", fontWeight: 700 }}>

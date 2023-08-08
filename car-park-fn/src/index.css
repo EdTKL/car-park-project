@@ -64,13 +64,20 @@ html, body, #root, .App, .MuiBox-root.css-k008qs {
   color: #008399;
 }
 /* sidebar */
-li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
+
+/* li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
   font-family: 'Black Han Sans', sans-serif;
   font-size: 68px;
   display: flex;
   justify-content: center;
-  color: #fff;
+  color: #fff!important;
   text-shadow: 5px 5px 3px rgba(0,0,0,0.3);
+} */
+
+.brand {
+  display: flex;
+  justify-content: center!important;
+  align-items: center!important;
 }
 .MuiDrawer-root.MuiDrawer-docked.sidebar.css-45fs7h-MuiDrawer-docked > div, 
 .MuiDrawer-root.MuiDrawer-docked.sidebar.css-3dplyu-MuiDrawer-docked > div {

@@ -121,8 +121,26 @@ const Mainpage = (props: any) => {
       {/* sidebar */}
       <Drawer className="sidebar" variant="permanent" anchor="left" open={open}>
         <List>
-            {open && <ListItem>GW</ListItem>}
-            {!open && <ListItem></ListItem>}
+            {open ? ( 
+              <ListItem className="brand">
+                <Typography variant="h2" sx={{
+                  color: 'white', 
+                  fontFamily: 'Black Han Sans', 
+                  textAlign: 'center',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+                  }}>GW</Typography>
+              </ListItem>
+              ):(
+              <ListItem>
+                  <Typography variant="h6" sx={{
+                  color: 'white', 
+                  fontFamily: 'Black Han Sans', 
+                  textAlign: 'center',
+                  textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+                  marginBottom: '75px'
+                  }}>GW</Typography>
+              </ListItem>
+            )}
             <ListItem key='homepage' disablePadding sx={{ width: 190}}>
                 <Link to="/home"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                     <div className='svg'><FontAwesomeIcon icon={faHouse} /></div>

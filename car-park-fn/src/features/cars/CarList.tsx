@@ -41,7 +41,7 @@ const CarList = ({carList}:Props) => {
               <td>{car.id}</td>
               <td>{car.plate}</td>
               <td>{car.type}</td>
-              <td>{car.entryExit}</td>
+              <td>{car.in_out}</td>
               <td>{car.time}</td>
               <td>{car.invoice}</td>
               <td>{car.payment}</td>
