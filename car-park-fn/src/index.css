@@ -11,119 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-header.MuiPaper-root {
-  background-color: #bdee69 !important;
-}
-html, body, #root, .App, .MuiBox-root.css-k008qs {
-  background-color: #f2f4f4 !important;
-  height: 100%;
-  width: auto;
-}
-
-/* navbar */
-.MuiBox-root.css-k008qs > header > div {
-  background-color: #f2f4f4;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  border-radius: 15px 0 0 0 ;
-}
-/* car park name in navbar */
-.MuiBox-root.css-k008qs > header > div > .navbarCarparkName {
-  color: #000;
-  font-weight: bold;
-  background-color: #c1f36d;
-  padding: 3px 10px;
-  border-radius: 10px;
-  box-shadow: 0 3px 3px rgba(0,0,0,0.5);
-}
-/* navbar buttons */
-.navbarButtons {
-  width: 200px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.MuiBox-root.css-k008qs > header > div > div > svg {
-  color: #000;
-  font-size: 24px;
-  margin: 5px 0;
-}
-.MuiBox-root.css-k008qs > header > div > div > div.staffProfile {
-  background-color: #d6d6d6;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  font-weight: bold;
-  color: #008399;
-}
-/* sidebar */
-li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
-  font-family: 'Black Han Sans', sans-serif;
-  font-size: 68px;
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  text-shadow: 5px 5px 3px rgba(0,0,0,0.3);
-}
-.MuiDrawer-root.MuiDrawer-docked.sidebar.css-45fs7h-MuiDrawer-docked > div, 
-.MuiDrawer-root.MuiDrawer-docked.sidebar.css-3dplyu-MuiDrawer-docked > div {
-  display: flex;
-  justify-content: space-between;
-  background-color: #bdee69;
-  border: none;
-}
-.MuiBox-root.css-k008qs > div > div > ul:nth-child(1) > li:nth-child(2) > div {
-  margin-top: 20px;
-}
-.MuiBox-root.css-k008qs > div > div > ul:nth-child(1) > li:not(:first-child), 
-.MuiBox-root.css-k008qs > div > div > div > ul:nth-child(1) > li:not(:first-child) {
-  margin: 10px 0 10px 10px;
-}
-#root > div > div.MuiBox-root.css-k008qs > div > div > ul:nth-child(2) > li,
-#root > div > div.MuiBox-root.css-k008qs > div > div > div > ul:nth-child(2) > li {
-  margin: 10px 0 10px 10px;
-}
-.MuiBox-root.css-k008qs > div > div > ul:nth-child(2), 
-.MuiBox-root.css-k008qs > div > div > div > ul:nth-child(2) {
-  margin-bottom: 30px;
-}
-#root > div > div > div > div > ul > li > a > div > div.svg,
-.MuiBox-root.css-k008qs > div > div > ul > li > div > .svg {
-  width: 30px;
-  margin-right: 10px;
-}
-.MuiDrawer-root.MuiDrawer-docked.sidebar.css-3dplyu-MuiDrawer-docked > div > ul:nth-child(1) > li:nth-child(3) > a > div > div.svg > svg,
-.MuiDrawer-root.MuiDrawer-docked.sidebar.css-45fs7h-MuiDrawer-docked > div > ul:nth-child(1) > li:nth-child(3) > a > div > div.svg > svg {
-  padding-left: 3px;
-}
-
-.MuiDrawer-root.MuiDrawer-docked.sidebar.css-45fs7h-MuiDrawer-docked > div > ul:nth-child(1) > li:not(:first-child) > a > div > div > span,
-.MuiDrawer-root.MuiDrawer-docked.sidebar.css-45fs7h-MuiDrawer-docked > div > ul:nth-child(2) > li > a > div > div > span {
-  font-weight: bold;
-}
-a {
-  text-decoration: none !important;
-  color: #000;
-}
-#root > div > div > div > div > ul:nth-child(1) > li:not(:first-child):hover,
-#root > div > div > div > div > ul:nth-child(2) > li:hover {
-  background-color: #f2f4f4;
-  border-radius: 15px 0 0 15px;
-}
-/* Mini variant drawer */
-li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
-  height: 118px;
-}
-.MuiBox-root.css-k008qs > div > div > div > ul > li > div > .svg {
-  width: 30px;
-  margin-left: 10px;
-}
 /* floating action button */
 .fabExpanded {
   position: sticky;
@@ -141,12 +28,17 @@ li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListI
 .MuiBox-root.css-k008qs > div > button > svg {
   color: #008399;
 }
-#root > div > div > div.MuiBox-root.css-15t2oww, #root > div > div > div.MuiBox-root.css-18iydrm {
+.MuiBox-root.css-15t2oww, .MuiBox-root.css-18iydrm {
   position: sticky;
   top: 64px;
+  border-bottom-left-radius: 15px;
 }
-#root > div > div > div.MuiDrawer-root.MuiDrawer-docked.sidebar.css-3dplyu-MuiDrawer-docked {
-  position: sticky;
-  left: 0;
-  margin: 0;
+.dummy {
+  background: #FFF;
+    margin: 10px;
+    padding: 10px 10px;
+    min-width: 430px;
+    height: 200px;
+    border-radius: 20px !important;
+  border: 2px solid #131f00;
 }
