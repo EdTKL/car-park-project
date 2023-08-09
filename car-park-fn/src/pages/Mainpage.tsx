@@ -17,6 +17,8 @@ import { CSSObject, Fab, Theme, styled } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Link } from 'react-router-dom'
+import { logout } from '../redux/slice/authSlice';
+import { useAppDispatch } from '../app/hook';
 
 let drawerWidth = 200;
 const appbarHeight = 64;
@@ -80,6 +82,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const Mainpage = (props: any) => {
+  console.log('main')
   // const carList = useAppSelector((state: RootState) => state.carState.carList);
 
   //const theme = useTheme();
@@ -94,6 +97,8 @@ const Mainpage = (props: any) => {
     setOpen(false);
     drawerWidth = 65
   };
+
+  const dispatch = useAppDispatch()
 
   return(
     <Box sx={{ display: 'flex' }}>
@@ -154,8 +159,15 @@ const Mainpage = (props: any) => {
                     <ListItemText primary="設定" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton></Link>
             </ListItem>
+            <ListItem key='register' disablePadding sx={{ width: 190 }}>
+                <Link to="/register"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
+                    <div className='svg'><FontAwesomeIcon icon={faScrewdriverWrench} /></div>
+                    <ListItemText primary="註冊" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton></Link>
+            </ListItem>
             <ListItem key='logout' disablePadding sx={{ width: 190 }}>
-                <Link to="/logout"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
+                <Link to="/logout"><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}
+                onClick={ () => dispatch(logout()) }>
                     <div className='svg'><FontAwesomeIcon icon={faRightFromBracket} /></div>
                     <ListItemText primary="登出" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton></Link>
