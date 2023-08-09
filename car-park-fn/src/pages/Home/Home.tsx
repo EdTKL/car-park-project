@@ -7,7 +7,7 @@ import CarList from '../../features/cars/CarList';
 import Parking from '../../features/parking/Parking';
 import Space from '../../features/parking/Space';
 import priceList from '../../variables/priceList';
-import { Grid, Paper } from '@mui/material';
+import { Grid, Toolbar } from '@mui/material';
 
 
 
@@ -21,7 +21,8 @@ const Home = () => {
 
   return (
     <>
-    <Grid container spacing={2} >
+    <Toolbar />
+    <Grid container spacing={2} className='home-container container-fluid d-flex flex-column justify-content-center align-items-center'>
       <Grid container direction="row" xs={12} className='first-row'>
         <Grid item xs={4} justifyContent="center" alignItems="center">
           <Space /></Grid>
@@ -30,18 +31,16 @@ const Home = () => {
         <Grid item xs={4} justifyContent="center" alignItems="center">
           <Parking shortParkingList={shortParkingList}/></Grid>
       </Grid>
-      </Grid>
-    <Grid container spacing={2} >
-      <Grid item xs={8} justifyContent="center" alignItems="center">
-        <CarList carList={carList}/>
-      </Grid>
-      <Grid item xs={4} >
-        <Paper sx={{width: '100%', height: '50%', borderRadius: '20px'}} elevation={3} ></Paper>
-        <Paper sx={{width: '100%', height: '50%', borderRadius: '20px'}} elevation={3} ></Paper>
+      <Grid container direction="row" xs={12} className='second-row'>
+        <Grid item xs={8} justifyContent="center" alignItems="stretch"><CarList carList={carList}/></Grid>
+        <Grid item xs={4} justifyContent="center" alignItems="stretch" className='cameraContainer'>
+          <div className='dummy'></div>
+          <div className='dummy'></div>
+        </Grid>
       </Grid>
     </Grid>
     </>
-    )
+  )
 }
 
 export default Home

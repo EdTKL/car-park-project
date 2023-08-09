@@ -15,7 +15,7 @@ import {
   Container,
   Fab,
   Grid,
-  Paper,
+  // Paper,
   Theme,
   styled,
 } from "@mui/material";
@@ -38,7 +38,7 @@ interface Props {
 }
 
 let drawerWidth = 200;
-const appbarHeight = 64;
+// const appbarHeight = 64;
 
 // const defaultTheme = createTheme();
 

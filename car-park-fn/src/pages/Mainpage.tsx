@@ -167,9 +167,9 @@ const Mainpage = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
         </List>
       </Drawer>
       {/* content */}
-      <Box sx={{ width: `calc(100% - ${drawerWidth}px)`, height: `calc(100% - ${appbarHeight}px)`}}>
-        <Home />
-      </Box>
+        <Box sx={{ width: `calc(100% - ${drawerWidth}px)`, height: `calc(100% - ${appbarHeight}px)`, t: 64}}>
+          <Home />
+        </Box>
     </Box>
 )};
 
