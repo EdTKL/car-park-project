@@ -6,6 +6,7 @@ import { RootState } from '../../app/store';
 import CarList from '../../features/cars/CarList';
 import Parking from '../../features/parking/Parking';
 import Space from '../../features/parking/Space';
+import Meter from '../../features/parking/Space';
 import priceList from '../../variables/priceList';
 import { Grid } from '@mui/material';
 
@@ -21,7 +22,9 @@ const Home = () => {
     <>
     <Grid container sx={{ margin: 0 }} className='home-container container-fluid d-flex flex-column justify-content-center align-items-center'>
       <Grid container direction="row" xs={12} className='first-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }} >
-        <Grid item xs={4} justifyContent="center" alignItems="center"><Meter parkingList={parkingList}/></Grid>
+        <Grid item xs={4} justifyContent="center" alignItems="center">
+          {/* <Space parkingList={parkingList}/> */}
+          </Grid>
         <Grid item xs={4} justifyContent="center" alignItems="center"><Prices priceList={priceList} /></Grid>
         <Grid item xs={4} justifyContent="center" alignItems="center"><Parking shortParkingList={shortParkingList}/></Grid>
       </Grid>

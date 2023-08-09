@@ -45,15 +45,9 @@ export default function Parking({ shortParkingList }: Props) {
         </TimelineItem>
         {shortParkingList.map((car, idx) => (
           <TimelineItem key={idx} sx={{ minHeight: "60px", padding: 0 }}>
-<<<<<<< HEAD
             <TimelineOppositeContent className="carTime">{car.time}</TimelineOppositeContent>
             <TimelineSeparator className="timelineWrap">
               <TimelineDot sx={{ backgroundColor: "#EBC243" }} />
-=======
-            <TimelineOppositeContent>{car.time}</TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot sx={{ backgroundColor: "#EBC243", boxShadow: "none" }} />
->>>>>>> b24ab2ce7a01e851334d4a865133805c6fce0ff2
               {idx !== shortParkingList.length - 1 && <TimelineConnector />}
             </TimelineSeparator>
             <TimelineContent sx={{ color: "#008399", fontWeight: 700 }} className="carPlate">

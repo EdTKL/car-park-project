@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import "../features/sidebar/Sidebar.scss";
-import "../features/sidebar/Navbar.scss";
+import "../features/bars/Sidebar.scss";
+import "../features/bars/Navbar.scss";
 import "./home/Home.scss";
 import Navbar from '../features/bars/Navbar';
 import Sidebar from '../features/bars/Sidebar';

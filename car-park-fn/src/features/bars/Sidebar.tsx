@@ -8,8 +8,9 @@ import { CSSObject, Theme, styled } from '@mui/material';
 import { Link } from 'react-router-dom'
 import "./Sidebar.scss";
 import { useSelector } from 'react-redux';
-import { SidebarButton } from '../model';
+
 import { RootState } from '../../app/store';
+import { SidebarButton } from '../models';
 
 interface Props {
   sidebarButtonList1: SidebarButton[];
