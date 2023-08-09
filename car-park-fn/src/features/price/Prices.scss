@@ -1,22 +1,32 @@
 .tableContainer {
     background: #FFF;
-    // margin: 10px;
-    padding: 10px 10px;
-    //min-width: 430px;
-    height: 20em;
+    padding: 0.5em;
+    height: 17em;
     border-radius: 20px !important;
+
+    div {
+        width: 100%;
+    }
+
+    .priceTableBody{
+        display: flex;
+        justify-content: center;
+    }
 
     h5 {
         color:#476800 !important;
         font-weight: bold !important;
     }
+    .price-row > th {
+        padding: 1em;
+    }
     .weekday {
           background-color: #008399;
           font-weight: bold;
-          padding: 3px 5px;
+          padding: 0.5em 1em;
           border-radius: 10px;
           color: #fff;
-          font-size: 18px;
+          font-size: 1.25em;
     }
     .carIcon {
         color: #131f00;
@@ -24,7 +34,7 @@
     .carcategory {
         font-weight: bold;
         color: #131f00;
-        font-size: 18px;
+        font-size: 1.3em;
     }
     tbody > tr:not(:first-child) > td:nth-child(1) {
         padding: 0;
@@ -32,13 +42,13 @@
     td:nth-child(1) > .priceTime {
         color: #131f00;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 1.3em;
     }
     .halfDayRent {
         color: #131f00;
     }
     table > tbody > tr > td:not(:first-child) {
         color: #008399 !important;
-        font-size: 20px;
+        font-size: 1.3em;
     }
 }

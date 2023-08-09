@@ -1,18 +1,14 @@
 header.MuiPaper-root {
   background-color: #bdee69 !important;
 }
-html, body, #root, .App, .MuiBox-root.css-k008qs {
-  background-color: #f2f4f4 !important;
-  height: 100%;
-  width: auto;
-}
+
 /* navbar */
 .MuiBox-root.css-k008qs > header > div {
   background-color: #f2f4f4;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  border-radius: 15px 0 0 0 ;
+  border-radius: 20px 0 0 0 ;
 }
 /* car park name in navbar */
 .MuiBox-root.css-k008qs > header > div > .navbarCarparkName {

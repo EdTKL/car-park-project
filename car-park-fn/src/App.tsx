@@ -16,7 +16,6 @@ function App() {
           <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
           {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
-      
     </div>
   );
 }
