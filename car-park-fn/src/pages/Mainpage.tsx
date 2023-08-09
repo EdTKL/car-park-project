@@ -2,13 +2,13 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { SidebarButton } from '../features/model';
-import Home from './home/Home';
-import "../features/sidebar/Sidebar.scss";
-import "../features/sidebar/Navbar.scss";
+import "../features/bars/Sidebar.scss";
+import "../features/bars/Navbar.scss";
 import "./home/Home.scss";
-import Navbar from '../features/sidebar/Navbar';
-import Sidebar from '../features/sidebar/Sidebar';
-import Collapse from '../features/sidebar/Collapse';
+import Navbar from '../features/bars/Navbar';
+import Sidebar from '../features/bars/Sidebar';
+import Collapse from '../features/bars/Collapse';
+import Home from './home/Home';
 
 interface Props {
   sidebarButtonList1: SidebarButton[];
