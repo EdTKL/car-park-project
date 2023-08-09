@@ -72,14 +72,24 @@ function WebcamVideo() {
     const blob = new Blob(recordedChunks, {
       type: "video/webm",
     });
-    if(!file) return
-    try {
-      return await fetch(blob, { method: 'POST', body: file }).then(res => {
-        console.log("SUCCESS", res.text())
-      })
-    } catch(error) {
-      console.log(error)
-    }
+    const formData = new FormData();
+    formData.append('video', blob);
+
+
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/video/upload`, 
+      { method: 'POST', body: formData }).then(res => {
+      console.log("SUCCESS", res.text())
+    })
+
+    // if(!file) return
+    // try {
+    //   return await fetch(blob, 
+    //     { method: 'POST', body: file }).then(res => {
+    //     console.log("SUCCESS", res.text())
+    //   })
+    // } catch(error) {
+    //   console.log(error)
+    // }
   }
   
   const App = () => {
