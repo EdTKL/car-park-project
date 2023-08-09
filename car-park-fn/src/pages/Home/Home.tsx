@@ -7,7 +7,7 @@ import CarList from '../../features/cars/CarList';
 import Parking from '../../features/parking/Parking';
 import Meter from '../../features/parking/Space';
 import priceList from '../../variables/priceList';
-import { Grid, Paper } from '@mui/material';
+import { Grid, Toolbar } from '@mui/material';
 
 
 
@@ -20,20 +20,23 @@ const Home = () => {
       //console.log(parkingList)
 
   return (
+    <>
+    <Toolbar />
     <Grid container spacing={2} className='home-container container-fluid d-flex flex-column justify-content-center align-items-center'>
       <Grid container direction="row" xs={12} className='first-row'>
         <Grid item xs={4} justifyContent="center" alignItems="center"><Meter parkingList={parkingList}/></Grid>
         <Grid item xs={4} justifyContent="center" alignItems="center"><Prices priceList={priceList} /></Grid>
         <Grid item xs={4} justifyContent="center" alignItems="center"><Parking shortParkingList={shortParkingList}/></Grid>
       </Grid>
-      <div className='second-row'>
-        <CarList carList={carList}/>
-        <div className='camera'>
+      <Grid container direction="row" xs={12} className='second-row'>
+        <Grid item xs={8} justifyContent="center" alignItems="stretch"><CarList carList={carList}/></Grid>
+        <Grid item xs={4} justifyContent="center" alignItems="stretch" className='cameraContainer'>
           <div className='dummy'></div>
           <div className='dummy'></div>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     </Grid>
+    </>
   )
 }
 

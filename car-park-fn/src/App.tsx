@@ -1,8 +1,7 @@
 import React from 'react';
 import Mainpage from './pages/Mainpage';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import sidebarButtonList1 from './variables/sidebarButtonList1';
-import sidebarButtonList2 from './variables/sidebarButtonList2';
+import { sidebarButtonList1, sidebarButtonList2 } from './variables/sidebarButtonLists';
 
 function App() {
   return (
