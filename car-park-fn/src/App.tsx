@@ -3,12 +3,17 @@ import Mainpage from './pages/Mainpage';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { StaffRoutes } from './StaffRoutes';
 import { AdminRoutes } from './AdminRoutes';
+import { sidebarButtonList1, sidebarButtonList2 } from './variables/sidebarButtonLists';
+import { appTheme } from './themes/theme'
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import ParkingPage from './pages/parkingPage/ParkingPage';
 
 import { Login } from "./features/auth/Login";
 import { useAppDispatch, useAppSelector } from './app/hook';
 import { login, logout } from './redux/slice/authSlice';
 import Register from './features/auth/Register';
 import { AuthState } from './redux/interface/model';
+import PrivateRoute from './features/auth/PrivateRoute';
 
 function App() {
   const authListener = useAppSelector((state):AuthState=> state.auth)
@@ -32,44 +37,47 @@ function App() {
 
     },[])
   return (
+<ThemeProvider theme={appTheme}>
+  <CssBaseline enableColorScheme />
     <div className='App'>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="login" element={<Login />} />
-        
 
         {authListener.isAuth && authListener.role === "staff" ? 
           <Route element={<StaffRoutes />}>
-          <Route path="/home" element={<Mainpage />} />
-          <Route path="/parked-vehicle" element={<Mainpage />} />
-          <Route path="/edit-record" element={<Mainpage />} />
-          <Route path="/statistic" element={<Mainpage />} />
-          <Route path="/setting" element={<Mainpage />} />
+          <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
+          <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
+          <Route path="/edit" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           
-          <Route path="/logout" element={<Mainpage />} />
+          <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
         </Route>
         :
         null
         }
         {authListener.isAuth && authListener.role === "admin" ? 
         <Route element={<AdminRoutes />}>
-          <Route path="/home" element={<Mainpage />} />
-          <Route path="/parked-vehicle" element={<Mainpage />} />
-          <Route path="/edit-record" element={<Mainpage />} />
-          <Route path="/statistic" element={<Mainpage />} />
-          <Route path="/setting" element={<Mainpage />} />
+          <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
+          <Route path="/edit" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Mainpage />} />
+          <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
         </Route>
         :
         null
         }
+
         
 
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
-
     </div>
+  </ThemeProvider>
   );
 }
 

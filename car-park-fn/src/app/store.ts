@@ -1,12 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import carReducer, { CarState } from "../features/home/carSlice";
+import carReducer, { CarState } from "../features/cars/carSlice";
+import spaceReducer, { ParkingState } from "../features/parking/spaceSlice";
 import { authReducer } from "../redux/slice/authSlice";
 import { AuthState } from "../redux/interface/model";
-
 
 export interface RootState {
   auth:AuthState,
   carState:CarState
+  spaceState: ParkingState,
 
 }
 export type AppDispatch = typeof store.dispatch;
@@ -15,6 +16,8 @@ export type AppDispatch = typeof store.dispatch;
 const combine_reducer = combineReducers<RootState>({
   auth:authReducer,
   carState: carReducer,
+  spaceState: spaceReducer,
+
 })
  
 export const store = configureStore({
