@@ -1,4 +1,4 @@
-import { Price } from "../features/model";
+import { Price } from "../features/models";
 
 const priceList: Array<Price> = [
     {key: "hourly", time: "時租", smallVehiclePrice: 19, middleVehiclePrice: 40, motorbikePrice: 19},

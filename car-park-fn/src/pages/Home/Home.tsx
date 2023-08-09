@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import './Home.scss'
-import Prices from '../../features/price/Prices';
+import Prices from '../../features/prices/Prices';
 import { useAppSelector } from '../../app/hook';
 import { RootState } from '../../app/store';
 import CarList from '../../features/cars/CarList';
 import Parking from '../../features/parking/Parking';
-import Meter from '../../features/parking/Space';
+import Space from '../../features/parking/Space';
 import priceList from '../../variables/priceList';
 import { Grid } from '@mui/material';
 

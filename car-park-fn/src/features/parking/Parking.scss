@@ -4,10 +4,19 @@
     height: 17em;
     border-radius: 20px;
 
-    h5 {
-        color:#476800;
-        font-weight: 700;
+  h5 {
+    color: #476800;
+    font-weight: 700;
+  }
+
+  .labels {
+    min-height: 0;
+
+    div {
+      font-weight: 700;
+      margin: 0;
     }
+<<<<<<< HEAD
     ul {
         padding: 0;
         margin: 0;
@@ -49,7 +58,12 @@
         }
 
 
+=======
+
+    span {
+      background-color: #ffffff;
+      box-shadow: none;
+>>>>>>> b24ab2ce7a01e851334d4a865133805c6fce0ff2
     }
-
-
+  }
 }

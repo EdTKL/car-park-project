@@ -12,8 +12,6 @@ export interface RootState {
   drawerState: DrawerState
 }
 
-export type AppDispatch = typeof store.dispatch;
-
 const combine_reducer = combineReducers<RootState>({
   auth:authReducer,
   carState: carReducer,
@@ -21,6 +19,15 @@ const combine_reducer = combineReducers<RootState>({
   drawerState: navSideReducer,
 })
 
+export interface RootState {
+  auth:AuthState,
+  carState:CarState
+  spaceState: ParkingState,
+
+}
+export type AppDispatch = typeof store.dispatch;
+
+ 
 export const store = configureStore({
   reducer: combine_reducer
 });

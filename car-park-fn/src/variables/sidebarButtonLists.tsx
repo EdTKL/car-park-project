@@ -4,7 +4,7 @@ import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import { SidebarButton } from '../features/model';
+import { SidebarButton } from '../features/models';
 
 
 export const sidebarButtonList1: Array<SidebarButton> = [
@@ -15,6 +15,7 @@ export const sidebarButtonList1: Array<SidebarButton> = [
 ]
 
 export const sidebarButtonList2: Array<SidebarButton> = [
+  {"key": "register", linkTo: "/register", icon: <HandymanOutlinedIcon />, primary: "註冊" },
   {"key": "setting", linkTo: "/setting", icon: <HandymanOutlinedIcon />, primary: "設定" },
   {"key": "logout", linkTo: "/logout", icon: <LogoutOutlinedIcon />, primary: "登出" }
 ]
