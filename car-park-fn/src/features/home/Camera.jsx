@@ -79,8 +79,9 @@ function WebcamVideo() {
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/video/upload`, 
       { method: 'POST', body: formData }).then(res => {
       console.log("SUCCESS", res.text())
-    })
-
+      fetch()
+    }, [] )
+  }
     // if(!file) return
     // try {
     //   return await fetch(blob, 
@@ -90,7 +91,7 @@ function WebcamVideo() {
     // } catch(error) {
     //   console.log(error)
     // }
-  }
+
   
   const App = () => {
     const blob = new Blob(recordedChunks, {
@@ -142,7 +143,10 @@ function WebcamVideo() {
         <button onClick={handleStartCaptureClick}>Start Capture</button>
       )}
       {recordedChunks.length > 0 && (
-        <button onClick={handleDownload}>Download</button>
+        <button onClick={handleDownload}>Download</button> 
+      )}
+      {recordedChunks.length > 0 && (
+        sendToServer()
       )}
     </div>
   );
