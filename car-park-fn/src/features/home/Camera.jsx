@@ -69,12 +69,12 @@ function WebcamVideo() {
 
 
   const sendToServer = async (file) => {
+    
     const blob = new Blob(recordedChunks, {
       type: "video/webm",
     });
     const formData = new FormData();
     formData.append('video', blob);
-
 
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/video/upload`, 
       { method: 'POST', body: formData }).then(res => {
@@ -146,7 +146,7 @@ function WebcamVideo() {
         <button onClick={handleDownload}>Download</button> 
       )}
       {recordedChunks.length > 0 && (
-        sendToServer()
+        sendToServer() //UseEffect
       )}
     </div>
   );
