@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Car } from "../models";
-import './CarList.scss'
+import './ParkingList.scss'
 import Table from "react-bootstrap/Table";
+import { useAppSelector } from "../../app/hook";
+import { RootState } from "../../app/store";
 
-interface Props {
-  carList: Car[];
-}
+// interface Props {
+//   parkingList: Car[];
+// }
 
-const CarList = ({carList}:Props) => {
+const ParkingList = () => {
   const [search, setSearch] = useState("");
+  const carList = useAppSelector((state: RootState) => state.carState.carList);
+  const parkingList = useMemo(() => 
+    carList.filter((car) => car.status === "停泊中"), [carList]);
+
 
   return (
     <div className='car-list-comp'>
-      <h5>所有進出車輛</h5>
+      <h5>現時停泊車輛</h5>
       <div className='btns'>
         <button>排序</button>
         <span>
@@ -27,25 +33,27 @@ const CarList = ({carList}:Props) => {
             <th>次序</th>
             <th>車牌</th>
             <th>車類</th>
-            <th>進／出</th>
-            <th>時間</th>
+            <th>停泊時間</th>
             <th>收據編號</th>
-            <th>收費</th>
-            <th>狀態</th>
+            <th>總時數</th>
+            <th>時</th>
+            <th>日</th>
+            <th>夜</th>
             <th>職員編號</th>
           </tr>
         </thead>
         <tbody>
-          {carList.map((car: Car) => (
+          {parkingList.map((car: Car, idx) => (
             <tr key={car.id}>
-              <td>{car.id}</td>
+              <td>{idx+1}</td>
               <td>{car.plate}</td>
               <td>{car.type}</td>
-              <td>{car.in_out}</td>
               <td>{car.time}</td>
               <td>{car.invoice}</td>
-              <td>{car.payment}</td>
-              <td>{car.status}</td>
+              <td>{car.totalHrs}</td>
+              <td>{car.parkedHrs}</td>
+              <td>{car.parkedDays}</td>
+              <td>{car.parkedNights}</td>
               <td>{car.staff_id}</td>
             </tr>
           ))}
@@ -55,4 +63,4 @@ const CarList = ({carList}:Props) => {
   );
 };
 
-export default CarList;
+export default ParkingList;

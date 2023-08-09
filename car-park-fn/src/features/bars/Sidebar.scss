@@ -1,12 +1,20 @@
 /* sidebar */
-li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
-  font-family: 'Black Han Sans', sans-serif;
-  font-size: 68px;
+
+// li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListItem-root {
+//   font-family: 'Black Han Sans', sans-serif;
+//   font-size: 68px;
+//   display: flex;
+//   justify-content: center;
+//   color: #fff;
+//   text-shadow: 5px 5px 3px rgba(0,0,0,0.3);
+// }
+
+.brand {
   display: flex;
-  justify-content: center;
-  color: #fff;
-  text-shadow: 5px 5px 3px rgba(0,0,0,0.3);
+  justify-content: center!important;
+  align-items: center!important;
 }
+
 .sidebar > div {
   display: flex;
   justify-content: space-between;

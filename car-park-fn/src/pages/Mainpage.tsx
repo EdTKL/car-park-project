@@ -19,8 +19,8 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import { SidebarButton } from '../features/models';
 import Home from './Home/Home';
-import "../features/sidebar/Sidebar.scss";
-import "../features/sidebar/Navbar.scss";
+import "../features/bars/Sidebar.scss";
+import "../features/bars/Navbar.scss";
 
 interface Props {
   sidebarButtonList1: SidebarButton[];
@@ -126,19 +126,37 @@ const Mainpage = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
       {/* sidebar */}
       <Drawer className="sidebar" variant="permanent" anchor="left" open={open}>
         <List>
-            {open && <ListItem className='logo'>GW</ListItem>}
-            {!open && <ListItem></ListItem>}
-            <>{sidebarButtonList1.map((button, open)=>
+          {open ? ( 
+            <ListItem className="brand">
+              <Typography variant="h2" sx={{
+                  color: 'white', 
+                  fontFamily: 'Black Han Sans', 
+                  textAlign: 'center',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+                  }}>GW</Typography>
+            </ListItem>
+              ):(
+            <ListItem>
+                  <Typography variant="h6" sx={{
+                  color: 'white', 
+                  fontFamily: 'Black Han Sans', 
+                  textAlign: 'center',
+                  textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+                  marginBottom: '75px'
+                  }}>GW</Typography>
+            </ListItem>
+            )}
+            {sidebarButtonList1.map((button, open)=>
                 <ListItem key={button.key} disablePadding sx={{ width: 190 }}>
                     <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                         <div className='svg'>{button.icon}</div>
                         <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
                     </ListItemButton></Link>
                 </ListItem>
-            )}</>
+            )}
         </List>
         <List>
-          <>{sidebarButtonList2.map((button, open)=>
+          {sidebarButtonList2.map((button, open)=>
             <ListItem key={button.key} disablePadding sx={{ width: 190 }}>
                     <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                         <div className='svg'>{button.icon}</div>
@@ -146,7 +164,6 @@ const Mainpage = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
                     </ListItemButton></Link>
                 </ListItem>
           )}
-          </>
         </List>
       </Drawer>
       {/* content */}

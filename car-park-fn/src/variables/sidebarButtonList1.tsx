@@ -7,8 +7,8 @@ import { SidebarButton } from '../features/models';
 
 const sidebarButtonList1: Array<SidebarButton> = [
   {"key": "homepage", linkTo: "/home", icon: <HomeOutlinedIcon />, primary: "主頁" },
-  {"key": "parkedVehicle", linkTo: "/parked-vehicle", icon: <LocalParkingOutlinedIcon />, primary: "停泊車輛" },
-  {"key": "editRecord", linkTo: "/edit-record", icon: <EditNoteOutlinedIcon />, primary: "編輯紀錄" },
-  {"key": "statistics", linkTo: "/statistic", icon: <BarChartOutlinedIcon />, primary: "統計數據" }
+  {"key": "parkedVehicle", linkTo: "/parking", icon: <LocalParkingOutlinedIcon />, primary: "停泊車輛" },
+  {"key": "editRecord", linkTo: "/edit", icon: <EditNoteOutlinedIcon />, primary: "編輯紀錄" },
+  {"key": "statistics", linkTo: "/stat", icon: <BarChartOutlinedIcon />, primary: "統計數據" }
 ]
 export default sidebarButtonList1

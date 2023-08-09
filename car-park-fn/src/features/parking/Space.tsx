@@ -1,32 +1,33 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import Paper from "@mui/material/Paper";
 import { Car } from "../models";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import AirportShuttleIcon from "@mui/icons-material/AirportShuttle";
-import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
+import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
+import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
+import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
 import "./Space.scss";
 import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
 
-interface Props {
-  parkingList: Car[];
-}
+// interface Props {
+//   parkingList: Car[];
+// }
 
-const Meter = ({ parkingList }: Props) => {
+const Space = () => {
+  const carList = useAppSelector((state: RootState) => state.carState.carList);
+  const parkingList = useMemo(() => 
+    carList.filter((car) => car.status === "停泊中"), [carList]);
+
   const parkingNum = useMemo(() => parkingList.length, [parkingList]);
-
   const smCarNum = useMemo(() =>
     parkingList.filter((car) => car.type === "私家車" ||
       car.type === "的士").length
     , [parkingList]
   );
-
   const mdCarNum = useMemo(() =>
     parkingList.filter((car) => car.type === "中貨車").length
     , [parkingList]
   );
-
   const motoNum = useMemo(() =>
     parkingList.filter((car) => car.type === "電單車").length
     , [parkingList]
@@ -39,7 +40,7 @@ const Meter = ({ parkingList }: Props) => {
   return (
     <Paper
       elevation={3}
-      className="meter-comp"
+      className="space-comp"
       sx={{
         borderRadius: "20px",
       }}
@@ -53,17 +54,17 @@ const Meter = ({ parkingList }: Props) => {
                 { value: parkingNum, color: "#008399" },
                 { value: carPark[0].totalSpace - parkingNum, color: "#131F00" },
               ],
-              innerRadius: 50,
-              outerRadius: 90,
+              innerRadius: 60,
+              outerRadius: 110,
               paddingAngle: 3,
               cornerRadius: 3,
               startAngle: -180,
               endAngle: 180,
-              cx: 80,
+              cx: 115,
               cy: 125,
             },
           ]}
-          width={180}
+          width={250}
           height={250}
         />
         <span className="pie-num">
@@ -73,7 +74,7 @@ const Meter = ({ parkingList }: Props) => {
         <div className="cars-num">
           <span>
             <div className="car-type">
-              <DirectionsCarIcon sx={{ color: '#131F00', fontSize: '30px' }} />
+              <DirectionsCarOutlinedIcon sx={{ color: '#131F00', fontSize: '30px' }} />
               <p>小型車</p>
             </div>
             <p>
@@ -82,7 +83,7 @@ const Meter = ({ parkingList }: Props) => {
           </span>
           <span>
             <div className="car-type">
-              <AirportShuttleIcon sx={{ color: '#131F00', fontSize: '30px' }} />
+              <AirportShuttleOutlinedIcon sx={{ color: '#131F00', fontSize: '30px' }} />
               <p>中型車</p>
             </div>
             <p>
@@ -91,7 +92,7 @@ const Meter = ({ parkingList }: Props) => {
           </span>
           <span>
             <div className="car-type">
-              <TwoWheelerIcon sx={{ color: '#131F00', fontSize: '30px' }} />
+              <MopedOutlinedIcon sx={{ color: '#131F00', fontSize: '30px' }} />
               <p>電單車</p>
             </div>
             <p>
@@ -104,4 +105,4 @@ const Meter = ({ parkingList }: Props) => {
   );
 };
 
-export default Meter;
+export default Space;

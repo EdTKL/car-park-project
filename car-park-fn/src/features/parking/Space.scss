@@ -1,69 +1,63 @@
-.meter-comp {
-    background: #FFFFFF;
-    margin: 10px;
-    padding: 10px 10px;
-    min-width: 430px;
-    height: 320px;
-    border-radius: 20px;
+.space-comp {
+  background: #ffffff;
+  margin: 10px;
+  padding: 10px 10px;
+  min-width: 430px;
+  height: 320px;
+  border-radius: 20px;
 
-    h5 {
-        color:#476800;
-        font-weight: 700;
+  h5 {
+    color: #476800;
+    font-weight: 700;
+  }
+
+  > div {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+}
+
+.pie-num {
+  text-align: center;
+  font-weight: 700;
+  color: #131f00;
+  position: absolute;
+  left: 106px;
+  top: 104px;
+
+  p:nth-of-type(1) {
+    margin: 0px;
+    font-size: 18px;
+  }
+
+  p:nth-last-of-type(1) {
+    margin: 0px;
+    font-size: 40px;
+    line-height: 1;
+  }
+}
+
+.cars-num {
+  width: 35%;
+
+  > span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18vpx;
+    font-weight: 700;
+    color: #131f00;
+
+    .car-type {
+      text-align: center;
     }
 
-    >div {
-        padding-top: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-
-        .pie-num {
-            text-align: center;
-            font-weight: 700;
-            color: #131F00;
-            position: absolute;
-            left: 110px;
-            top: 105px;
-
-            p:nth-of-type(1) {
-                margin: 0px;
-                font-size: 18px;
-            }
-
-            p:nth-last-of-type(1) {
-                margin: 0px;
-                font-size: 34px;
-                line-height: 1;
-            }
-        }
-
-        .cars-num {
-            width: 35%;
-
-            span {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                font-size: 20px;
-                font-weight: 700;
-                color: #131F00;
-
-                .car-type {
-                    text-align: center;
-                }
-
-                >p {
-                    margin-left: 25px;
-                    font-size: 26px;
-                }
-
-            }
-
-
-        }
+    > p {
+      margin-left: 25px;
+      font-size: 26px;
     }
-
-
-
+  }
 }
