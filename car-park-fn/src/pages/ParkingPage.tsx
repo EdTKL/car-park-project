@@ -16,6 +16,7 @@ import {
   Fab,
   Grid,
   // Paper,
+  // Paper,
   Theme,
   styled,
 } from "@mui/material";
@@ -26,11 +27,11 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import { SidebarButton } from "../../features/models";
-import "../../features/bars/Navbar.scss";
-import "../../features/bars/Sidebar.scss";
-import Space from "../../features/parking/Space";
-import ParkingList from "../../features/parking/ParkingList";
+import { SidebarButton } from "../features/models";
+import "../features/bars/Sidebar.scss";
+import "../features/bars/Navbar.scss";
+import Space from "../features/parking/Space";
+import ParkingList from "../features/parking/ParkingList";
 
 interface Props {
   sBarBtns: SidebarButton[];

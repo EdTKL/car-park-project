@@ -8,9 +8,12 @@ export interface ParkingState {
 
 const initialState: ParkingState = {
     space: [
-    {id: 0, name: "baileyStreet", totalSpace: 20, 
-    smCarSpace: 10, mdCarSpace: 5, motoSpace: 5}
-  ],
+    {id: 0, name: "baileyStreet",
+    smCarSpace: 10, mdCarSpace: 5, motoSpace: 5,
+    get totalSpace() {
+      return this.smCarSpace + this.mdCarSpace + this.motoSpace;
+    }
+  }],
 };
 
 

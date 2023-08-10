@@ -21,10 +21,10 @@ export interface Car {
 export interface CarPark {
     id: number,
     name: string,
-    totalSpace: number,
     smCarSpace: number,
     mdCarSpace: number,
     motoSpace: number,
+    totalSpace: number,
 }
 
 export type SidebarButton = {

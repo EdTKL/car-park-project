@@ -4,7 +4,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { sidebarButtonList1, sidebarButtonList2 } from './variables/sidebarButtonLists';
 import { appTheme } from './themes/theme'
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import ParkingPage from './pages/parkingPage/ParkingPage';
+import ParkingPage from './pages/ParkingPage';
+import EditPage from './pages/EditPage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
           <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
-          <Route path="/edit" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
+          <Route path="/edit" element={<EditPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
           <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
           <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
           <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
