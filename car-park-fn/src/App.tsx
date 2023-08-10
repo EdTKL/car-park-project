@@ -14,7 +14,6 @@ import { useAppDispatch, useAppSelector } from './app/hook';
 import { login, logout } from './redux/slice/authSlice';
 import Register from './features/auth/Register';
 import { AuthState } from './redux/interface/model';
-import PrivateRoute from './features/auth/PrivateRoute';
 
 function App() {
   const authListener = useAppSelector((state):AuthState=> state.auth)
@@ -32,11 +31,11 @@ function App() {
             appDispatch(logout())
             navigate('/login')
         }
-    },[])
+    },[appDispatch, navigate])
     useEffect(()=>{
-        cb_get_auth()
+         cb_get_auth()
 
-    },[])
+    },[cb_get_auth])
   return (
 <ThemeProvider theme={appTheme}>
   <CssBaseline enableColorScheme />
@@ -49,20 +48,9 @@ function App() {
           <Route element={<StaffRoutes />}>
           <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
           <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
-<<<<<<< HEAD
-          <Route path="/edit" element={<EditPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
-          <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
-          <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
-          <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
-        </Routes>
-      </div>
-    </ThemeProvider>
-=======
-          <Route path="/edit" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/edit" element={<EditPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2}/>} />
           <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
-          
           <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
         </Route>
         :
@@ -82,14 +70,10 @@ function App() {
         null
         }
 
-        
-
-
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </div>
   </ThemeProvider>
->>>>>>> d3107e2f59c6f6d185ef0a05dd76122bc3d542e4
   );
 }
 

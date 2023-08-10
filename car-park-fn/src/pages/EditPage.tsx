@@ -16,7 +16,6 @@ import {
   Fab,
   Grid,
   Paper,
-  // Paper,
   Theme,
   styled,
 } from "@mui/material";
@@ -30,8 +29,6 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import { SidebarButton } from "../features/models";
 import "../features/bars/Sidebar.scss";
 import "../features/bars/Navbar.scss";
-import Prices from "../features/prices/Prices";
-import priceList from '../variables/priceList';
 import EditCarList from "../features/edit/EditCarList";
 
 interface Props {
@@ -256,11 +253,6 @@ export default function ParkingPage({ sBarBtns, sBarBtns2 }: Props) {
                 <EditCarList />
               </Paper>
             </Grid>
-            {/* <Grid item xs={4}> */}
-                {/* <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: '42.5vh' }}> */}
-                    {/* <Prices priceList={priceList}/> */}
-                {/* </Paper> */}
-              {/* </Grid> */}
           </Grid>
         </Container>
       </Box>
