@@ -1,13 +1,10 @@
 import React from 'react';
 import Mainpage from './pages/Mainpage';
 import { Routes, Route, Navigate } from 'react-router-dom';
-<<<<<<< HEAD
 import WebcamVideo from './features/home/Camera';
 import "./App.css";
-=======
 import { Login } from "./features/auth/Login";
 import PrivateRoute from "./features/auth/PrivateRoute";
->>>>>>> main
 
 function App() {
   return (
@@ -27,11 +24,8 @@ function App() {
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
-<<<<<<< HEAD
       <WebcamVideo/>
-=======
 
->>>>>>> main
     </div>
   );
 }
