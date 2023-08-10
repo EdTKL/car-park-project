@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { CSSObject, Theme, styled } from '@mui/material';
+import { CSSObject, Theme, Typography, styled } from '@mui/material';
 import { Link } from 'react-router-dom'
 import "./Sidebar.scss";
 import { useSelector } from 'react-redux';
@@ -60,8 +60,27 @@ const Sidebar = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
     return (
         <Drawer className="sidebar" variant="permanent" anchor="left" open={open}>
         <List>
-            {open && <ListItem className='logo'>GW</ListItem>}
-            {!open && <ListItem></ListItem>}
+            {open ? (
+            <ListItem className="brand">
+              <Typography variant="h2" sx={{
+                color: 'white',
+                fontFamily: 'Black Han Sans',
+                textAlign: 'center',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+              }}>GW</Typography>
+            </ListItem>
+          ) : (
+            <ListItem>
+              <Typography variant="h6" sx={{
+                color: 'white',
+                fontFamily: 'Black Han Sans',
+                textAlign: 'center',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+                marginBottom: '75px'
+              }}>GW</Typography>
+            </ListItem>
+          )}
+
             <>{sidebarButtonList1.map((button, open)=>
                 <ListItem key={button.key} disablePadding sx={{ width: 190 }}>
                     <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
