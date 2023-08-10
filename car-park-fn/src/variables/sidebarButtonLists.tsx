@@ -15,6 +15,7 @@ export const sidebarButtonList1: Array<SidebarButton> = [
 ]
 
 export const sidebarButtonList2: Array<SidebarButton> = [
+  {"key": "register", linkTo: "/register", icon: <HandymanOutlinedIcon />, primary: "註冊" },
   {"key": "setting", linkTo: "/setting", icon: <HandymanOutlinedIcon />, primary: "設定" },
   {"key": "logout", linkTo: "/logout", icon: <LogoutOutlinedIcon />, primary: "登出" }
 ]

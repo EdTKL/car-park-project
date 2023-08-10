@@ -1,0 +1,26 @@
+/* floating action button */
+.fabExpanded, .fabClosed {
+  background-color: #fff !important;
+  z-index: 1700 !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none !important;
+}
+.fabExpanded > svg, .fabClosed > svg {
+  color: #008399;
+}
+.fabExpanded {
+  position: sticky;
+  top: 70px;
+  left: 180px;
+}
+.fabClosed {
+  position: sticky;
+  top: 70px;
+  left: 45px;
+}

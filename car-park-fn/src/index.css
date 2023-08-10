@@ -12,38 +12,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-/* floating action button */
-.fabExpanded {
-  position: sticky;
-  top: 70px;
-  left: 180px;
-  background-color: #fff !important;
+.App, #root, body, html {
+  height: 100%;
 }
-.fabClosed {
-  position: sticky;
-  top: 70px;
-  left: 45px;
-  background-color: #fff !important;
-}
-.contentContainer {
-  width: 100%;
-}
-.MuiBox-root.css-k008qs > button > svg, 
-.MuiBox-root.css-k008qs > div > button > svg {
-  color: #008399;
-}
-.MuiBox-root.css-15t2oww, .MuiBox-root.css-18iydrm {
-  position: sticky;
-  /* top: 64px; */
-  border-bottom-left-radius: 15px;
-}
+
 /* hardcode camera div */
+.cameraContainer {
+  height: 26em;
+}
+.dummy:first-child {
+  margin-bottom: 15px;
+}
 .dummy {
   background: #FFF;
-    margin: 10px;
-    padding: 10px 10px;
-    /* min-width: 430px; */
-    height: 17em;
-    border-radius: 20px !important;
+  padding: 10px 10px;
+  height: 12.5em;
+  border-radius: 20px !important;
   border: 2px solid #131f00;
 }

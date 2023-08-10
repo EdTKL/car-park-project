@@ -36,7 +36,7 @@ const CarList = ({carList}:Props) => {
           </tr>
         </thead>
         <tbody>
-          {carList.map((car: Car) => (
+          {carList.slice(0, 7).map((car: Car) => (
             <tr key={car.id}>
               <td>{car.id}</td>
               <td>{car.plate}</td>

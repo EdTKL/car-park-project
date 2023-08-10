@@ -1,28 +1,40 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
-import { setUserRole } from "./authSlice";
+import { registerThunk } from "../../redux/slice/authSlice";
+// import { setUserRole } from "./authSlice";
 
 function Register() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const userRole = useAppSelector((state) => state.auth.role);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm_password, setConfirmPassword] = useState("");
+
+
+  const dispatch = useAppDispatch();
+  // const userRole = useAppSelector((state) => state.auth.role);
   const [role, setRole] = useState("staff");
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(password!==confirm_password){
+      throw new Error("password and confirm password doesn't match")
+    }
+    dispatch(registerThunk({ username, password, confirm_password,role }))
+      .unwrap()
+      .then(() => {
 
-    // Assuming the registration was successful and the user is now an admin
-    dispatch(setUserRole("admin"));
-    navigate("/"); // Redirect back to home or any other page
+
+        navigate("/home")
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
-  if (userRole !== "admin") {
-    return <div>You do not have permission to access this page.</div>;
-  }
+  // if (userRole !== "admin") {
+  //   return <div>You do not have permission to access this page.</div>;
+  // }
 
   return (
     <form onSubmit={submitHandler}>
@@ -34,14 +46,21 @@ function Register() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
+        ></input>
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
+        ></input>
+        <label htmlFor="confirm_password">Confirm Password</label>
+        <input
+          id="confirm_password"
+          type="confirm_password"
+          value={confirm_password}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        ></input>
         <label htmlFor="role">Role</label>
         <select
           id="role"

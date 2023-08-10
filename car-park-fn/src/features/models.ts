@@ -1,4 +1,5 @@
 import { SvgIconProps } from "@mui/material"
+import  { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 
 export interface Car {
     id: number,
