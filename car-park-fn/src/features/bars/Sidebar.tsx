@@ -11,6 +11,8 @@ import { useSelector } from 'react-redux';
 
 import { RootState } from '../../app/store';
 import { SidebarButton } from '../models';
+import { useAppDispatch } from '../../app/hook';
+import { logout } from '../../redux/slice/authSlice';
 
 interface Props {
   sidebarButtonList1: SidebarButton[];
@@ -20,6 +22,8 @@ interface Props {
 const Sidebar = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
     const drawerWidth = useSelector((state: RootState)=> { return state.drawerState.drawerWidth});
     const open = useSelector((state: RootState)=> { return state.drawerState.open});
+
+    const dispatch = useAppDispatch()
 
     const openedMixin = (theme: Theme): CSSObject => ({
       width: drawerWidth!,
@@ -91,14 +95,24 @@ const Sidebar = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
             )}</>
         </List>
         <List>
-          <>{sidebarButtonList2.map((button, open)=>
+          <>{sidebarButtonList2.map((button, open) =>
+
             <ListItem key={button.key} disablePadding sx={{ width: 190 }}>
-                    <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
-                        <div className='svg'>{button.icon}</div>
-                        <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
-                    </ListItemButton></Link>
-                </ListItem>
-          )}</>
+              <Link to={button.linkTo}>
+                <ListItemButton sx={{ "&:hover": { backgroundColor: "transparent" } }}
+                  onClick={button.key === "logout" ? () => {
+                    dispatch(logout());
+                  }
+                   : void(0)}
+                >
+                <div className='svg'>
+                  {button.icon}
+                </div>
+                <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton></Link>
+            </ListItem>
+          )}
+</>
         </List>
       </Drawer>
     )
