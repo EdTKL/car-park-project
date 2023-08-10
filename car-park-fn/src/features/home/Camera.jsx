@@ -66,6 +66,25 @@ function WebcamVideo() {
   //   });
 
   // })
+  const [video, setVideo] = useState([]);
+  const sendVideoToServer = useCallback(async function () {
+    try {
+      const blob = await new Blob(recordedChunks, {
+        type: "video/webm",
+      });
+      const formData = new FormData();
+      formData.append('video', blob);
+      blob = await formData.json();
+      setVideo(blob);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [recordedChunks]);
+
+  useEffect(() => {
+    sendVideoToServer();
+  }, [sendVideoToServer]);
+
 
 
   const sendToServer = async (file) => {
@@ -145,11 +164,10 @@ function WebcamVideo() {
       {recordedChunks.length > 0 && (
         <button onClick={handleDownload}>Download</button> 
       )}
-      {recordedChunks.length > 0 && (
-        sendToServer() //UseEffect
-      )}
     </div>
+  
   );
+
 }
 
 export default WebcamVideo;
