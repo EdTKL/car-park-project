@@ -15,26 +15,26 @@ import PrivateRoute from './features/auth/PrivateRoute';
 import SetPrice from './pages/setPrice/SetPrice';
 
 function App() {
-  //const authListener = useAppSelector((state):AuthState=> state.auth)
-  //const appDispatch = useAppDispatch()
-  //const navigate = useNavigate();
-  //  let cb_get_auth = useCallback(async ()=>{
-  //      let authState = await localStorage.getItem("auth");
-  //      console.log('auth Guard',authState)
-  //      if(authState){
-  //          let state = await JSON.parse(authState)
-  //          appDispatch(login(state))
-  //          navigate('/home')
-  //      }else{
-  //          console.log('why')
-  //          appDispatch(logout())
-  //          navigate('/login')
-  //      }
-  //  },[])
-  //  useEffect(()=>{
-  //      cb_get_auth()
-//
-  //  },[])
+  const authListener = useAppSelector((state):AuthState=> state.auth)
+  const appDispatch = useAppDispatch()
+  const navigate = useNavigate();
+    let cb_get_auth = useCallback(async ()=>{
+        let authState = await localStorage.getItem("auth");
+        console.log('auth Guard',authState)
+        if(authState){
+            let state = await JSON.parse(authState)
+            appDispatch(login(state))
+            navigate('/home')
+        }else{
+            console.log('why')
+            appDispatch(logout())
+            navigate('/login')
+        }
+    },[])
+    useEffect(()=>{
+        cb_get_auth()
+
+    },[])
   return (
 <ThemeProvider theme={appTheme}>
   <CssBaseline enableColorScheme />
@@ -43,7 +43,7 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="login" element={<Login />} />
 
-        {/* {authListener.isAuth && authListener.role === "staff" ? 
+        {authListener.isAuth && authListener.role === "staff" ? 
           <Route element={<StaffRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
@@ -55,8 +55,8 @@ function App() {
         </Route>
         :
         null
-        } */}
-        {/* {authListener.isAuth && authListener.role === "admin" ?  */}
+        }
+        {authListener.isAuth && authListener.role === "admin" ? 
         <Route element={<AdminRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
@@ -67,9 +67,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Home />} />
         </Route>
-        {/* :
+        :
         null
-        } */}
+        } 
 
         
 
