@@ -40,7 +40,6 @@ const Sidebar = () => {
     const open = useSelector((state: RootState)=> { return state.drawerState.open});
 
     const dispatch = useAppDispatch()
-    console.log("layout")
 
     const openedMixin = (theme: Theme): CSSObject => ({
       width: drawerWidth!,
