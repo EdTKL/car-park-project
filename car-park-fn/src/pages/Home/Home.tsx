@@ -1,7 +1,7 @@
 import * as React from 'react';
 import "../../features/bars/Sidebar.scss";
 import "../../features/bars/Navbar.scss";
-import ".././home/Home.scss";
+import "../../pages/Layout.scss"
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../redux/slice/authSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
@@ -30,11 +30,17 @@ const Mainpage = () => {
           <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}>
             <Space />
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}><Prices /></Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}><Parking shortParkingList={shortParkingList}/></Grid>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}>
+            <Prices />
+          </Grid>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}>
+            <Parking shortParkingList={shortParkingList}/>
+          </Grid>
         </Grid>
         <Grid container direction="row" xs={12} className='second-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }}>
-          <Grid item xs={8} justifyContent="center" alignItems="stretch" style={{height: "95%"}}><CarList carList={carList}/></Grid>
+          <Grid item xs={8} justifyContent="center" alignItems="stretch" style={{height: "95%"}}>
+            <CarList carList={carList}/>
+          </Grid>
           <Grid item xs={4} justifyContent="center" alignItems="stretch" style={{height: "95%"}} className='cameraContainer'>
             <Box className='dummy' style={{height: "48.5%"}} />
             <Box className='dummy' style={{height: "48.5%"}} />
