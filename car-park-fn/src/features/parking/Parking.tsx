@@ -27,6 +27,7 @@ export default function Parking({ shortParkingList }: Props) {
       sx={{
         borderRadius: "20px",
       }}
+       style={{height: "100%"}}
     >
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
         最近停泊車位

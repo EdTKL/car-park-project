@@ -37,8 +37,41 @@ export type SidebarButton = {
 
 export type Price = {
     key: string,
-    time: string, 
-    smallVehiclePrice: number, 
-    middleVehiclePrice: number, 
-    motorbikePrice: number
+    timeslot: string, 
+    small: number, 
+    middle: number, 
+    motor: number
+}
+
+export type PriceEdit = {
+    small: number, 
+    middle: number, 
+    motor: number
+}
+
+//export type PriceList = {
+//    dayId: string,
+//    smHour: number, 
+//    mdHour: number,
+//    motoHour: number,
+//    smDay: number,
+//    mdDay: number,
+//    motoDay: number,
+//    smNight: number,
+//    mdNight: number,
+//    motoNight : number
+//}
+
+export type PriceList = {
+    type: string, 
+    timeslot: string, 
+    duration: string, 
+    mon: number,
+    tue: number,
+    wes: number,
+    thu: number,
+    fri: number,
+    sat: number,
+    sun: number,
+    ph: number
 }

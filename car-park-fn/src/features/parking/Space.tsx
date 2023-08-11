@@ -45,6 +45,7 @@ const Space = () => {
       className="space-comp"
       sx={{
         borderRadius: "20px",
+        height: "100%",
       }}
     >
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>

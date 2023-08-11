@@ -95,8 +95,7 @@ const CarList = ({ carList }: Props) => {
         display: "flex",
         flexDirection: "column",
         height: "410px",
-        width: "99%",
-        marginLeft: "10px",
+        width: "100%",
         borderRadius: 3,
       }}
     >

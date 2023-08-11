@@ -8,18 +8,38 @@ import { CSSObject, Theme, Typography, styled } from '@mui/material';
 import { Link } from 'react-router-dom'
 import "./Sidebar.scss";
 import { useSelector } from 'react-redux';
-
 import { RootState } from '../../app/store';
 import { SidebarButton } from '../models';
+import { useAppDispatch } from '../../app/hook';
+import { logout } from '../../redux/slice/authSlice';
 
-interface Props {
-  sidebarButtonList1: SidebarButton[];
-  sidebarButtonList2: SidebarButton[];
-}
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import LocalParkingOutlinedIcon from '@mui/icons-material/LocalParkingOutlined';
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
+import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 
-const Sidebar = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
+const Sidebar = () => {
+    const sBarBtns: Array<SidebarButton> = [
+      {"key": "homepage", linkTo: "/home", icon: <HomeOutlinedIcon />, primary: "主頁" },
+      {"key": "parkedVehicle", linkTo: "/parking", icon: <LocalParkingOutlinedIcon />, primary: "停泊車輛" },
+      {"key": "editRecord", linkTo: "/edit", icon: <EditNoteOutlinedIcon />, primary: "編輯紀錄" },
+      {"key": "statistics", linkTo: "/stat", icon: <BarChartOutlinedIcon />, primary: "統計數據" },
+      {"key": "editPrice", linkTo: "/pricing", icon: <PriceChangeOutlinedIcon />, primary: "更改價錢" }
+    ]
+
+    const sBarBtns2: Array<SidebarButton> = [
+      {"key": "register", linkTo: "/register", icon: <HandymanOutlinedIcon />, primary: "註冊" },
+      {"key": "setting", linkTo: "/setting", icon: <HandymanOutlinedIcon />, primary: "設定" },
+      {"key": "logout", linkTo: "/logout", icon: <LogoutOutlinedIcon />, primary: "登出" }
+    ]
+
     const drawerWidth = useSelector((state: RootState)=> { return state.drawerState.drawerWidth});
     const open = useSelector((state: RootState)=> { return state.drawerState.open});
+
+    const dispatch = useAppDispatch()
 
     const openedMixin = (theme: Theme): CSSObject => ({
       width: drawerWidth!,
@@ -81,7 +101,7 @@ const Sidebar = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
             </ListItem>
           )}
 
-            <>{sidebarButtonList1.map((button, open)=>
+            <>{sBarBtns.map((button, open)=>
                 <ListItem key={button.key} disablePadding sx={{ width: 190 }}>
                     <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
                         <div className='svg'>{button.icon}</div>
@@ -91,14 +111,24 @@ const Sidebar = ({sidebarButtonList1, sidebarButtonList2}:Props) => {
             )}</>
         </List>
         <List>
-          <>{sidebarButtonList2.map((button, open)=>
+          <>{sBarBtns2.map((button, open) =>
+
             <ListItem key={button.key} disablePadding sx={{ width: 190 }}>
-                    <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
-                        <div className='svg'>{button.icon}</div>
-                        <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
-                    </ListItemButton></Link>
-                </ListItem>
-          )}</>
+              <Link to={button.linkTo}>
+                <ListItemButton sx={{ "&:hover": { backgroundColor: "transparent" } }}
+                  onClick={button.key === "logout" ? () => {
+                    dispatch(logout());
+                  }
+                   : void(0)}
+                >
+                <div className='svg'>
+                  {button.icon}
+                </div>
+                <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton></Link>
+            </ListItem>
+          )}
+        </>
         </List>
       </Drawer>
     )
