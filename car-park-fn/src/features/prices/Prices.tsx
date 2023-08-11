@@ -1,4 +1,4 @@
-import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses } from "@mui/material";
+import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Typography } from "@mui/material";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
 import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
@@ -13,7 +13,9 @@ const Prices = ({priceList}:Props) => {
     return (
       <>
       <TableContainer component={Paper} elevation={3} className="tableContainer" sx={{ overflow: 'hidden' }}>
-        <div className="priceTableHeader"><h5>今日收費</h5></div>
+        <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
+          今日收費
+        </Typography>
         <div className="priceTableBody">
           <Table sx={{ maxWidth: 500, [`& .${tableCellClasses.root}`]: { borderBottom: "none"}}} aria-label="simple table">
             <TableHead>

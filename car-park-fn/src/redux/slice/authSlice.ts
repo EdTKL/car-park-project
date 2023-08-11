@@ -22,7 +22,7 @@ export const loginThunk = createAsyncThunk<
 
     // console.log('thunk login',state.auth)
     
-    const res = await fetch(`${process.env.REACT_APP_API_BASE}user/login`, {
+    const res = await fetch(`${process.env.REACT_APP_API_BASE}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

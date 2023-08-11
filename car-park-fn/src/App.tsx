@@ -31,11 +31,11 @@ function App() {
             appDispatch(logout())
             navigate('/login')
         }
-    },[appDispatch, navigate])
+    },[])
     useEffect(()=>{
          cb_get_auth()
 
-    },[cb_get_auth])
+    },[])
   return (
 <ThemeProvider theme={appTheme}>
   <CssBaseline enableColorScheme />
@@ -48,7 +48,7 @@ function App() {
           <Route element={<StaffRoutes />}>
           <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
           <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
-          <Route path="/edit" element={<EditPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2}/>} />
+          <Route path="/edit" element={<EditPage />} />
           <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
@@ -60,7 +60,7 @@ function App() {
         <Route element={<AdminRoutes />}>
           <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
-          <Route path="/edit" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/edit" element={<EditPage />} />
           <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/register" element={<Register />} />
