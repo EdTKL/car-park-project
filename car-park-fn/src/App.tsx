@@ -40,7 +40,7 @@ function App() {
   <CssBaseline enableColorScheme />
     <div className='App'>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="login" element={<Login />} />
 
         {authListener.isAuth && authListener.role === "staff" ? 
