@@ -1,8 +1,6 @@
-import { Home } from "@mui/icons-material";
 import { Box, CssBaseline, Grid } from "@mui/material";
 import * as React from "react";
 import Sidebar from "../../features/bars/Sidebar";
-import { sidebarButtonList1, sidebarButtonList2 } from "../../variables/sidebarButtonLists";
 import Collapse from "../../features/bars/Collapse";
 import Navbar from "../../features/bars/Navbar";
 import PriceEdit from "../../features/prices/PriceEdit";
@@ -15,7 +13,7 @@ export default function SetPrice () {
       <Box sx={{ display: 'flex' }}  className="contentBackground">
         <CssBaseline />
         <Navbar />
-        <Sidebar sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />
+        <Sidebar />
       {/* content */}
         <Box sx={{ margin: 0}} className="contentContainer">
           <Grid container sx={{ margin: 0 }} className='home-container container-fluid d-flex flex-column justify-content-center align-items-center'>

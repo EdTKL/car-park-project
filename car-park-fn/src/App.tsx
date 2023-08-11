@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import Mainpage from './pages/home/Mainpage';
+import Home from './pages/home/Home';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { StaffRoutes } from './StaffRoutes';
 import { AdminRoutes } from './AdminRoutes';
@@ -47,27 +47,27 @@ function App() {
 
         {/* {authListener.isAuth && authListener.role === "staff" ? 
           <Route element={<StaffRoutes />}>
-          <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2} />} />
-          <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
-          <Route path="/edit" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
-          <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
-          <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2}/>} />
+          <Route path="/edit" element={<Home />} />
+          <Route path="/stat" element={<Home />} />
+          <Route path="/setting" element={<Home />} />
           
-          <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/logout" element={<Home />} />
         </Route>
         :
         null
         }
         {authListener.isAuth && authListener.role === "admin" ?  */}
         <Route element={<AdminRoutes />}>
-          <Route path="/home" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
-          <Route path="/parking" element={<ParkingPage sBarBtns={sidebarButtonList1} sBarBtns2={sidebarButtonList2} />} />
-          <Route path="/edit" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
-          <Route path="/stat" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/home" element={<Home　/>} />
+          <Route path="/parking" element={<ParkingPage />} />
+          <Route path="/edit" element={<Home />} />
+          <Route path="/stat" element={<Home />} />
           <Route path="/pricing" element={<SetPrice />} />
-          <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/setting" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/logout" element={<Home />} />
         </Route>
         {/* :
         null
