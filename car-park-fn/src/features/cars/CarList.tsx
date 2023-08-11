@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Car } from "../models";
 import './CarList.scss'
 import Table from "react-bootstrap/Table";
+import { Paper } from "@mui/material";
 
 interface Props {
   carList: Car[];
@@ -11,7 +12,14 @@ const CarList = ({carList}:Props) => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className='car-list-comp'>
+    <Paper
+      elevation={3}
+      className="car-list-comp"
+      sx={{
+        borderRadius: "20px",
+      }}
+      style={{height: "100%"}}
+      >
       <h5>所有進出車輛</h5>
       <div className='btns'>
         <button>排序</button>
@@ -51,7 +59,7 @@ const CarList = ({carList}:Props) => {
           ))}
         </tbody>
       </Table>
-    </div>
+    </Paper>
   );
 };
 

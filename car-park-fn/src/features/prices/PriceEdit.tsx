@@ -32,7 +32,7 @@ const PriceEdit = () => {
         {id: 8, type: "中型車", timeslot: "日泊", duration: "08:00 - 18:00",  mon: 200, tue: 200, wes: 200, thu: 200, fri: 200, sat: 200, sun: 200, ph: 200},
         {id: 9, type: "中型車", timeslot: "夜泊", duration: "18:00 - 08:00",  mon: 200, tue: 200, wes: 200, thu: 200, fri: 200, sat: 200, sun: 200, ph: 200}
     ]
-    console.log(pricetable)
+    //console.log(pricetable)
 
     return (
     <Paper sx={{ p: 1 }}>

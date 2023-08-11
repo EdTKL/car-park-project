@@ -18,7 +18,6 @@ import Layout from "../../features/bars/Layout";
 export default function ParkingPage() {
   return (
       <Layout>
-        {/* keep */}
         <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
@@ -38,7 +37,6 @@ export default function ParkingPage() {
               </Grid>
           </Grid>
         </Container>
-        {/* end of keep */}
       </Layout>
   );
 }

@@ -1,4 +1,4 @@
-import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses } from "@mui/material";
+import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Box } from "@mui/material";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
 import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
@@ -14,10 +14,10 @@ const Prices = () => {
 ]
     return (
       <>
-      <TableContainer component={Paper} elevation={3} className="tableContainer" sx={{ overflow: 'hidden' }}>
+      <TableContainer component={Paper} elevation={3} className="tableContainer" sx={{ overflow: 'hidden', height: "100%" }}  style={{height: "100%"}}>
         <div className="priceTableHeader"><h5>今日收費</h5></div>
-        <div className="priceTableBody">
-          <Table sx={{ maxWidth: 500, [`& .${tableCellClasses.root}`]: { borderBottom: "none"}}} aria-label="simple table">
+        <Box className="priceTableBody">
+          <Table sx={{ Width: "100%", [`& .${tableCellClasses.root}`]: { borderBottom: "none"}, display: "table", tableLayout: "fixed"}} aria-label="simple table" className="priceTableRoot">
             <TableHead>
               <TableRow className="price-row">
                 <TableCell align="center"><div className="weekday">星期三</div></TableCell>
@@ -43,7 +43,7 @@ const Prices = () => {
               )}
             </TableBody>
           </Table>
-        </div>
+        </Box>
       </TableContainer>
       </>
     )

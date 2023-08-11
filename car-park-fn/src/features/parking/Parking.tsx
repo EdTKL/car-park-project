@@ -26,6 +26,7 @@ export default function Parking({ shortParkingList }: Props) {
       sx={{
         borderRadius: "20px",
       }}
+       style={{height: "100%"}}
     >
       <h5>最近停泊車輛</h5>
       <Timeline

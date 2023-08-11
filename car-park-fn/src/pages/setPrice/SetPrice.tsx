@@ -4,16 +4,13 @@ import Sidebar from "../../features/bars/Sidebar";
 import Collapse from "../../features/bars/Collapse";
 import Navbar from "../../features/bars/Navbar";
 import PriceEdit from "../../features/prices/PriceEdit";
+import Layout from "../../features/bars/Layout";
 
 export default function SetPrice () {
 
     return (
     <>
-     <Collapse />
-      <Box sx={{ display: 'flex' }}  className="contentBackground">
-        <CssBaseline />
-        <Navbar />
-        <Sidebar />
+    <Layout>
       {/* content */}
         <Box sx={{ margin: 0}} className="contentContainer">
           <Grid container sx={{ margin: 0 }} className='home-container container-fluid d-flex flex-column justify-content-center align-items-center'>
@@ -26,7 +23,7 @@ export default function SetPrice () {
             </Grid>
           </Grid>
         </Box>
-      </Box>
+    </Layout>
     </>
     )
 }

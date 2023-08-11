@@ -5,7 +5,7 @@ import ".././home/Home.scss";
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../redux/slice/authSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import Space from '../../features/parking/Space';
 import Prices from '../../features/prices/Prices';
 import Parking from '../../features/parking/Parking';
@@ -27,17 +27,17 @@ const Mainpage = () => {
   return (
       <Layout>
         <Grid container direction="row" xs={12} className='first-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }} >
-          <Grid item xs={4} justifyContent="center" alignItems="center">
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}>
             <Space />
-            </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center"><Prices /></Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center"><Parking shortParkingList={shortParkingList}/></Grid>
+          </Grid>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}><Prices /></Grid>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}><Parking shortParkingList={shortParkingList}/></Grid>
         </Grid>
         <Grid container direction="row" xs={12} className='second-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }}>
-          <Grid item xs={8} justifyContent="center" alignItems="stretch"><CarList carList={carList}/></Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="stretch" className='cameraContainer'>
-            <div className='dummy'></div>
-            <div className='dummy'></div>
+          <Grid item xs={8} justifyContent="center" alignItems="stretch" style={{height: "95%"}}><CarList carList={carList}/></Grid>
+          <Grid item xs={4} justifyContent="center" alignItems="stretch" style={{height: "95%"}} className='cameraContainer'>
+            <Box className='dummy' style={{height: "48.5%"}} />
+            <Box className='dummy' style={{height: "48.5%"}} />
           </Grid>
         </Grid>
       </Layout>

@@ -44,9 +44,10 @@ const Space = () => {
       sx={{
         borderRadius: "20px",
       }}
+      style={{height: "100%"}}
     >
       <h5>現時閒置車位</h5>
-      <div>
+      <div className="spaceBody">
         <PieChart
           series={[
             {
