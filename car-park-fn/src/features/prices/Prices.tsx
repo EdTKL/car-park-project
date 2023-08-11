@@ -29,13 +29,13 @@ const Prices = ({priceList}:Props) => {
                 <TableRow key={price.key} className="price-row">
                   <>
                   <TableCell align="center">
-                    <div className="priceTime">{price.time}</div>
+                    <div className="priceTime">{price.timeslot}</div>
                     {priceList.indexOf(price)===1 && <div className="halfDayRent">8:00 am - 6:00 pm</div>}
                     {priceList.indexOf(price)===2 && <div className="halfDayRent">6:00 pm - 8:00 am</div>}
                   </TableCell>
-                  <TableCell align="center" className="priceValue">${price.smallVehiclePrice}</TableCell>
-                  <TableCell align="center" className="priceValue">${price.middleVehiclePrice}</TableCell>
-                  <TableCell align="center" className="priceValue">${price.motorbikePrice}</TableCell>
+                  <TableCell align="center" className="priceValue">${price.small}</TableCell>
+                  <TableCell align="center" className="priceValue">${price.middle}</TableCell>
+                  <TableCell align="center" className="priceValue">${price.motor}</TableCell>
                   </>
                 </TableRow>
               )}

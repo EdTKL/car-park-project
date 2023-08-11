@@ -4,6 +4,7 @@ import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 import { SidebarButton } from '../features/models';
 
 
@@ -11,7 +12,8 @@ export const sidebarButtonList1: Array<SidebarButton> = [
   {"key": "homepage", linkTo: "/home", icon: <HomeOutlinedIcon />, primary: "主頁" },
   {"key": "parkedVehicle", linkTo: "/parking", icon: <LocalParkingOutlinedIcon />, primary: "停泊車輛" },
   {"key": "editRecord", linkTo: "/edit", icon: <EditNoteOutlinedIcon />, primary: "編輯紀錄" },
-  {"key": "statistics", linkTo: "/stat", icon: <BarChartOutlinedIcon />, primary: "統計數據" }
+  {"key": "statistics", linkTo: "/stat", icon: <BarChartOutlinedIcon />, primary: "統計數據" },
+  {"key": "editPrice", linkTo: "/pricing", icon: <PriceChangeOutlinedIcon />, primary: "更改價錢" }
 ]
 
 export const sidebarButtonList2: Array<SidebarButton> = [
