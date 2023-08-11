@@ -7,9 +7,17 @@ export interface ParkingState {
 }
 
 const initialState: ParkingState = {
-    space: [
-    {id: 0, name: "baileyStreet", totalSpace: 20, 
-    smCarSpace: 10, mdCarSpace: 5, motoSpace: 5}
+  space: [
+    {
+      id: 0,
+      name: "baileyStreet",
+      get totalSpace() {
+        return this.smCarSpace + this.mdCarSpace + this.motoSpace;
+      },
+      smCarSpace: 10,
+      mdCarSpace: 5,
+      motoSpace: 5
+    }
   ],
 };
 
@@ -18,12 +26,27 @@ export const parkingSlice = createSlice({
   name: "parking",
   initialState,
   reducers: {
-    edit_space: (state: ParkingState, action: PayloadAction<CarPark>) => {
-      state.space.map((carPark) => carPark.id === action.payload.id?
-      carPark.totalSpace = action.payload.totalSpace :
-      carPark)}
+    edit_Space: (state: ParkingState, action: PayloadAction<{id:number,key:`smCarSpace`|`mdCarSpace`|`motoSpace`,value:number}>) => {
+      if (action.payload.key === "smCarSpace") {
+        state.space = state.space.map(obj=>obj.id===action.payload.id?Object.assign(obj,{smCarSpace:action.payload.value}):obj)
+      } else if (action.payload.key === "mdCarSpace") {
+        state.space = state.space.map(obj=>obj.id===action.payload.id?Object.assign(obj,{mdCarSpace:action.payload.value}):obj)
+      } else if (action.payload.key === "motoSpace") {
+        state.space = state.space.map(obj=>obj.id===action.payload.id?Object.assign(obj,{motoSpace:action.payload.value}):obj)
+      }
     }
-})
 
-export const { edit_space } = parkingSlice.actions;
+  }
+})
+//   edit_mdSpace: (state: ParkingState, action: PayloadAction<{mdCarSpace: number}>) => {
+//     
+//   },
+//   edit_motoSpace: (state: ParkingState, action: PayloadAction<{motoSpace: number}>) => {
+//     state.space[0].motoSpace = action.payload.motoSpace;
+//   },
+// }
+
+
+
+export const { edit_Space } = parkingSlice.actions;
 export default parkingSlice.reducer;

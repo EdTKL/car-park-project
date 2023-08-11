@@ -24,6 +24,7 @@ import Home from './Home/Home';
 import "../features/bars/Sidebar.scss";
 import "../features/bars/Navbar.scss";
 
+
 interface Props {
   sidebarButtonList1: SidebarButton[];
   sidebarButtonList2: SidebarButton[];

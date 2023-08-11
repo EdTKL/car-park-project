@@ -14,6 +14,7 @@ import { login, logout } from './redux/slice/authSlice';
 import Register from './features/auth/Register';
 import { AuthState } from './redux/interface/model';
 import PrivateRoute from './features/auth/PrivateRoute';
+import EditSpace from './features/parking/EditSpace';
 
 function App() {
   const authListener = useAppSelector((state):AuthState=> state.auth)
@@ -66,6 +67,7 @@ function App() {
           <Route path="/setting" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Mainpage sidebarButtonList1={sidebarButtonList1} sidebarButtonList2={sidebarButtonList2}/>} />
+          <Route path="/editSpace" element={<EditSpace/>} />
         </Route>
         :
         null
