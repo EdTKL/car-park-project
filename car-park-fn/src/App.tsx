@@ -13,6 +13,7 @@ import Register from './features/auth/Register';
 import { AuthState } from './redux/interface/model';
 import PrivateRoute from './features/auth/PrivateRoute';
 import SetPrice from './pages/setPrice/SetPrice';
+import EditSpace from './features/parking/EditSpace';
 
 function App() {
   //const authListener = useAppSelector((state):AuthState=> state.auth)
@@ -66,6 +67,7 @@ function App() {
           <Route path="/setting" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Home />} />
+          {/* <Route path="/editSpace" element={<EditSpace/>} /> */}
         </Route>
         {/* :
         null
