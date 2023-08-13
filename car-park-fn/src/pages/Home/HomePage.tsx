@@ -2,27 +2,27 @@ import * as React from 'react';
 import "../../features/bars/Sidebar.scss";
 import "../../features/bars/Navbar.scss";
 import "../../pages/Layout.scss"
-import { useNavigate } from 'react-router-dom'
-import { logout } from '../../redux/slice/authSlice';
-import { useAppDispatch, useAppSelector } from '../../app/hook';
+
 import { Box, Grid } from '@mui/material';
 import Space from '../../features/parking/Space';
 import Prices from '../../features/prices/Prices';
 import Parking from '../../features/parking/Parking';
 import CarList from '../../features/cars/CarList';
-import { RootState } from '../../app/store';
 import Layout from '../../features/bars/Layout';
+import { useCarList } from '../../features/cars/carAPI';
+import { useMemo } from 'react';
 
-const Mainpage = () => {
-  const carList = useAppSelector((state: RootState) => state.carState.carList);
-  const shortParkingList = React.useMemo(() => 
-      carList.filter((car: any) => car.status === "停泊中").slice(0, 4), [carList]);
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate();
-  function logoutNav(){
-    dispatch(logout());
-    navigate("/login");
-  }
+const HomePage = () => {
+  // const carList = useAppSelector((state: RootState) => state.carState.carList);
+  const carList = useCarList();
+  const shortParkingList = useMemo(() => 
+    carList.filter((car) => car.status === "parking").slice(0, 3), [carList]);
+  // const dispatch = useAppDispatch()
+  // const navigate = useNavigate();
+  // function logoutNav(){
+  //   dispatch(logout());
+  //   navigate("/login");
+  // }
 
   return (
       <Layout>
@@ -49,4 +49,4 @@ const Mainpage = () => {
       </Layout>
 )};
 
-export default Mainpage
+export default HomePage

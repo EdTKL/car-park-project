@@ -11,6 +11,7 @@ import TimelineOppositeContent, {
 } from "@mui/lab/TimelineOppositeContent";
 import { Car } from "../models";
 import "./Parking.scss";
+import Typography from "@mui/material/Typography";
 
 
 interface Props {
@@ -28,12 +29,15 @@ export default function Parking({ shortParkingList }: Props) {
       }}
        style={{height: "100%"}}
     >
-      <h5>最近停泊車輛</h5>
+      <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
+        最近停泊車位
+      </Typography>
       <Timeline
         sx={{
           [`& .${timelineOppositeContentClasses.root}`]: {
             flex: 1.1,
           },
+          mt: 0,
         }}
       >
         <TimelineItem className="labels">
@@ -52,9 +56,9 @@ export default function Parking({ shortParkingList }: Props) {
               {idx !== shortParkingList.length - 1 && <TimelineConnector />}
             </TimelineSeparator>
             <TimelineContent sx={{ color: "#008399", fontWeight: 700 }} className="carPlate">
-              {car.plate}
+              {car.plate_num}
             </TimelineContent>
-            <TimelineContent className="carType">{car.type}</TimelineContent>
+            <TimelineContent className="carType">{car.vehicle_type}</TimelineContent>
           </TimelineItem>
         ))}
       </Timeline>

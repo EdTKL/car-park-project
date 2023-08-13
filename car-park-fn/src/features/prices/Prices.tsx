@@ -1,4 +1,4 @@
-import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Box } from "@mui/material";
+import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Box, Typography, Button } from "@mui/material";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
 import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
@@ -15,12 +15,15 @@ const Prices = () => {
     return (
       <>
       <TableContainer component={Paper} elevation={3} className="tableContainer" sx={{ overflow: 'hidden', height: "100%" }}  style={{height: "100%"}}>
-        <div className="priceTableHeader"><h5>今日收費</h5></div>
+        {/* <div className="priceTableHeader"><h5>今日收費</h5></div> */}
+        <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
+          今日收費
+        </Typography>
         <Box className="priceTableBody">
           <Table sx={{ Width: "100%", [`& .${tableCellClasses.root}`]: { borderBottom: "none"}, display: "table", tableLayout: "fixed"}} aria-label="simple table" className="priceTableRoot">
             <TableHead>
               <TableRow className="price-row">
-                <TableCell align="center"><div className="weekday">星期三</div></TableCell>
+                <TableCell align="center"><Button className="weekday">星期三</Button></TableCell>
                 <TableCell align="center"><div className="carIcon"><DirectionsCarFilledOutlinedIcon /></div><div className="carcategory">小型車</div></TableCell>
                 <TableCell align="center"><div className="carIcon"><AirportShuttleOutlinedIcon /></div><div className="carcategory">中型車</div></TableCell>
                 <TableCell align="center"><div className="carIcon"><MopedOutlinedIcon /></div><div className="carcategory">電單車</div></TableCell>

@@ -1,8 +1,6 @@
-import { Box, CssBaseline, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import * as React from "react";
-import Sidebar from "../../features/bars/Sidebar";
-import Collapse from "../../features/bars/Collapse";
-import Navbar from "../../features/bars/Navbar";
+
 import PriceEdit from "../../features/prices/PriceEdit";
 import Layout from "../../features/bars/Layout";
 
