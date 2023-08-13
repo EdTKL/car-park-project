@@ -68,6 +68,7 @@ function App() {
           <Route path="/setting" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Home />} />
+          {/* <Route path="/editSpace" element={<EditSpace/>} /> */}
         </Route>
         :
         null

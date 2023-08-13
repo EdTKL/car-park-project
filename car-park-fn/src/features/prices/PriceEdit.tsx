@@ -35,15 +35,16 @@ const PriceEdit = () => {
     //console.log(pricetable)
 
     return (
-    <Paper sx={{ p: 1 }}>
+    // <Paper sx={{ p: 1 }}>
+      <Paper elevation={3} className="space-comp" sx={{borderRadius: "20px", p: 2}} style={{height: "100%"}}>
         <Typography variant='h5' className="ePriceHeader">價目表</Typography>
         <div className="parkName">
             <Typography variant='h5' className="epHeading">庇利街</Typography>
             <Typography>有效日期: 2023/03/01 至 2099/12/31</Typography>
         </div>
-        <div className="ePrice" style={{ width: '100%' }}>
+        <div className="ePrice" style={{ width: '100%', height: "80%" }}>
         <DataGrid 
-            
+            className='ePriceDataGrid'
             rows={pricetable}
             columns={columns}
             initialState={{

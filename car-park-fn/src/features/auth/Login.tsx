@@ -6,7 +6,6 @@ import { login, loginThunk } from "../../redux/slice/authSlice";
 import './Login.scss'
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
