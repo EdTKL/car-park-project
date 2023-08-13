@@ -1,4 +1,4 @@
-import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Box, Typography, Button } from "@mui/material";
+import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Box, Typography, Button, Grid } from "@mui/material";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
 import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
@@ -15,12 +15,12 @@ const Prices = () => {
     return (
       <>
       <TableContainer component={Paper} elevation={3} className="tableContainer" sx={{ overflow: 'hidden', height: "100%" }}  style={{height: "100%"}}>
-        {/* <div className="priceTableHeader"><h5>今日收費</h5></div> */}
+        <Grid container xs={12} sx={{ margin: 0, maxHeight: "100%" }}>
         <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
           今日收費
         </Typography>
-        <Box className="priceTableBody">
-          <Table sx={{ Width: "100%", [`& .${tableCellClasses.root}`]: { borderBottom: "none"}, display: "table", tableLayout: "fixed"}} aria-label="simple table" className="priceTableRoot">
+        <Grid item xs={12} justifyContent="center" alignItems="center" style={{maxHeight: "100%"}} className="priceTableBody" >
+          <Table sx={{ [`& .${tableCellClasses.root}`]: { borderBottom: "none"}, tableLayout: "fixed"}} aria-label="simple table" className="priceTableRoot">
             <TableHead>
               <TableRow className="price-row">
                 <TableCell align="center"><Button className="weekday">星期三</Button></TableCell>
@@ -46,7 +46,8 @@ const Prices = () => {
               )}
             </TableBody>
           </Table>
-        </Box>
+        </Grid>
+        </Grid>
       </TableContainer>
       </>
     )

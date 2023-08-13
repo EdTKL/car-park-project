@@ -17,9 +17,6 @@ code {
 }
 
 /* hardcode camera div */
-.cameraContainer {
-  height: 26em;
-}
 .dummy:first-child {
   margin-bottom: 15px;
 }

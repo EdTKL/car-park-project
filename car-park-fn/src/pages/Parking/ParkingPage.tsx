@@ -10,9 +10,9 @@ import { Box, Container, Grid } from "@mui/material";
 export default function ParkingPage() {
   return (
       <Layout>
-        <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={8}>
+        {/* <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}> */}
+          <Grid container spacing={2} xs={12} columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ pt: 0 }} style={{ maxHeight: "100%" }}>
+            <Grid item xs={8} style={{ maxHeight: "100%" }} sx={{ margin: 0, pt: 0 }}>
                 <ParkingList />
             </Grid>
             <Grid item xs={4} display='flex' flexDirection='column' >
@@ -21,7 +21,7 @@ export default function ParkingPage() {
               <Box bgcolor="info.main" height='100%' mt={2} borderRadius={4}/>
             </Grid>
           </Grid>
-        </Container>
+        {/* </Container> */}
       </Layout>
   );
 }

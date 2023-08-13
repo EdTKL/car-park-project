@@ -13,7 +13,6 @@ export default function SetPrice () {
         <Grid item xs={6} justifyContent="center" alignItems="center" style={{height: "95%"}}>
           <Paper elevation={3} className="space-comp" sx={{borderRadius: "20px"}} style={{height: "100%"}} />
         </Grid>
-
         <Grid item xs={6} justifyContent="center" alignItems="center"></Grid>
       </Grid>
       <Grid container direction="row" xs={12} className='second-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }}>

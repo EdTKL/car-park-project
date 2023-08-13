@@ -1,33 +1,31 @@
 .tableContainer {
     background: #FFF;
     padding: 0.5em;
-    //height: 17em;
     border-radius: 20px !important;
 
     div {
         width: 100%;
     }
-
-    .priceTableBody{
+    .priceTableBody > .priceTableBody{
         display: flex;
         justify-content: center;
     }
-
     h5 {
         color:#476800 !important;
         font-weight: bold !important;
     }
     .price-row > th {
-        padding: 1em;
+        padding: 5px 16px;
+    }
+    tbody > tr > td {
+        padding: 2.5% 16px;
     }
     .weekday {
         background-color: #008399;
         font-weight: bold;
-        // padding: 0.5em 1em;
 
         border-radius: 10px;
         color: #fff;
-        // font-size: 1.25em;
         
     }
     .carIcon {
@@ -48,6 +46,7 @@
     }
     .halfDayRent {
         color: #131f00;
+        font-size: 80%;
     }
     table > tbody > tr > td:not(:first-child) {
         color: #008399 !important;

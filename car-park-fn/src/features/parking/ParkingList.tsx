@@ -17,64 +17,73 @@ const columns: GridColDef[] = [
   {
     field: "plate_num",
     headerName: "車牌",
-    width: 80,
+    minWidth: 80,
     editable: false,
+    flex: 1
   },
   {
     field: "vehicle_type",
     headerName: "車類",
-    width: 80,
+    minWidth: 80,
     editable: false,
+    flex: 1
   },
 
   {
     field: "time",
     headerName: "停泊時間",
     type: "time",
-    width: 100,
+    minWidth: 100,
     editable: false,
+    flex: 1
   },
   {
     field: "invoice_num",
     headerName: "收據編號",
     type: "number",
-    width: 100,
+    minWidth: 100,
     editable: false,
+    flex: 1
   },
   {
     field: "total_hours",
     headerName: "總時數",
     type: "number",
-    width: 60,
+    minWidth: 60,
     editable: true,
+    flex: 1
   },
   {
     field: "parked_hours",
     headerName: "時",
     type: "number",
-    width: 60,
+    minWidth: 60,
     editable: true,
+    flex: 1
   },
   {
     field: "parked_days",
     headerName: "日",
     type: "number",
-    width: 60,
+    minWidth: 60,
     editable: true,
+    flex: 1
   },
   {
     field: "parked_nights",
     headerName: "夜",
     type: "number",
-    width: 60,
+    minWidth: 60,
     editable: true,
+    flex: 1
   },
   {
     field: "staff_id",
     headerName: "職員編號",
     type: "number",
-    width: 100,
+    minWidth: 100,
     editable: false,
+    flex: 1
   },
 ];
 
@@ -105,12 +114,12 @@ const ParkingList = () => {
           p: 2,
           display: "flex",
           flexDirection: "column",
-          height: "720px",
+          height: "100%",
           width: "100%",
           borderRadius: 3,
         }}
       >
-        <Box sx={{ height: "90%", width: "100%" }}>
+        <Box sx={{ maxHeight: "85%", width: "100%" }}>
           <Typography
             variant="h6"
             gutterBottom

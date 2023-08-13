@@ -9,26 +9,30 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useCarList } from "../cars/carAPI";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { Paper } from "@mui/material";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "次序", editable: false, width: 50 },
+  { field: "id", headerName: "次序", editable: false, width: 50, flex: 1 },
   {
     field: "plate_num",
     headerName: "車牌",
     width: 80,
     editable: true,
+    flex: 1
   },
   {
     field: "vehicle_type",
     headerName: "車類",
     width: 80,
     editable: true,
+    flex: 1
   },
   {
     field: "in_out",
     headerName: "進／出",
     width: 80,
     editable: true,
+    flex: 1
   },
   {
     field: "time",
@@ -36,6 +40,7 @@ const columns: GridColDef[] = [
     type: "time",
     width: 120,
     editable: false,
+    flex: 1
   },
   {
     field: "invoice_num",
@@ -43,6 +48,7 @@ const columns: GridColDef[] = [
     type: "number",
     width: 100,
     editable: false,
+    flex: 1
   },
   {
     field: "total_hours",
@@ -50,6 +56,7 @@ const columns: GridColDef[] = [
     type: "number",
     width: 80,
     editable: true,
+    flex: 1
   },
   {
     field: "parked_hours",
@@ -57,6 +64,7 @@ const columns: GridColDef[] = [
     type: "number",
     width: 70,
     editable: true,
+    flex: 1
   },
   {
     field: "parked_days",
@@ -64,6 +72,7 @@ const columns: GridColDef[] = [
     type: "number",
     width: 75,
     editable: true,
+    flex: 1
   },
   {
     field: "parked_nights",
@@ -71,6 +80,7 @@ const columns: GridColDef[] = [
     type: "number",
     width: 75,
     editable: true,
+    flex: 1
   },
   {
     field: "payment",
@@ -78,6 +88,7 @@ const columns: GridColDef[] = [
     type: "number",
     width: 100,
     editable: true,
+    flex: 1
   },
   {
     field: "staff_id",
@@ -85,12 +96,14 @@ const columns: GridColDef[] = [
     type: "number",
     width: 100,
     editable: false,
+    flex: 1
   },
   {
     field: "edited",
     headerName: "修改",
     width: 80,
     editable: false,
+    flex: 1
   },
 ];
 
@@ -115,7 +128,14 @@ const EditCarList: React.FC = () => {
   },[cbSearch])
 
   return (
-    <Box sx={{ height: "90%", width: "100%" }}>
+    <Paper 
+      elevation={3} 
+      sx={{
+        borderRadius: 3,
+        p: 2,}} 
+      style={{maxHeight: "100%",}}
+      >
+      <Box sx={{ height: "80%", width: "100%" }}>
       <Typography
         variant="h6"
         gutterBottom
@@ -139,6 +159,7 @@ const EditCarList: React.FC = () => {
         </span>
       </div>
 
+      <div className="eCarList" style={{ maxWidth: '100%', maxHeight: "100%" }}>
       <DataGrid
         sx={{
           borderRadius: 3,
@@ -165,7 +186,6 @@ const EditCarList: React.FC = () => {
             backgroundColor: "#FFE08A",
             borderRadius: 2,
           },
-          
         }}
         rows={rows}
         columns={columns}
@@ -179,7 +199,9 @@ const EditCarList: React.FC = () => {
         pageSizeOptions={[5, 10]}
         disableRowSelectionOnClick
       />
-    </Box>
+      </div>
+      </Box>
+      </Paper>
   );
 };
 

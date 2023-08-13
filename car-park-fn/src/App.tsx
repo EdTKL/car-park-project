@@ -11,31 +11,31 @@ import { login, logout } from './redux/slice/authSlice';
 import Register from './features/auth/Register';
 import { AuthState } from './redux/interface/model';
 import SetPrice from './pages/setPrice/SetPrice';
-import EditPage from './pages/Edit/EditPage';
 import ParkingPage from './pages/Parking/ParkingPage';
 import Home from './pages/Home/HomePage';
+import EditPage from './pages/Edit/EditPage';
 
 function App() {
-  const authListener = useAppSelector((state):AuthState=> state.auth)
-  const appDispatch = useAppDispatch()
-  const navigate = useNavigate();
-    let cb_get_auth = useCallback(async ()=>{
-        let authState = localStorage.getItem("auth");
-        console.log('auth Guard',authState)
-        if(authState){
-            let state = await JSON.parse(authState)
-            appDispatch(login(state))
-            // navigate('/home')
-        }else{
-            console.log('why')
-            appDispatch(logout())
-            navigate('/login')
-        }
-    },[appDispatch, navigate])
-    useEffect(()=>{
-         cb_get_auth()
-
-    },[cb_get_auth])
+  //const authListener = useAppSelector((state):AuthState=> state.auth)
+  //const appDispatch = useAppDispatch()
+  //const navigate = useNavigate();
+  //  let cb_get_auth = useCallback(async ()=>{
+  //      let authState = localStorage.getItem("auth");
+  //      console.log('auth Guard',authState)
+  //      if(authState){
+  //          let state = await JSON.parse(authState)
+  //          appDispatch(login(state))
+  //          // navigate('/home')
+  //      }else{
+  //          console.log('why')
+  //          appDispatch(logout())
+  //          navigate('/login')
+  //      }
+  //  },[appDispatch, navigate])
+  //  useEffect(()=>{
+  //       cb_get_auth()
+//
+  //  },[cb_get_auth])
 
   return (
 <ThemeProvider theme={appTheme}>
@@ -45,7 +45,7 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="login" element={<Login />} />
 
-        {authListener.isAuth && authListener.role === "staff" ? 
+        {/* {authListener.isAuth && authListener.role === "staff" ? 
           <Route element={<StaffRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
@@ -57,8 +57,8 @@ function App() {
         </Route>
         :
         null
-        }
-        {authListener.isAuth && authListener.role === "admin" ? 
+        } */}
+        {/* {authListener.isAuth && authListener.role === "admin" ?  */}
         <Route element={<AdminRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
@@ -70,9 +70,9 @@ function App() {
           <Route path="/logout" element={<Home />} />
           {/* <Route path="/editSpace" element={<EditSpace/>} /> */}
         </Route>
-        :
+        {/* :
         null
-        }
+        } */}
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

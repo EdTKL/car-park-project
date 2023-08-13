@@ -29,8 +29,9 @@
     font-weight: 700;
     color: #131f00;
     position: absolute;
-    left: 73px;
+    //left: 73px;
     top: 66px;
+    padding-right: 3%;
   
     p:nth-of-type(1) {
       margin: 0px;
@@ -47,13 +48,11 @@
 
 
 .cars-num {
-  width: 30%;
 
   > span {
     display: flex;
-    justify-content:flex-start;
+    justify-content:center;
     align-items: center;
-    width: 100px;
     font-size: 18px;
     font-weight: 700;
     color: #131f00;
@@ -75,6 +74,9 @@
       margin-bottom: 0px;
       margin-left: 20px;
       margin-right: 0px;
+      width: 1em;
+      display: flex;
+      justify-content: center;
     }
   }
 }
