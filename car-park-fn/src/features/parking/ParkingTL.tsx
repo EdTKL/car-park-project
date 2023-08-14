@@ -10,15 +10,16 @@ import TimelineOppositeContent, {
   timelineOppositeContentClasses,
 } from "@mui/lab/TimelineOppositeContent";
 import { Car } from "../models";
-import "./Parking.scss";
+import "./ParkingTL.scss";
 import Typography from "@mui/material/Typography";
+import { formatDate } from "../../app/format";
 
 
 interface Props {
   shortParkingList: Car[];
 }
 
-export default function Parking({ shortParkingList }: Props) {
+export default function ParkingTL({ shortParkingList }: Props) {
 
   return (
     <Paper
@@ -29,8 +30,8 @@ export default function Parking({ shortParkingList }: Props) {
       }}
        style={{height: "100%"}}
     >
-      <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
-        最近停泊車位
+      <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
+        最近停泊車輛
       </Typography>
       <Timeline
         sx={{
@@ -50,7 +51,7 @@ export default function Parking({ shortParkingList }: Props) {
         </TimelineItem>
         {shortParkingList.map((car, idx) => (
           <TimelineItem key={idx} sx={{ minHeight: "60px", padding: 0 }}>
-            <TimelineOppositeContent className="carTime">{car.time}</TimelineOppositeContent>
+            <TimelineOppositeContent className="carTime">{formatDate(car.time as unknown as Date)}</TimelineOppositeContent>
             <TimelineSeparator className="timelineWrap">
               <TimelineDot sx={{ backgroundColor: "#EBC243" }} />
               {idx !== shortParkingList.length - 1 && <TimelineConnector />}
@@ -58,7 +59,10 @@ export default function Parking({ shortParkingList }: Props) {
             <TimelineContent sx={{ color: "#008399", fontWeight: 700 }} className="carPlate">
               {car.plate_num}
             </TimelineContent>
-            <TimelineContent className="carType">{car.vehicle_type}</TimelineContent>
+            <TimelineContent className="carType">
+              {car.vehicle_type === "small_car" && ("小型車")}
+              {car.vehicle_type === "motor" && ("電單車")}
+            </TimelineContent>
           </TimelineItem>
         ))}
       </Timeline>

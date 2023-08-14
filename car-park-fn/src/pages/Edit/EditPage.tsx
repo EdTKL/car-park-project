@@ -23,14 +23,14 @@ export default function EditPage() {
             <Grid container spacing={2}>
               <Grid item xs={12} >
                 <Paper 
-                elevation={3}
-                sx={{
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: '720px',
-                  borderRadius: 3
-                }}
+                  elevation={3}
+                  sx={{
+                    p: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    borderRadius: 3
+                  }}
                 >
                   <EditCarList />
                 </Paper>

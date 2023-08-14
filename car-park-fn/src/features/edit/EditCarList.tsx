@@ -6,36 +6,58 @@ import Box from "@mui/material/Box";
 import "./EditCarList.scss";
 import { Car } from "../models";
 import SearchIcon from '@mui/icons-material/Search';
-import { useCarList } from "../cars/carAPI";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useAppSelector } from "../../app/hook";
+import { RootState } from "../../app/store";
+import { formatDate } from "../../app/format";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "次序", editable: false, width: 50 },
+  { field: "id", headerName: "次序", editable: false, width: 65 },
   {
     field: "plate_num",
     headerName: "車牌",
     width: 80,
     editable: true,
+    cellClassName: 'plate-cell',
   },
   {
     field: "vehicle_type",
     headerName: "車類",
     width: 80,
     editable: true,
+    valueFormatter(params) {
+      if (params.value === 'small_car') {
+        return '小型車';
+      } else if (params.value === 'motorcycle'){
+       return '電單車';
+      }},
   },
   {
     field: "in_out",
     headerName: "進／出",
-    width: 80,
+    width: 65,
     editable: true,
+    valueFormatter(params) {
+      if (params.value === 'in') {
+        return '進';
+      } else {
+       return '出';
+      }},
   },
   {
     field: "time",
     headerName: "時間",
     type: "time",
-    width: 120,
+    width: 150,
     editable: false,
+    valueFormatter(params) {
+    if (!params.value) {
+      return '計算中';
+    } else {
+     return formatDate(params.value)
+    }
+  }
   },
   {
     field: "invoice_num",
@@ -50,6 +72,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 80,
     editable: true,
+    valueFormatter(params) {
+      if (params.value === null) {
+        return '計算中';
+      } else {
+       return params.value;
+      }
+    }
   },
   {
     field: "parked_hours",
@@ -57,6 +86,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 70,
     editable: true,
+    valueFormatter(params) {
+      if (params.value === null) {
+        return '計算中';
+      } else {
+        return params.value;
+      }
+    }
   },
   {
     field: "parked_days",
@@ -64,6 +100,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 75,
     editable: true,
+    valueFormatter(params) {
+      if (params.value === null) {
+        return '計算中';
+      } else {
+        return params.value;
+      }
+    }
   },
   {
     field: "parked_nights",
@@ -71,6 +114,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 75,
     editable: true,
+    valueFormatter(params) {
+      if (params.value === null) {
+        return '計算中';
+      } else {
+        return params.value;
+      }
+    }
   },
   {
     field: "payment",
@@ -78,11 +128,18 @@ const columns: GridColDef[] = [
     type: "number",
     width: 100,
     editable: true,
+    valueFormatter(params) {
+      if (params.value === null) {
+        return '計算中';
+      } else {
+       return `${params.value/100}`
+      }
+    }
   },
   {
     field: "staff_id",
     headerName: "職員編號",
-    type: "number",
+    type: "string",
     width: 100,
     editable: false,
   },
@@ -96,8 +153,8 @@ const columns: GridColDef[] = [
 
 const EditCarList: React.FC = () => {
   const [input, setInput] = useState<string>("");
-  // const carList: Car[] = useAppSelector((state: RootState) => state.carState.carList);
-  const carList = useCarList();
+  const carList: Car[] = useAppSelector((state: RootState) => state.carState.carList);
+  // const carList = useCarList();
   
   const [rows, setRows] = useState<Car[]>(carList)
 
@@ -115,16 +172,17 @@ const EditCarList: React.FC = () => {
   },[cbSearch])
 
   return (
-    <Box sx={{ height: "90%", width: "100%" }}>
+    <Box sx={{ height: "90%", width: "100%", padding: 0}}>
       <Typography
         variant="h6"
-        gutterBottom
-        component="div"
-        sx={{ color: "success.main", fontWeight: "700" }}
+        mb={0}
+        ml={1}
+        color='success.main'
+        fontWeight={700}
       >
         所有進出紀錄
       </Typography>
-      <div className="btns">
+      <Box className="btns" mb={0.5}>
         <button>排序</button>
         <span>
           <input
@@ -135,9 +193,9 @@ const EditCarList: React.FC = () => {
               setInput(e.target.value)
             }}
           ></input>
-          <Button><SearchIcon fontSize='small' />搜尋</Button>
+          <Button className="Button"><SearchIcon fontSize='small' />搜尋</Button>
         </span>
-      </div>
+      </Box>
 
       <DataGrid
         sx={{
@@ -178,6 +236,7 @@ const EditCarList: React.FC = () => {
         }}
         pageSizeOptions={[5, 10]}
         disableRowSelectionOnClick
+        disableColumnMenu
       />
     </Box>
   );

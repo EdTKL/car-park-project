@@ -4,7 +4,6 @@ import { StaffRoutes } from './StaffRoutes';
 import { AdminRoutes } from './AdminRoutes';
 import { appTheme } from './themes/theme'
 import { CssBaseline, ThemeProvider } from '@mui/material';
-
 import { Login } from "./features/auth/Login";
 import { useAppDispatch, useAppSelector } from './app/hook';
 import { login, logout } from './redux/slice/authSlice';
@@ -14,6 +13,7 @@ import SetPrice from './pages/setPrice/SetPrice';
 import EditPage from './pages/Edit/EditPage';
 import ParkingPage from './pages/Parking/ParkingPage';
 import Home from './pages/Home/HomePage';
+import StatPage from './pages/Stat/StatPage';
 
 function App() {
   const authListener = useAppSelector((state):AuthState=> state.auth)
@@ -50,9 +50,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
           <Route path="/edit" element={<EditPage />} />
-          <Route path="/stat" element={<Home />} />
+          <Route path="/stat" element={<StatPage />} />
           <Route path="/setting" element={<Home />} />
-          
           <Route path="/logout" element={<Home />} />
         </Route>
         :
@@ -63,7 +62,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
           <Route path="/edit" element={<EditPage />} />
-          <Route path="/stat" element={<Home />} />
+          <Route path="/stat" element={<StatPage />} />
           <Route path="/pricing" element={<SetPrice />} />
           <Route path="/setting" element={<Home />} />
           <Route path="/register" element={<Register />} />
