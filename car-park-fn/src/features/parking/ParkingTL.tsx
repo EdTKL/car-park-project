@@ -39,6 +39,7 @@ export default function ParkingTL({ shortParkingList }: Props) {
             flex: 1.1,
           },
           mt: 0,
+          pl: 1
         }}
       >
         <TimelineItem className="labels">

@@ -1,6 +1,4 @@
 import React, {  useCallback, useEffect, useState } from "react";
-// import { useAppSelector } from "../../app/hook";
-// import { RootState } from "../../app/store";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import "./EditCarList.scss";
@@ -11,20 +9,22 @@ import Button from "@mui/material/Button";
 import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
 import { formatDate } from "../../app/format";
+import { Paper } from "@mui/material";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "次序", editable: false, width: 65 },
+  { field: "id", headerName: "次序", editable: false, width: 50, flex: 1 },
   {
     field: "plate_num",
     headerName: "車牌",
-    width: 80,
+    width: 75,
     editable: true,
     cellClassName: 'plate-cell',
+    flex: 1
   },
   {
     field: "vehicle_type",
     headerName: "車類",
-    width: 80,
+    width: 70,
     editable: true,
     valueFormatter(params) {
       if (params.value === 'small_car') {
@@ -32,11 +32,12 @@ const columns: GridColDef[] = [
       } else if (params.value === 'motorcycle'){
        return '電單車';
       }},
+    flex: 1
   },
   {
     field: "in_out",
     headerName: "進／出",
-    width: 65,
+    minWidth: 65,
     editable: true,
     valueFormatter(params) {
       if (params.value === 'in') {
@@ -44,27 +45,30 @@ const columns: GridColDef[] = [
       } else {
        return '出';
       }},
+    flex: 1
   },
   {
     field: "time",
     headerName: "時間",
     type: "time",
-    width: 150,
+    minWidth: 130,
     editable: false,
     valueFormatter(params) {
-    if (!params.value) {
-      return '計算中';
-    } else {
-     return formatDate(params.value)
-    }
-  }
+      if (!params.value) {
+        return '計算中';
+      } else {
+      return formatDate(params.value)
+      }
+    },
+    flex: 1
   },
   {
     field: "invoice_num",
     headerName: "收據編號",
     type: "number",
-    width: 100,
+    minWidth: 100,
     editable: false,
+    flex: 1
   },
   {
     field: "total_hours",
@@ -78,7 +82,8 @@ const columns: GridColDef[] = [
       } else {
        return params.value;
       }
-    }
+    },
+    flex: 1
   },
   {
     field: "parked_hours",
@@ -92,13 +97,14 @@ const columns: GridColDef[] = [
       } else {
         return params.value;
       }
-    }
+    },
+    flex: 1
   },
   {
     field: "parked_days",
     headerName: "日",
     type: "number",
-    width: 75,
+    width: 70,
     editable: true,
     valueFormatter(params) {
       if (params.value === null) {
@@ -106,13 +112,14 @@ const columns: GridColDef[] = [
       } else {
         return params.value;
       }
-    }
+    },
+    flex: 1
   },
   {
     field: "parked_nights",
     headerName: "夜",
     type: "number",
-    width: 75,
+    width: 70,
     editable: true,
     valueFormatter(params) {
       if (params.value === null) {
@@ -120,7 +127,8 @@ const columns: GridColDef[] = [
       } else {
         return params.value;
       }
-    }
+    },
+    flex: 1
   },
   {
     field: "payment",
@@ -134,28 +142,29 @@ const columns: GridColDef[] = [
       } else {
        return `${params.value/100}`
       }
-    }
+    },
+    flex: 1
   },
   {
     field: "staff_id",
     headerName: "職員編號",
     type: "string",
-    width: 100,
+    minWidth: 90,
     editable: false,
+    flex: 1
   },
   {
     field: "edited",
     headerName: "修改",
     width: 80,
     editable: false,
+    flex: 1
   },
 ];
 
 const EditCarList: React.FC = () => {
   const [input, setInput] = useState<string>("");
   const carList: Car[] = useAppSelector((state: RootState) => state.carState.carList);
-  // const carList = useCarList();
-  
   const [rows, setRows] = useState<Car[]>(carList)
 
   const cbSearch = useCallback(
@@ -172,7 +181,14 @@ const EditCarList: React.FC = () => {
   },[cbSearch])
 
   return (
-    <Box sx={{ height: "90%", width: "100%", padding: 0}}>
+    <Paper 
+      elevation={3} 
+      sx={{
+        borderRadius: 3,
+        p: 2,}} 
+      style={{maxHeight: "100%",}}
+      >
+      <Box sx={{ height: "80%", width: "100%" }}>
       <Typography
         variant="h6"
         mb={0}
@@ -197,6 +213,7 @@ const EditCarList: React.FC = () => {
         </span>
       </Box>
 
+      <div className="eCarList" style={{ maxWidth: '100%', maxHeight: "100%" }}>
       <DataGrid
         sx={{
           borderRadius: 3,
@@ -223,7 +240,6 @@ const EditCarList: React.FC = () => {
             backgroundColor: "#FFE08A",
             borderRadius: 2,
           },
-          
         }}
         rows={rows}
         columns={columns}
@@ -238,7 +254,9 @@ const EditCarList: React.FC = () => {
         disableRowSelectionOnClick
         disableColumnMenu
       />
-    </Box>
+      </div>
+      </Box>
+      </Paper>
   );
 };
 

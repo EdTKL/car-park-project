@@ -8,20 +8,14 @@ import MopedOutlinedIcon from "@mui/icons-material/MopedOutlined";
 import "./Space.scss";
 import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
-import { Typography } from "@mui/material";
 import { Car } from "../models";
+import { Grid, Typography } from "@mui/material";
 
 interface Props {
   parkingList: Car[];
 }
 
 const Space = ({parkingList}: Props) => {
-  // const carList = useAppSelector((state: RootState) => state.carState.carList);
-  // const carList = useCarList();
-  // const parkingList = useMemo(
-  //   () => carList.filter((car) => car.status === "parking"),
-  //   [carList]
-  // );
 
   const parkingNum = useMemo(() => parkingList.length, [parkingList]);
   const smCarNum = useMemo(
@@ -52,8 +46,9 @@ const Space = ({parkingList}: Props) => {
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
         現時閒置車位
       </Typography>
-      <div>
-        <div className="chart">
+      <Grid container xs={12} sx={{ margin: 0, maxHeight: "100%" }}>
+      <Grid item xs={7} justifyContent="center" alignItems="center" style={{maxHeight: "100%"}} className="chart">
+        
           <PieChart
             series={[
               {
@@ -81,8 +76,8 @@ const Space = ({parkingList}: Props) => {
             <p>尚餘</p>
             <p>{carPark[0].totalSpace - parkingNum}</p>
           </span>
-        </div>
-        <div className="cars-num">
+        </Grid>
+        <Grid item xs={5} justifyContent="center" alignItems="center" style={{maxHeight: "100%"}} className="cars-num">
           <span>
             <div className="car-type">
               <DirectionsCarOutlinedIcon
@@ -108,8 +103,8 @@ const Space = ({parkingList}: Props) => {
             </div>
             <p>{carPark[0].motoSpace - motoNum}</p>
           </span>
-        </div>
-      </div>
+      </Grid>
+      </Grid>
     </Paper>
   );
 };

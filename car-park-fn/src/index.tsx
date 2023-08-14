@@ -10,7 +10,7 @@ import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const queryClient = new QueryClient();
 

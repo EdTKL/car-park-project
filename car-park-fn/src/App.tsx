@@ -10,10 +10,10 @@ import { login, logout } from './redux/slice/authSlice';
 import Register from './features/auth/Register';
 import { AuthState } from './redux/interface/model';
 import SetPrice from './pages/setPrice/SetPrice';
-import EditPage from './pages/Edit/EditPage';
 import ParkingPage from './pages/Parking/ParkingPage';
 import Home from './pages/Home/HomePage';
 import StatPage from './pages/Stat/StatPage';
+import EditPage from './pages/Edit/EditPage';
 
 function App() {
   const authListener = useAppSelector((state):AuthState=> state.auth)
@@ -67,6 +67,7 @@ function App() {
           <Route path="/setting" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Home />} />
+          {/* <Route path="/editSpace" element={<EditSpace/>} /> */}
         </Route>
         :
         null

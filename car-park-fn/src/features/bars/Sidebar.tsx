@@ -20,6 +20,7 @@ import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 const Sidebar = () => {
     const sBarBtns: Array<SidebarButton> = [
@@ -31,7 +32,7 @@ const Sidebar = () => {
     ]
 
     const sBarBtns2: Array<SidebarButton> = [
-      {"key": "register", linkTo: "/register", icon: <HandymanOutlinedIcon />, primary: "註冊" },
+      {"key": "register", linkTo: "/register", icon: <HowToRegIcon />, primary: "註冊" },
       {"key": "setting", linkTo: "/setting", icon: <HandymanOutlinedIcon />, primary: "設定" },
       {"key": "logout", linkTo: "/logout", icon: <LogoutOutlinedIcon />, primary: "登出" }
     ]

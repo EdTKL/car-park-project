@@ -9,23 +9,19 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { formatDate } from "../../app/format";
 
-interface Props {
-  carList: Car[];
-}
-
 const columns: GridColDef[] = [
-  { field: "id", headerName: "次序", editable: false, width: 60 },
+  { field: "id", headerName: "次序", editable: false, minWidth: 60, flex: 1 },
   {
     field: "plate_num",
     headerName: "車牌",
-    width: 80,
+    minWidth: 75,
     editable: false,
     cellClassName: 'plate-cell',
+    flex: 1
   },
   {
     field: "vehicle_type",
     headerName: "車類",
-    width: 65,
     editable: false,
     valueFormatter(params) {
       if (params.value === 'small_car') {
@@ -33,75 +29,87 @@ const columns: GridColDef[] = [
       } else if (params.value === 'motorcycle'){
        return '電單車';
       }},
+    minWidth: 70,
+    flex: 1
   },
   {
     field: "in_out",
     headerName: "進／出",
-    width: 65,
-    editable: false,
     valueFormatter(params) {
       if (params.value === 'in') {
         return '進';
       } else {
        return '出';
       }},
+    minWidth: 65,
+    editable: false,
+    flex: 1
   },
   {
     field: "time",
     headerName: "時間",
     type: "time",
-    width: 130,
-    editable: false,
     valueFormatter(params) {
       if (!params.value) {
         return '計算中';
       } else {
        return formatDate(params.value)
       }
-    }
+    },
+    minWidth: 130,
+    editable: false,
+    flex: 1
   },
   {
     field: "invoice_num",
     headerName: "收據編號",
     type: "number",
-    width: 100,
+    minWidth: 100,
     editable: false,
+    flex: 1
   },
   {
     field: "payment",
     headerName: "收費",
     type: "number",
-    width: 70,
-    editable: false,
     valueFormatter(params) {
       if (params.value === null) {
         return '計算中';
       } else {
        return `${params.value/100}`
       }
-    }
+    },
+    minWidth: 70,
+    editable: false,
+    flex: 1
   },
   {
     field: "status",
     headerName: "狀態",
     type: "string",
-    width: 80,
-    editable: false,
     valueFormatter(params) {
       if (params.value === 'parking') {
         return '停泊中';
       } else if (params.value === 'out'){
        return '已出車';
       }},
+    minWidth: 70,
+    editable: false,
+    flex: 1
   },
   {
     field: "staff_id",
     headerName: "職員編號",
     type: "string",
-    width: 100,
+    minWidth: 100,
     editable: false,
+    flex: 1
   },
 ];
+
+interface Props {
+  carList: Car[];
+}
 
 const CarList = ({ carList }: Props) => {
   const [input, setInput] = useState<string>("");
@@ -122,13 +130,14 @@ const CarList = ({ carList }: Props) => {
     <Paper
       elevation={3}
       sx={{
-        p: 1,
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        width: "100%",
+        p: 2,
+        // display: "flex",
+        // flexDirection: "column",
+        //height: "410px",
+        //width: "100%",
         borderRadius: 3,
       }}
+      style={{height: "100%"}}
     >
       <Box sx={{ height: "82%", width: "100%", mb: 0 }}>
         <Typography
@@ -186,8 +195,8 @@ const CarList = ({ carList }: Props) => {
             },
           }}
           rows={rows}
-          columnHeaderHeight={40}
-          rowHeight={40}
+          columnHeaderHeight={45}
+          rowHeight={45}
           columns={columns}
           initialState={{
             pagination: {

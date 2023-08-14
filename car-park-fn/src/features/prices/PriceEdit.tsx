@@ -8,17 +8,17 @@ import { Paper, Typography } from '@mui/material';
 
 const PriceEdit = () => {
     const columns: GridColDef[] = [
-      { field: 'type', headerName: '車型', width: 90, sortable: false },
-      { field: 'timeslot', headerName: ' ', width: 90, sortable: false },
-      { field: 'duration', headerName: '生效時段', width: 120, sortable: false, editable: true, description:"時租每一小時收費, 最少停泊一小時" },
-      { field: 'mon', headerName: '星期一', width: 90, sortable: false, editable: true },
-      { field: 'tue', headerName: '星期二', width: 90, sortable: false, editable: true },
-      { field: 'wes', headerName: '星期三', width: 90, sortable: false, editable: true },
-      { field: 'thu', headerName: '星期四', width: 90, sortable: false, editable: true },
-      { field: 'fri', headerName: '星期五', width: 90, sortable: false, editable: true },
-      { field: 'sat', headerName: '星期六', width: 90, sortable: false, editable: true },
-      { field: 'sun', headerName: '星期日', width: 90, sortable: false, editable: true },
-      { field: 'ph', headerName: '公眾假期', width: 90, sortable: false, editable: true },
+      { field: 'type', headerName: '車型', minWidth: 90, sortable: false, flex: 1 },
+      { field: 'timeslot', headerName: ' ', minWidth: 90, sortable: false, flex: 1 },
+      { field: 'duration', headerName: '生效時段', minWidth: 120, sortable: false, flex: 1, editable: true, description:"時租每一小時收費, 最少停泊一小時" },
+      { field: 'mon', headerName: '星期一', minWidth: 90, sortable: false, flex: 1, editable: true },
+      { field: 'tue', headerName: '星期二', minWidth: 90, sortable: false, flex: 1, editable: true },
+      { field: 'wes', headerName: '星期三', minWidth: 90, sortable: false, flex: 1, editable: true },
+      { field: 'thu', headerName: '星期四', minWidth: 90, sortable: false, flex: 1, editable: true },
+      { field: 'fri', headerName: '星期五', minWidth: 90, sortable: false, flex: 1, editable: true },
+      { field: 'sat', headerName: '星期六', minWidth: 90, sortable: false, flex: 1, editable: true },
+      { field: 'sun', headerName: '星期日', minWidth: 90, sortable: false, flex: 1, editable: true },
+      { field: 'ph', headerName: '公眾假期', minWidth: 90, sortable: false, flex: 1, editable: true },
     ];
     //const pricetable = useAppSelector((state: RootState) => state.ePriceState.pricetable);
     const pricetable = [
@@ -35,15 +35,17 @@ const PriceEdit = () => {
     //console.log(pricetable)
 
     return (
-    <Paper sx={{ p: 1 }}>
+      <Paper elevation={3} className="ePrice-comp" 
+      sx={{borderRadius: "20px", p: 2}} 
+      style={{height: "100%"}}>
         <Typography variant='h5' className="ePriceHeader">價目表</Typography>
         <div className="parkName">
             <Typography variant='h5' className="epHeading">庇利街</Typography>
             <Typography>有效日期: 2023/03/01 至 2099/12/31</Typography>
         </div>
-        <div className="ePrice" style={{ width: '100%' }}>
+        <div className="ePrice" style={{ width: '100%', maxHeight: "100%" }}>
         <DataGrid 
-            
+            className='ePriceDataGrid'
             rows={pricetable}
             columns={columns}
             initialState={{
@@ -52,6 +54,10 @@ const PriceEdit = () => {
               },
             }}
             pageSizeOptions={[3, 6, 9]}
+            sx={{"& .MuiDataGrid-row:hover": {
+              backgroundColor: "#FFE08A",
+              borderRadius: 2,
+            }}}
             // checkboxSelection
           />
         </div>

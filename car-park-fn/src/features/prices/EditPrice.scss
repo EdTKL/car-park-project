@@ -7,6 +7,9 @@
     color: #476800 !important;
     font-weight: bold !important;
 }
+.parkName {
+    display: block !important;
+}
 .parkName > .epHeading {
     display: flex;
     justify-content: center;
@@ -31,6 +34,9 @@
         font-weight: bold;
     }
 }
+// .ePriceDataGrid {
+//     height: 100% !important;
+// }
 .MuiTablePagination-root > div > p {
     margin: 0;
 }
