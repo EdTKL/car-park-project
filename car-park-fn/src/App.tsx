@@ -12,9 +12,8 @@ import { AuthState } from './redux/interface/model';
 import SetPrice from './pages/setPrice/SetPrice';
 import EditPage from './pages/edit/EditPage';
 import ParkingPage from './pages/parking/ParkingPage';
-import StatPage from './pages/stat/StatPage';
 import Home from './pages/home/HomePage';
-import Dummy from './pages/dummy';
+import StatPage from './pages/Stat/StatPage';
 
 function App() {
   const authListener = useAppSelector((state):AuthState=> state.auth)
@@ -52,7 +51,6 @@ function App() {
           <Route path="/parking" element={<ParkingPage />} />
           <Route path="/edit" element={<EditPage />} />
           <Route path="/stat" element={<StatPage />} />
-          <Route path="/setting" element={<Home />} />
           <Route path="/logout" element={<Home />} />
         </Route>
         :
@@ -65,7 +63,6 @@ function App() {
           <Route path="/edit" element={<EditPage />} />
           <Route path="/stat" element={<StatPage />} />
           <Route path="/pricing" element={<SetPrice />} />
-          {/* <Route path="/setting" element={<Dummy />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Home />} />
         </Route>
