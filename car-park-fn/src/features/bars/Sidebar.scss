@@ -56,6 +56,13 @@ a {
 .MuiListItemText-root.css-1cag644-MuiListItemText-root {
   opacity: 1 !important;
 } 
+
+.sidebar {
+  .css-d9387g {
+    opacity: 1!important;
+  }
+}
+
 .sidebar > div > ul:nth-child(1) > li:not(:first-child):hover .sidebarButtonText, 
 .sidebar > div > ul:nth-child(2) > li:hover .sidebarButtonText, 
 .sidebar > div > ul:nth-child(1) > li:not(:first-child):hover .svg, 

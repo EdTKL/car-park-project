@@ -40,11 +40,11 @@ const HomePage = () => {
             <ParkingTL shortParkingList={shortParkingList}/>
           </Grid>
         </Grid>
-        <Grid container direction="row" xs={12} className='second-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }}>
-          <Grid item xs={8} justifyContent="center" alignItems="center" style={{height: "95%"}}>
+        <Grid container direction="row" xs={12}  columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, mb: 2 }}>
+          <Grid item xs={8} justifyContent="center" alignItems="center" style={{height: "100%"}} >
             <CarList carList={carList}/>
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}} className='cameraContainer'>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "100%"}} >
             <Box className='dummy' style={{height: "48.5%"}} />
             <Box className='dummy' style={{height: "48.5%"}} />
           </Grid>

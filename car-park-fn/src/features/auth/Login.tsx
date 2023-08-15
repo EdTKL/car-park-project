@@ -21,8 +21,6 @@ export function Login() {
     dispatch(loginThunk({ username, password }))
       .unwrap()
       .then(() => {
-
-
         navigate("/home")
       })
       .catch((err) => {

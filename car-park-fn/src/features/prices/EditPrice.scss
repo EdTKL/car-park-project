@@ -1,49 +1,53 @@
-.css-3ze8r2-MuiPaper-root {
-    background: #FFF;
+
+  .css-3ze8r2-MuiPaper-root {
+    background: #fff;
     padding: 0.5em;
     border-radius: 20px !important;
-}
-.ePriceHeader {
+  }
+  .ePriceHeader {
     color: #476800 !important;
     font-weight: bold !important;
-}
-.parkName {
+  }
+  .parkName {
     display: block !important;
-}
-.parkName > .epHeading {
+  }
+  .parkName > .epHeading {
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
     color: #476800;
     //background-color: #F1FFD3;
-}
-.parkName > p {
+  }
+  .parkName > p {
     font-size: 0.85em !important;
-}
-.ePrice {
+  }
+  .ePrice {
     height: 17em;
-}
-.MuiDataGrid-root {
-    border: none !important;
-}
-.MuiDataGrid-columnHeaders {
-    background-color: #A6D654;
-    border-radius: 10px !important;
 
-    .MuiDataGrid-columnHeaderTitle {
-        font-weight: bold;
+    //Applying only to the DataGrid under .ePrice div
+    .MuiDataGrid-root {
+      border: none !important;
     }
-}
-// .ePriceDataGrid {
-//     height: 100% !important;
-// }
-.MuiTablePagination-root > div > p {
-    margin: 0;
-}
-.MuiDataGrid-footerContainer {
-    border: none !important;
-}
-.MuiDataGrid-virtualScrollerRenderZone > div:nth-of-type(even)>* {
-    background-color: #F1FFD3;
-    //border-radius: 10px !important;
+    .MuiDataGrid-columnHeaders {
+      background-color: #a6d654;
+      border-radius: 10px !important;
+
+      .MuiDataGrid-columnHeaderTitle {
+        font-weight: bold;
+      }
+    }
+    // .ePriceDataGrid {
+    //     height: 100% !important;
+    // }
+    .MuiTablePagination-root > div > p {
+      margin: 0;
+    }
+    .MuiDataGrid-footerContainer {
+      border: none !important;
+    }
+
+    .MuiDataGrid-virtualScrollerRenderZone > div:nth-of-type(even)>* {
+      background-color: #f1ffd3;
+      //border-radius: 10px !important;
+    }
 }
