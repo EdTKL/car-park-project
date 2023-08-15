@@ -70,3 +70,17 @@ li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListI
   width: 30px;
   margin-left: 10px;
 }
+a > div > div {
+  display: flex;
+  align-items: center;
+}
+// selected
+.selected {
+    background-color: #f2f4f4;
+    border-radius: 15px 0 0 15px;
+    color: #476800;
+    
+    > a > div > .svg, > a > div > div > span {
+        color: #476800;
+    }
+}

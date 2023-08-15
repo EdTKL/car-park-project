@@ -5,7 +5,7 @@ import { Paper, Typography } from '@mui/material';
 //import type { PriceList } from '../models';
 
 const PriceEdit = () => {
-  //const [finalClickInfo, setFinalClickInfo] = React.useState({} as any);
+  const [finalClickInfo, setFinalClickInfo] = React.useState({} as any);
     const handleOnCellEditStop = (params: any) => {
       console.log(params.field)
       console.log(params)
@@ -47,7 +47,6 @@ const PriceEdit = () => {
       <Paper elevation={3} className="ePrice-comp" 
       sx={{borderRadius: "20px", p: 2}} 
       style={{height: "100%"}}>
-        <form id='editPriceForm'>
         <Typography variant='h5' className="ePriceHeader">價目表</Typography>
         <div className="parkName">
             <Typography variant='h5' className="epHeading">庇利街</Typography>
@@ -61,23 +60,46 @@ const PriceEdit = () => {
               <input type='submit' />
             </div>
         </div>
-        <div className="ePrice" style={{ width: '100%', maxHeight: "100%" }}>
+        <div className="ePrice" style={{ width: '100%', height: "90%" }}>
         <DataGrid 
             className='ePriceDataGrid'
-            //editMode='row'
-            onCellEditStop={handleOnCellEditStop}
+            editMode='row'
+            onRowEditStop={handleOnCellEditStop}
+            
             rows={pricetable}
             columns={columns}
             initialState={{
               pagination: {
-                paginationModel: { page: 0, pageSize: 3 },
+                paginationModel: { page: 0, pageSize: 9 },
               },
             }}
             pageSizeOptions={[3, 6, 9]}
-            sx={{"& .MuiDataGrid-row:hover": {
-              backgroundColor: "#FFE08A",
-              borderRadius: 2,
-            }}}
+            sx={{
+              borderRadius: 3,
+              color: "info.main",
+              border: "none",
+              boxShadow: "none",
+              "& .MuiDataGrid-withBorderColor": {
+                borderColor: "white",
+              },
+              "& .MuiDataGrid-columnHeaders": {
+                backgroundColor: "primary.main",
+                borderRadius: 2,
+              },
+              "& .MuiDataGrid-columnHeaderTitle": {
+                fontWeight: "700",
+              },
+              "& .MuiDataGrid-row": {
+                borderRadius: 2,
+                "&:nth-of-type(even)": {
+                  backgroundColor: "#F1FFD3",
+                },
+              },
+              "& .MuiDataGrid-row:hover": {
+                backgroundColor: "#FFE08A",
+                borderRadius: 2,
+              },
+            }}
             
             />
             {/* {finalClickInfo &&
@@ -85,7 +107,6 @@ const PriceEdit = () => {
             Final clicked field = ${finalClickInfo.field}, 
             Final clicked value = ${finalClickInfo.value}`} */}
           </div>
-        </form>
     </Paper>
     )
 }

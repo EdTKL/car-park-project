@@ -4,16 +4,19 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Avatar, styled } from '@mui/material';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+//import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+//import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+//import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import "./Navbar.scss";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
+import { useAppSelector } from '../../app/hook';
+import { AuthState } from '../../redux/interface/model';
 
 const Navbar = () => {
     const drawerWidth = useSelector((state: RootState)=> { return state.drawerState.drawerWidth});
     const open = useSelector((state: RootState)=> { return state.drawerState.open});
+    const auth = useAppSelector((state):AuthState=> state.auth)
 
     interface AppBarProps extends MuiAppBarProps {
       open?: boolean | any;
@@ -46,10 +49,10 @@ const Navbar = () => {
           </Typography>
           <div className='navbarButtons'>
             <DarkModeOutlinedIcon />
-            <LocalPhoneOutlinedIcon />
+            {/* <LocalPhoneOutlinedIcon />
             <CalendarMonthOutlinedIcon />
-            <NotificationsNoneOutlinedIcon />
-            <Avatar className='staffProfile'>俊</Avatar>
+            <NotificationsNoneOutlinedIcon /> */}
+            <Avatar className='staffProfile' >{auth.username.slice(0,1).toUpperCase()}</Avatar>
           </div>
         </Toolbar>
     </AppBar></>)

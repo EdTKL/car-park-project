@@ -6,9 +6,10 @@
     div {
         width: 100%;
     }
-    .priceTableBody > .priceTableBody{
+    .priceTableBody {
         display: flex;
-        justify-content: center;
+        justify-content: center !important;
+        height: 90%;
     }
     h5 {
         color:#476800 !important;

@@ -46,7 +46,7 @@ const Space = ({parkingList}: Props) => {
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
         現時閒置車位
       </Typography>
-      <Grid container xs={12} sx={{ margin: 0, maxHeight: "100%" }}>
+      <Grid container xs={12} sx={{ margin: 0, maxHeight: "100%" }} className="pie-comp">
       <Grid item xs={7} justifyContent="center" alignItems="center" style={{maxHeight: "100%"}} className="chart">
         
           <PieChart
