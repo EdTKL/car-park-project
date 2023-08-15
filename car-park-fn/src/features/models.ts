@@ -49,19 +49,6 @@ export type PriceEdit = {
     motor: number
 }
 
-//export type PriceList = {
-//    dayId: string,
-//    smHour: number, 
-//    mdHour: number,
-//    motoHour: number,
-//    smDay: number,
-//    mdDay: number,
-//    motoDay: number,
-//    smNight: number,
-//    mdNight: number,
-//    motoNight : number
-//}
-
 export type PriceList = {
     type: string, 
     timeslot: string, 

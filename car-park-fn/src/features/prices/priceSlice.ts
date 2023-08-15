@@ -5,6 +5,7 @@ export type ePriceState = {
     pricetable: PriceList[]
 }
 export const initialState: ePriceState = {
+    //pricetable: []
     pricetable: [
         {type: "motor", timeslot: "hourly", duration: "none",  mon: 19, tue: 19, wes: 19, thu: 19, fri: 19, sat: 19, sun: 19, ph: 19},
         {type: "motor", timeslot: "day", duration: "08:00 - 18:00",  mon: 105, tue: 105, wes: 105, thu: 105, fri: 105, sat: 105, sun: 105, ph: 105},
@@ -16,16 +17,6 @@ export const initialState: ePriceState = {
         {type: "md", timeslot: "day", duration: "08:00 - 18:00",  mon: 200, tue: 200, wes: 200, thu: 200, fri: 200, sat: 200, sun: 200, ph: 200},
         {type: "md", timeslot: "night", duration: "18:00 - 08:00",  mon: 200, tue: 200, wes: 200, thu: 200, fri: 200, sat: 200, sun: 200, ph: 200}
     ]
-    //pricetable: [
-    //    {"dayId":"1", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80},
-    //    {"dayId":"2", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80},
-    //    {"dayId":"3", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80},
-    //    {"dayId":"4", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80},
-    //    {"dayId":"5", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80},
-    //    {"dayId":"6", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80},
-    //    {"dayId":"7", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80},
-    //    {"dayId":"ph", "smHour": 19, "mdHour": 40, "motoHour": 19, "smDay": 105, "mdDay": 200, "motoDay": 105, "smNight": 80, "mdNight": 200, "motoNight": 80}
-    //]
 }
 
 export const ePriceSlice = createSlice({
