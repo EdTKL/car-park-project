@@ -15,8 +15,6 @@ export interface Car {
     status: string,
     staff_id: string,
     edited: boolean,
-    
-
 }
 
 export interface CarPark {

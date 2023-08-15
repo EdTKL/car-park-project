@@ -1,17 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Car } from "../models";
-import './ParkingList.scss'
-import { useAppSelector } from "../../app/hook";
-import { RootState } from "../../app/store";
+import "./ParkingList.scss";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Paper, Box, Typography, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useCarList } from "../cars/carAPI";
-
-// interface Props {
-//   parkingList: Car[];
-// }
-
+import { formatDate } from "../../app/format";
 
 const columns: GridColDef[] = [
   {
@@ -19,6 +12,7 @@ const columns: GridColDef[] = [
     headerName: "車牌",
     minWidth: 80,
     editable: false,
+    cellClassName: "plate-cell",
     flex: 1
   },
   {
@@ -26,6 +20,13 @@ const columns: GridColDef[] = [
     headerName: "車類",
     minWidth: 80,
     editable: false,
+    valueFormatter(params) {
+      if (params.value === "small_car") {
+        return "小型車";
+      } else if (params.value === "motorcycle") {
+        return "電單車";
+      }
+    },
     flex: 1
   },
 
@@ -33,7 +34,14 @@ const columns: GridColDef[] = [
     field: "time",
     headerName: "停泊時間",
     type: "time",
-    minWidth: 100,
+    valueFormatter(params) {
+      if (!params.value) {
+        return "計算中";
+      } else {
+        return formatDate(params.value);
+      }
+    },
+    minWidth: 130,
     editable: false,
     flex: 1
   },
@@ -49,7 +57,14 @@ const columns: GridColDef[] = [
     field: "total_hours",
     headerName: "總時數",
     type: "number",
-    minWidth: 60,
+    valueFormatter(params) {
+      if (params.value === null) {
+        return "計算中";
+      } else {
+        return params.value;
+      }
+    },
+    minWidth: 70,
     editable: true,
     flex: 1
   },
@@ -57,6 +72,13 @@ const columns: GridColDef[] = [
     field: "parked_hours",
     headerName: "時",
     type: "number",
+    valueFormatter(params) {
+      if (params.value === null) {
+        return 0;
+      } else {
+        return params.value;
+      }
+    },
     minWidth: 60,
     editable: true,
     flex: 1
@@ -65,6 +87,13 @@ const columns: GridColDef[] = [
     field: "parked_days",
     headerName: "日",
     type: "number",
+    valueFormatter(params) {
+      if (params.value === null) {
+        return 0;
+      } else {
+        return params.value;
+      }
+    },
     minWidth: 60,
     editable: true,
     flex: 1
@@ -73,6 +102,13 @@ const columns: GridColDef[] = [
     field: "parked_nights",
     headerName: "夜",
     type: "number",
+    valueFormatter(params) {
+      if (params.value === null) {
+        return 0;
+      } else {
+        return params.value;
+      }
+    },
     minWidth: 60,
     editable: true,
     flex: 1
@@ -87,25 +123,24 @@ const columns: GridColDef[] = [
   },
 ];
 
-const ParkingList = () => {
-  // const carList = useAppSelector((state: RootState) => state.carState.carList);
-  const carList = useCarList();
-  const parkingList = useMemo(() => 
-    carList.filter((car) => car.status === "parking"), [carList]);
+interface Props {
+  parkingList: Car[];
+}
 
-    const [input, setInput] = useState<string>("");
-    const [rows, setRows] = useState<Car[]>(parkingList);
-  
-    const cbSearch = useCallback(() => {
-      const searchedList = parkingList.filter((car) => {
-        return car.plate_num.toLowerCase().includes(input.toLowerCase());
-      });
-      setRows(searchedList);
-    }, [parkingList, input]);
-  
-    useEffect(() => {
-      cbSearch();
-    }, [cbSearch]);
+const ParkingList = ({ parkingList }: Props) => {
+  const [input, setInput] = useState<string>("");
+  const [rows, setRows] = useState<Car[]>(parkingList);
+
+  const cbSearch = useCallback(() => {
+    const searchedList = parkingList.filter((car) => {
+      return car.plate_num.toLowerCase().includes(input.toLowerCase());
+    });
+    setRows(searchedList);
+  }, [parkingList, input]);
+
+  useEffect(() => {
+    cbSearch();
+  }, [cbSearch]);
   
     return (
       <Paper
@@ -119,16 +154,17 @@ const ParkingList = () => {
           borderRadius: 3,
         }}
       >
-        <Box sx={{ maxHeight: "85%", width: "100%" }}>
+        <Box sx={{ maxHeight: "90%", height: "90%", width: "100%" }}>
           <Typography
             variant="h6"
-            gutterBottom
-            component="div"
-            sx={{ color: "success.main", fontWeight: "700" }}
+            mb={0}
+            ml={1}
+            color="success.main"
+            fontWeight={700}
           >
             現時停泊車輛
           </Typography>
-          <div className="btns">
+          <Box className="btns" mb={0.5}>
             <button>排序</button>
             <span>
               <input
@@ -139,12 +175,12 @@ const ParkingList = () => {
                   setInput(e.target.value);
                 }}
               ></input>
-              <Button>
+              <Button className="Button">
                 <SearchIcon fontSize="small" />
                 搜尋
               </Button>
             </span>
-          </div>
+          </Box>
   
           <DataGrid
             sx={{
@@ -184,11 +220,11 @@ const ParkingList = () => {
             }}
             pageSizeOptions={[5, 10]}
             disableRowSelectionOnClick
+            disableColumnMenu
           />
         </Box>
-      </Paper>
-    );
-
+    </Paper>
+  );
 };
 
 export default ParkingList;

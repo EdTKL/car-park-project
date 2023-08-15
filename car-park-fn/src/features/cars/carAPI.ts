@@ -1,22 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-
-export interface Car {
-    id: number,
-    invoice_num: string,
-    plate_num: string,
-    vehicle_type: string,
-    in_out: string,
-    time: string,
-    total_hours?: number,
-    parked_hours?: number,
-    parked_days?: number,
-    parked_nights?: number,
-    payment?: number,
-    status: string,
-    staff_id: string,
-    edited: boolean,
-
-}
+import { Car } from "../models";
 
 export function useCarList(){
     const {isLoading, error, data, isFetching} = useQuery({

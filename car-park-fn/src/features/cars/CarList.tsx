@@ -7,31 +7,41 @@ import Typography from "@mui/material/Typography";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
-interface Props {
-  carList: Car[];
-}
+import { formatDate } from "../../app/format";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "次序", editable: false, minWidth: 50, flex: 1 },
+  { field: "id", headerName: "次序", editable: false, minWidth: 60, flex: 1 },
   {
     field: "plate_num",
     headerName: "車牌",
-    minWidth: 80,
+    minWidth: 75,
     editable: false,
+    cellClassName: 'plate-cell',
     flex: 1
   },
   {
     field: "vehicle_type",
     headerName: "車類",
-    minWidth: 80,
     editable: false,
+    valueFormatter(params) {
+      if (params.value === 'small_car') {
+        return '小型車';
+      } else if (params.value === 'motorcycle'){
+       return '電單車';
+      }},
+    minWidth: 70,
     flex: 1
   },
   {
     field: "in_out",
     headerName: "進／出",
-    minWidth: 80,
+    valueFormatter(params) {
+      if (params.value === 'in') {
+        return '進';
+      } else {
+       return '出';
+      }},
+    minWidth: 65,
     editable: false,
     flex: 1
   },
@@ -39,7 +49,14 @@ const columns: GridColDef[] = [
     field: "time",
     headerName: "時間",
     type: "time",
-    minWidth: 120,
+    valueFormatter(params) {
+      if (!params.value) {
+        return '計算中';
+      } else {
+       return formatDate(params.value)
+      }
+    },
+    minWidth: 130,
     editable: false,
     flex: 1
   },
@@ -55,33 +72,47 @@ const columns: GridColDef[] = [
     field: "payment",
     headerName: "收費",
     type: "number",
-    minWidth: 80,
+    valueFormatter(params) {
+      if (params.value === null) {
+        return '計算中';
+      } else {
+       return `${params.value/100}`
+      }
+    },
+    minWidth: 70,
     editable: false,
     flex: 1
   },
   {
     field: "status",
     headerName: "狀態",
-    type: "number",
-    minWidth: 80,
+    type: "string",
+    valueFormatter(params) {
+      if (params.value === 'parking') {
+        return '停泊中';
+      } else if (params.value === 'out'){
+       return '已出車';
+      }},
+    minWidth: 70,
     editable: false,
     flex: 1
   },
   {
     field: "staff_id",
     headerName: "職員編號",
-    type: "number",
+    type: "string",
     minWidth: 100,
     editable: false,
     flex: 1
   },
 ];
 
-const CarList = ({ carList }: Props) => {
-  
-  const [input, setInput] = useState<string>("");
-  // const carList: Car[] = useAppSelector((state: RootState) => state.carState.carList);
+interface Props {
+  carList: Car[];
+}
 
+const CarList = ({ carList }: Props) => {
+  const [input, setInput] = useState<string>("");
   const [rows, setRows] = useState<Car[]>(carList);
 
   const cbSearch = useCallback(() => {
@@ -100,7 +131,7 @@ const CarList = ({ carList }: Props) => {
       elevation={3}
       sx={{
         p: 2,
-        //display: "flex",
+        // display: "flex",
         // flexDirection: "column",
         //height: "410px",
         //width: "100%",
@@ -108,16 +139,17 @@ const CarList = ({ carList }: Props) => {
       }}
       style={{height: "100%"}}
     >
-      <Box sx={{ height: "80%", width: "100%" }}>
+      <Box sx={{ height: "82%", width: "100%", mb: 0 }}>
         <Typography
           variant="h6"
-          gutterBottom
-          component="div"
-          sx={{ color: "success.main", fontWeight: "700" }}
+          mb={0}
+          ml={1}
+          color="success.main"
+          fontWeight={700}
         >
           進出車輛紀錄
         </Typography>
-        <div className="btns">
+        <Box className="btns" mb={0.5}>
           <button>排序</button>
           <span>
             <input
@@ -128,11 +160,12 @@ const CarList = ({ carList }: Props) => {
                 setInput(e.target.value);
               }}
             ></input>
-          <Button>
-            <SearchIcon fontSize='small' />搜尋
-          </Button>
+            <Button className="Button">
+            <SearchIcon fontSize="small"/>
+              搜尋
+            </Button>
           </span>
-        </div>
+        </Box>
 
         <DataGrid
           sx={{
@@ -162,15 +195,18 @@ const CarList = ({ carList }: Props) => {
             },
           }}
           rows={rows}
+          columnHeaderHeight={45}
+          rowHeight={45}
           columns={columns}
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 10,
+                pageSize: 5,
               },
             },
           }}
           pageSizeOptions={[5, 10]}
+          disableColumnMenu
           disableRowSelectionOnClick
         />
       </Box>

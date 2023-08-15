@@ -23,7 +23,7 @@ const Prices = () => {
           <Table sx={{ [`& .${tableCellClasses.root}`]: { borderBottom: "none"}, tableLayout: "fixed"}} aria-label="simple table" className="priceTableRoot">
             <TableHead>
               <TableRow className="price-row">
-                <TableCell align="center"><Button className="weekday">星期三</Button></TableCell>
+                <TableCell align="center"><Button className="weekday Button">星期三</Button></TableCell>
                 <TableCell align="center"><div className="carIcon"><DirectionsCarFilledOutlinedIcon /></div><div className="carcategory">小型車</div></TableCell>
                 <TableCell align="center"><div className="carIcon"><AirportShuttleOutlinedIcon /></div><div className="carcategory">中型車</div></TableCell>
                 <TableCell align="center"><div className="carIcon"><MopedOutlinedIcon /></div><div className="carcategory">電單車</div></TableCell>

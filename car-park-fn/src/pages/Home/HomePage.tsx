@@ -4,37 +4,40 @@ import "../../features/bars/Navbar.scss";
 import "../../pages/Layout.scss"
 
 import { Box, Grid } from '@mui/material';
-import Space from '../../features/parking/Space';
+import Space from '../../features/space/Space';
 import Prices from '../../features/prices/Prices';
-import Parking from '../../features/parking/Parking';
+import ParkingTL from '../../features/parking/ParkingTL';
 import CarList from '../../features/cars/CarList';
 import Layout from '../../features/bars/Layout';
-import { useCarList } from '../../features/cars/carAPI';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import { fetchCars } from "../../features/cars/carSlice"
+import { fetchParking } from "../../features/parking/parkingSlice"
+import { useAppDispatch, useAppSelector } from '../../app/hook';
+import { RootState } from '../../app/store';
 
 const HomePage = () => {
-  // const carList = useAppSelector((state: RootState) => state.carState.carList);
-  const carList = useCarList();
-  const shortParkingList = useMemo(() => 
-    carList.filter((car) => car.status === "parking").slice(0, 3), [carList]);
-  // const dispatch = useAppDispatch()
-  // const navigate = useNavigate();
-  // function logoutNav(){
-  //   dispatch(logout());
-  //   navigate("/login");
-  // }
+  const carList = useAppSelector((state: RootState) => state.carState.carList);
+  const parkingList = useAppSelector((state: RootState) => state.parkingState.parkingList)
+  const dispatch = useAppDispatch();
 
+  const shortParkingList = useMemo(() => 
+    parkingList.slice(0, 3), [parkingList]);
+
+  useEffect(()=> {
+    dispatch(fetchCars());
+    dispatch(fetchParking())
+  }, [dispatch]);
   return (
       <Layout>
-        <Grid container direction="row" xs={12} className='first-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }} >
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}>
-            <Space />
+        <Grid container direction="row" xs={12}  columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 1, height: '40%'}} >
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "300px"}}>
+            <Space parkingList={parkingList}/>
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "300px"}}>
             <Prices />
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "95%"}}>
-            <Parking shortParkingList={shortParkingList}/>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "300px"}}>
+            <ParkingTL shortParkingList={shortParkingList}/>
           </Grid>
         </Grid>
         <Grid container direction="row" xs={12} className='second-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0 }}>

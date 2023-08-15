@@ -17,7 +17,7 @@ const Layout = ({ children }: AuxProps) => {
         <Navbar />
         <Sidebar />
       {/* content */}
-        <Box sx={{ margin: 0}} className="contentContainer">
+        <Box sx={{ display: 'flex', justifyContent: 'center', margin: 0, pt: 0}} className="contentContainer">
             <Grid container sx={{ margin: 0 }}>
                 { children }
             </Grid>

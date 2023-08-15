@@ -8,19 +8,14 @@ import MopedOutlinedIcon from "@mui/icons-material/MopedOutlined";
 import "./Space.scss";
 import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
+import { Car } from "../models";
 import { Grid, Typography } from "@mui/material";
 
-// interface Props {
-//   parkingList: Car[];
-// }
+interface Props {
+  parkingList: Car[];
+}
 
-const Space = () => {
-  const carList = useAppSelector((state: RootState) => state.carState.carList);
-  // const carList = useCarList();
-  const parkingList = useMemo(
-    () => carList.filter((car) => car.status === "parking"),
-    [carList]
-  );
+const Space = ({parkingList}: Props) => {
 
   const parkingNum = useMemo(() => parkingList.length, [parkingList]);
   const smCarNum = useMemo(
@@ -48,7 +43,7 @@ const Space = () => {
         height: "100%",
       }}
     >
-      <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
+      <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
         現時閒置車位
       </Typography>
       <Grid container xs={12} sx={{ margin: 0, maxHeight: "100%" }}>

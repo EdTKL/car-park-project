@@ -30,17 +30,8 @@ export const parkingSlice = createSlice({
         state.space = state.space.map(obj=>obj.id===action.payload.id?Object.assign(obj,{motoSpace:action.payload.value}):obj)
       }
     }
-
   }
 })
-//   edit_mdSpace: (state: ParkingState, action: PayloadAction<{mdCarSpace: number}>) => {
-//     
-//   },
-//   edit_motoSpace: (state: ParkingState, action: PayloadAction<{motoSpace: number}>) => {
-//     state.space[0].motoSpace = action.payload.motoSpace;
-//   },
-// }
-
 
 
 export const { edit_Space } = parkingSlice.actions;
