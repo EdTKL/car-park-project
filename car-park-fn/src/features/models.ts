@@ -35,10 +35,10 @@ export type SidebarButton = {
 
 export type Price = {
     key: string,
-    timeslot: string, 
-    small: number, 
-    middle: number, 
-    motor: number
+    timeslot: "day" | "night" | "hour", 
+    small_car: number | string, 
+    middle_car: number | string, 
+    motorcycle: number | string
 }
 
 export type PriceEdit = {
@@ -48,9 +48,11 @@ export type PriceEdit = {
 }
 
 export type PriceList = {
-    type: string, 
-    timeslot: string, 
-    duration: string, 
+    id: number,
+    vehicle_type: string, 
+    fee_type: string, 
+    day_start: string, 
+    nigth_start: string, 
     mon: number,
     tue: number,
     wes: number,
