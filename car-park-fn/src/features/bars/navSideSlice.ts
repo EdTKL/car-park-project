@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//const initialState: OpenState = {
-//    drawerWidth: 200
-//}
 export type DrawerState = {
   open?: boolean | any, 
   drawerWidth: number

@@ -10,7 +10,7 @@ import "./Sidebar.scss";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { SidebarButton } from '../models';
-import { useAppDispatch } from '../../app/hook';
+import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { logout } from '../../redux/slice/authSlice';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LocalParkingOutlinedIcon from '@mui/icons-material/LocalParkingOutlined';
@@ -20,14 +20,15 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { setSelected } from './selected/selectedSlice';
+import { AuthState } from '../../redux/interface/model';
 
 const Sidebar = () => {
     const sBarBtns: Array<SidebarButton> = [
       {"key": "home", linkTo: "/home", icon: <HomeOutlinedIcon />, primary: "主頁" },
       {"key": "parking", linkTo: "/parking", icon: <LocalParkingOutlinedIcon />, primary: "停泊車輛" },
       {"key": "edit", linkTo: "/edit", icon: <EditNoteOutlinedIcon />, primary: "編輯紀錄" },
-      {"key": "stat", linkTo: "/stat", icon: <BarChartOutlinedIcon />, primary: "統計數據" },
-      {"key": "pricing", linkTo: "/pricing", icon: <PriceChangeOutlinedIcon />, primary: "更改價錢" }
+      {"key": "pricing", linkTo: "/pricing", icon: <PriceChangeOutlinedIcon />, primary: "更改價錢" },
+      {"key": "stat", linkTo: "/stat", icon: <BarChartOutlinedIcon />, primary: "統計數據" }
     ]
 
     const sBarBtns2: Array<SidebarButton> = [
@@ -38,7 +39,7 @@ const Sidebar = () => {
     const drawerWidth = useSelector((state: RootState)=> { return state.drawerState.drawerWidth});
     const open = useSelector((state: RootState)=> { return state.drawerState.open});
     const selected = useSelector((state: RootState)=>{ return state.selectedState})
-    
+    const auth = useAppSelector((state):AuthState=> state.auth)
 
     const dispatch = useAppDispatch()
 
@@ -49,6 +50,7 @@ const Sidebar = () => {
         duration: theme.transitions.duration.enteringScreen,
       }),
       overflowX: 'hidden',
+      overflowY: 'hidden',
     });
     const closedMixin = (theme: Theme): CSSObject => ({
       transition: theme.transitions.create('width', {
@@ -56,7 +58,8 @@ const Sidebar = () => {
         duration: theme.transitions.duration.leavingScreen,
       }),
       overflowX: 'hidden',
-      [theme.breakpoints.up('sm')]: {
+      overflowY: 'hidden',
+      [theme.breakpoints.up('lg')]: {
         width: `calc(${theme.spacing(8)} + 1px)`,
       },
     });
@@ -82,7 +85,7 @@ const Sidebar = () => {
         <Drawer className="sidebar" variant="permanent" anchor="left" open={open} >
         <List>
             {open ? (
-            <ListItem className="brand" >
+            <ListItem className="brand" onClick={()=>dispatch(setSelected({path: '/home'}))}>
               <Link to={'/home'}><Typography variant="h2" sx={{
                 color: 'white',
                 fontFamily: 'Black Han Sans',
@@ -91,7 +94,7 @@ const Sidebar = () => {
               }}>GW</Typography></Link>
             </ListItem>
           ) : (
-            <ListItem>
+            <ListItem onClick={()=>dispatch(setSelected({path: '/home'}))}>
               <Link to={'/home'}><Typography variant="h6" sx={{
                 color: 'white',
                 fontFamily: 'Black Han Sans',
@@ -102,44 +105,70 @@ const Sidebar = () => {
               </Link>
             </ListItem>
           )}
+          {/* admin */}
+          {auth.role === "admin" ? 
+          sBarBtns.map((button, open)=>
+            selected.path === button.linkTo ? 
+            <ListItem key={button.key} disablePadding sx={{ width: 190, background:"#f2f4f4", color: "#476800" }} style={{borderTopLeftRadius: "15px", borderBottomLeftRadius:"15px"}} 
+              onClick={()=>dispatch(setSelected({path:button.linkTo}))}>
+                <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}, color: "#476800"}}>
+                    <div className='svg'>{button.icon}</div>
+                    <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} style={{color: "#476800"}} />
+                </ListItemButton></Link>
+            </ListItem>
+            :
+            <ListItem key={button.key} sx={{ width: 190 }} disablePadding onClick={()=>dispatch(setSelected({path:button.linkTo}))}>
+                <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
+                    <div className='svg'>{button.icon}</div>
+                    <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton></Link>
+            </ListItem>                
+          ) : null}
+          {/* staff */}
+          {auth.role === "staff" ? sBarBtns.filter((button)=>button.key!=="pricing" && button.key!=="stat")
+          .map((button, open)=>
+            selected.path === button.linkTo ? 
+            <ListItem key={button.key} disablePadding sx={{ width: 190, background:"#f2f4f4", color: "#476800" }} style={{borderTopLeftRadius: "15px", borderBottomLeftRadius:"15px"}} 
+              onClick={()=>dispatch(setSelected({path:button.linkTo}))}>
+                <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}, color: "#476800"}}>
+                    <div className='svg'>{button.icon}</div>
+                    <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} style={{color: "#476800"}} />
+                </ListItemButton></Link>
+            </ListItem>
+            :
+            <ListItem key={button.key} sx={{ width: 190 }} disablePadding onClick={()=>dispatch(setSelected({path:button.linkTo}))}>
+                <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
+                    <div className='svg'>{button.icon}</div>
+                    <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton></Link>
+            </ListItem>                
+          ) : null}
 
-            <>{sBarBtns.map((button, open)=>
-                selected.path === button.linkTo ? 
-                <ListItem key={button.key} disablePadding sx={{ width: 190, background:"#f2f4f4", color: "#476800" }} style={{borderTopLeftRadius: "15px", borderBottomLeftRadius:"15px"}} 
-                  onClick={()=>dispatch(setSelected({path:button.linkTo}))}>
-                    <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}, color: "#476800"}}>
-                        <div className='svg'>{button.icon}</div>
-                        <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} style={{color: "#476800"}} />
-                    </ListItemButton></Link>
-                </ListItem>
-                :
-                <ListItem key={button.key} sx={{ width: 190 }} disablePadding onClick={()=>dispatch(setSelected({path:button.linkTo}))}>
-                    <Link to={button.linkTo}><ListItemButton sx={{"&:hover": {backgroundColor: "transparent"}}}>
-                        <div className='svg'>{button.icon}</div>
-                        <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
-                    </ListItemButton></Link>
-                </ListItem>                
-            )}</>
         </List>
         <List>
-          <>{sBarBtns2.map((button, open) =>
-
+          {/* admin */}
+          {auth.role === "admin" ? sBarBtns2
+          .map((button, open) =>
             <ListItem key={button.key} className={button.key} disablePadding sx={{ width: 190 }}>
               <Link to={button.linkTo}>
                 <ListItemButton sx={{ "&:hover": { backgroundColor: "transparent" } }}
-                  onClick={button.key === "logout" ? () => {
-                    dispatch(logout());
-                  }
-                   : void(0)}
-                >
-                <div className='svg'>
-                  {button.icon}
-                </div>
+                  onClick={button.key === "logout" ? () => {dispatch(logout())} : void(0)}>
+                <div className='svg'>{button.icon}</div>
                 <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton></Link>
             </ListItem>
-          )}
-        </>
+          ) : null}
+          {auth.role === "staff" ? sBarBtns2.filter((button)=>button.key!=="register")
+          .map((button, open) =>
+            <ListItem key={button.key} className={button.key} disablePadding sx={{ width: 190 }}>
+              <Link to={button.linkTo}>
+                <ListItemButton sx={{ "&:hover": { backgroundColor: "transparent" } }}
+                  onClick={button.key === "logout" ? () => {dispatch(logout())} : void(0)}>
+                <div className='svg'>{button.icon}</div>
+                <ListItemText className='sidebarButtonText' primary={button.primary} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton></Link>
+            </ListItem>
+          ) : null}
         </List>
       </Drawer>
     )
