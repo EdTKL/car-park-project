@@ -135,7 +135,7 @@ const CarList = ({ carList }: Props) => {
         // flexDirection: "column",
         //height: "410px",
         //width: "100%",
-        borderRadius: 3,
+        borderRadius: 3
       }}
       style={{height: "100%"}}
     >
@@ -172,6 +172,7 @@ const CarList = ({ carList }: Props) => {
             borderRadius: 3,
             color: "info.main",
             border: "none",
+            overflow: "hidden",
             boxShadow: "none",
             "& .MuiDataGrid-withBorderColor": {
               borderColor: "white",
@@ -193,6 +194,7 @@ const CarList = ({ carList }: Props) => {
               backgroundColor: "#FFE08A",
               borderRadius: 2,
             },
+            '& .MuiDataGrid-virtualScroller::-webkit-scrollbar': {display: 'none' }
           }}
           rows={rows}
           columnHeaderHeight={45}
@@ -204,6 +206,7 @@ const CarList = ({ carList }: Props) => {
                 pageSize: 5,
               },
             },
+            
           }}
           pageSizeOptions={[5, 10]}
           disableColumnMenu

@@ -27,21 +27,22 @@ const HomePage = () => {
     dispatch(fetchCars());
     dispatch(fetchParking())
   }, [dispatch]);
+  
   return (
       <Layout>
-        <Grid container direction="row" xs={12}  columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 1, height: '40%'}} >
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "300px"}}>
+        <Grid container direction="row" xs={12}  columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 1, mb: 0, maxHeight: '40%'}} >
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
             <Space parkingList={parkingList}/>
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "300px"}}>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
             <Prices />
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "300px"}}>
+          <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
             <ParkingTL shortParkingList={shortParkingList}/>
           </Grid>
         </Grid>
-        <Grid container direction="row" xs={12}  columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, mb: 2 }}>
-          <Grid item xs={8} justifyContent="center" alignItems="center" style={{height: "100%"}} >
+        <Grid container direction="row" xs={12} className='second-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, maxHeight: '60%' }}>
+          <Grid item xs={8} justifyContent="center" alignItems="center" style={{height: "95%"}}>
             <CarList carList={carList}/>
           </Grid>
           <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "100%"}} >

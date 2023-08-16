@@ -7,9 +7,15 @@ import Space from "../../features/space/Space";
 import { Box, Grid } from "@mui/material";
 import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
+import { useEffect } from "react";
 
 export default function ParkingPage() {
   const parkingList = useAppSelector((state: RootState) => state.parkingState.parkingList);
+  
+  //useEffect(()=>{
+  //  if (window?.location.pathname === '/parking')
+  //  require('../../features/bars/selected/parking.scss')
+  //}, [])
 
   return (
       <Layout>

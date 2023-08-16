@@ -13,6 +13,7 @@ import { Car } from "../models";
 import "./ParkingTL.scss";
 import Typography from "@mui/material/Typography";
 import { formatDate } from "../../app/format";
+import { Grid } from "@mui/material";
 
 
 interface Props {
@@ -33,6 +34,7 @@ export default function ParkingTL({ shortParkingList }: Props) {
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
         最近停泊車輛
       </Typography>
+      <Grid item xs={12} justifyContent="center" alignItems="center" style={{maxHeight: "100%", height: "90%"}} className="timeLineBody">
       <Timeline
         sx={{
           [`& .${timelineOppositeContentClasses.root}`]: {
@@ -67,6 +69,7 @@ export default function ParkingTL({ shortParkingList }: Props) {
           </TimelineItem>
         ))}
       </Timeline>
+      </Grid>
     </Paper>
   );
 }

@@ -15,7 +15,7 @@ const Prices = () => {
     return (
       <>
       <TableContainer component={Paper} elevation={3} className="tableContainer" sx={{ overflow: 'hidden', height: "100%" }}  style={{height: "100%"}}>
-        <Grid container xs={12} sx={{ margin: 0, maxHeight: "100%" }}>
+        <Grid container xs={12} sx={{ margin: 0, maxHeight: "100%" }} style={{height: "90%"}}>
         <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
           今日收費
         </Typography>

@@ -52,8 +52,8 @@ export function EditSpace() {
         // <div className="edit-space-container">
             <form onSubmit={submitHandler} className="edit-space-form">
 
-                <TableContainer className="edit-table-container" component={Paper} elevation={3} sx={{ overflow: 'hidden', height: "100%" }}  style={{height: "100%"}}>
-                    <Table sx={{ maxWidth: 500 }} aria-label="spanning table">
+                <TableContainer className="edit-table-container" component={Paper} elevation={3} sx={{ overflow: 'hidden', height: "100%", borderRadius: 3 }}  style={{height: "100%"}}>
+                    <Table sx={{ width: 500 }} aria-label="spanning table">
                         <TableHead>
                             <div className="edit-space-title">
                                 <Typography variant="h5" sx={{ color: 'success.main', fontWeight: 700, marginTop: "5px", marginLeft: "5px" }}>
