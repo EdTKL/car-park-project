@@ -3,8 +3,8 @@ import { PriceList } from "../models";
 
 export type ePriceState = {
     prices: PriceList[];
-    error: string | null;
-    date: string
+    date: string;
+    editSuccess: boolean|null;
 }
 
 function formatDate() {
@@ -17,8 +17,8 @@ function formatDate() {
 
 export const initialState: ePriceState = {
     prices: [],
-    error: null,
-    date: formatDate()
+    date: formatDate(),
+    editSuccess: null
 }
 
 export const fetchPrices = createAsyncThunk('fee/fetch', async (date:string, thunkAPI) => {
@@ -34,9 +34,52 @@ export const fetchPrices = createAsyncThunk('fee/fetch', async (date:string, thu
       }),
     })
     const json = await res.json() as any;
-    //console.log(json.data)
 
     thunkAPI.dispatch(getPrice(json.data))
+    return thunkAPI.fulfillWithValue("success");
+  } catch(err:any){
+    return thunkAPI.rejectWithValue({message:err.message})
+  }
+});
+
+export const fetchDatePrices = createAsyncThunk('fee/fetch', async (date:string, thunkAPI) => {
+  try{
+    
+    const res = await fetch(`${process.env.REACT_APP_API_BASE}fee/feelist`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+        },
+      body: JSON.stringify({
+          date: date
+      }),
+    })
+    const json = await res.json() as any;
+
+    thunkAPI.dispatch(getPrice(json.data))
+    return thunkAPI.fulfillWithValue("success");
+  } catch(err:any){
+    return thunkAPI.rejectWithValue({message:err.message})
+  }
+});
+
+export const editPrices = createAsyncThunk('fee/updatefee', async (formatted:PriceList[], thunkAPI) => {
+  let { id, ...rest } = formatted[0]
+  console.log(rest)
+  try{
+    //https://api.carpark.live/fee/updatefee
+    const res = await fetch(`${process.env.REACT_APP_API_BASE}fee/updatefee`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+        },
+      body: JSON.stringify(
+          rest
+      ),
+    })
+    const json = await res.json() as any;
+
+    thunkAPI.dispatch(setPrice(json.data))
     return thunkAPI.fulfillWithValue("success");
   } catch(err:any){
     return thunkAPI.rejectWithValue({message:err.message})
@@ -50,11 +93,11 @@ export const ePriceSlice = createSlice({
         getPrice: (state: ePriceState, action: PayloadAction<PriceList[]>)=>{
             state.prices = action.payload
         },
-        //setPrice:(state: ePriceState, action: PayloadAction<PriceList>)=>{
-        //    state.prices.push(action.payload)
-        //}
+        setPrice:(state: ePriceState, action: PayloadAction<boolean>)=>{
+            state.editSuccess = action.payload;
+        }
     },
 })
 
-export const { getPrice } = ePriceSlice.actions;
+export const { getPrice, setPrice } = ePriceSlice.actions;
 export default ePriceSlice.reducer;

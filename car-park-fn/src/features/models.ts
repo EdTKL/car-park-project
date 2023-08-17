@@ -52,13 +52,14 @@ export type PriceList = {
     vehicle_type: string, 
     fee_type: string, 
     day_start: string, 
-    nigth_start: string, 
+    night_start: string, 
     mon: number,
     tue: number,
-    wes: number,
+    wed: number,
     thu: number,
     fri: number,
     sat: number,
     sun: number,
     ph: number
 }
+

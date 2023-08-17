@@ -1,8 +1,8 @@
-import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Box, Typography, Button, Grid } from "@mui/material";
+import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Typography, Button, Grid } from "@mui/material";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
 import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Price, PriceList } from "../models";
 import "./Prices.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
@@ -14,8 +14,7 @@ import { fetchPrices } from "./priceSlice";
 const Prices = () => {
   const prices = useAppSelector((state: RootState) => state.ePriceState.prices)
   let day = new Date().toLocaleString("default", {weekday: 'short'}).toLowerCase();
-  //let weekday = day as 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun' 
-  let weekday = "mon" as 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun' 
+  let weekday = day as 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun' 
 
   const displayDay = ()=>{
     const dayMapping = [
@@ -39,34 +38,34 @@ const Prices = () => {
   
   prices.map((price)=>{
     if (price.vehicle_type === "small_car" && price.fee_type === "hour") {
-      priceList[0].small_car = price[weekday as keyof PriceList]
+      return priceList[0].small_car = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "middle_car" && price.fee_type === "hour") {
-      priceList[0].middle_car = price[weekday as keyof PriceList]
+      return priceList[0].middle_car = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "motorcycle" && price.fee_type === "hour") {
-      priceList[0].motorcycle = price[weekday as keyof PriceList]
+      return priceList[0].motorcycle = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "small_car" && price.fee_type === "day") {
-      priceList[1].small_car = price[weekday as keyof PriceList]
+      return priceList[1].small_car = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "middle_car" && price.fee_type === "day") {
-      priceList[1].middle_car = price[weekday as keyof PriceList]
+      return priceList[1].middle_car = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "motorcycle" && price.fee_type === "day") {
-      priceList[1].motorcycle = price[weekday as keyof PriceList]
+      return priceList[1].motorcycle = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "small_car" && price.fee_type === "night") {
-      priceList[2].small_car = price[weekday as keyof PriceList]
+      return priceList[2].small_car = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "middle_car" && price.fee_type === "night") {
-      priceList[2].middle_car = price[weekday as keyof PriceList]
+      return priceList[2].middle_car = price[weekday as keyof PriceList]
     } else if (price.vehicle_type === "motorcycle" && price.fee_type === "night") {
-      priceList[2].motorcycle = price[weekday as keyof PriceList]
-    }
+      return priceList[2].motorcycle = price[weekday as keyof PriceList]
+    } else {return null}
   })
   
   const appDispatch = useAppDispatch()
-  useEffect(()=>{
-    appDispatch(fetchPrices("")).unwrap().then(res=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err.message)
-    })
-  },[])  
+    useEffect(()=>{
+      appDispatch(fetchPrices("")).unwrap().then(res=>{
+        console.log(`home price fetch: ${res}`)
+      }).catch((err)=>{
+        console.log(`home price fetch: ${err.message}`)
+      })
+    },[appDispatch])  
 
     return (
       <>
