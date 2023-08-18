@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { GridColDef, DataGrid, GridPreProcessEditCellProps, GridRowModel, GridEventListener, GridRowEditStopReasons } from "@mui/x-data-grid";
 import "./EditPrice.scss";
-import { Paper, Typography } from '@mui/material';
+import { Button, Paper, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { RootState } from '../../app/store';
 import { editPrices, fetchDatePrices, fetchPrices } from './priceSlice';
 import { PriceList } from '../models';
+import SearchIcon from '@mui/icons-material/Search';
 
 const PriceEdit = () => {
   const appDispatch = useAppDispatch()
@@ -248,25 +249,13 @@ const PriceEdit = () => {
       style={{height: "100%"}}>
         <Typography variant='h5' className="ePriceHeader">價目表</Typography>
         <div className="parkName">
-            {/* <Typography variant='h5' className="epHeading">庇利街</Typography> */}
-            <div className='dateInput' style={{display: "flex", alignItems: "center", paddingBottom: 5, marginBottom: "1em", marginTop: "1em"}}>
-              <Typography style={{ paddingRight: "10px" }} >查看價目表:</Typography>
+            <div className='dateInput' style={{display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "0.5em", marginTop: "0.5em"}}>
               <form onSubmit={submitDateHandler}><input type='date'
-                  style={{ marginRight: "10px", borderRadius: "10px", borderWidth: "1px", padding: "2px" }}
+                  style={{ marginRight: "10px", borderRadius: "10px", borderWidth: "1px", padding: "2px", border: "none" }}
                   value={selectedStart}
                   //min={minDate()}
                   onChange={(e) => setSelectedDate(e.target.value)} />
-                <input type='submit' value="查閱" 
-                  className='submit'
-                  style={{ marginRight: "10px", 
-                  borderRadius: "10px", 
-                  border: "none", 
-                  paddingTop: "5px", 
-                  paddingBottom: "5px", 
-                  paddingLeft: "10px", 
-                  paddingRight: "10px",
-                    }}>
-                </input>
+                  <Button className="submit" type='submit' sx={{pt: "2px", pb: "2px", pl: "0px", pr: "3px"}}><SearchIcon fontSize='small' />查閱</Button>
               </form>
             </div>
         </div>
