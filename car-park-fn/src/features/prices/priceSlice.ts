@@ -7,7 +7,7 @@ export type ePriceState = {
     editSuccess: boolean|null;
 }
 
-function formatDate() {
+export function formatDate() {
   const date = new Date();
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -65,7 +65,7 @@ export const fetchDatePrices = createAsyncThunk('fee/fetch', async (date:string,
 
 export const editPrices = createAsyncThunk('fee/updatefee', async (formatted:PriceList[], thunkAPI) => {
   let { id, ...rest } = formatted[0]
-  console.log(rest)
+  //console.log(rest)
   try{
     //https://api.carpark.live/fee/updatefee
     const res = await fetch(`${process.env.REACT_APP_API_BASE}fee/updatefee`, {

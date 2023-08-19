@@ -7,6 +7,13 @@ import { RootState } from '../../app/store';
 import { editPrices, fetchDatePrices, fetchPrices } from './priceSlice';
 import { PriceList } from '../models';
 import SearchIcon from '@mui/icons-material/Search';
+import ModalMsg from './DialogEditPrice';
+
+//on change hook of date input
+    export const minDate = () => {
+        const today = new Date().toISOString().split('T')[0];
+        return today;
+    };
 
 const PriceEdit = () => {
   const appDispatch = useAppDispatch()
@@ -34,11 +41,6 @@ const PriceEdit = () => {
       }
     }
     
-    //on change hook of date input
-    const minDate = () => {
-        const today = new Date().toISOString().split('T')[0];
-        return today;
-    };
     const [selectedStart, setSelectedDate] = React.useState(minDate());
 
     //column header setting
@@ -195,21 +197,20 @@ const PriceEdit = () => {
     const submitDateHandler = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       appDispatch(fetchDatePrices(selectedStart)).unwrap().then(res=>{
-        console.log(`priceEdit fetch: ${res}`)
+        console.log(`Check price of the day: ${res}`)
       }).catch((err)=>{
-        console.log(`priceEdit fetch: ${err.message}`)
+        console.log(`Check price of the day: ${err.message}`)
       })
     }
 
     //handle submit (inline edting)
+    const formatted: PriceList[] = [{
+    id:0, vehicle_type: '', fee_type: '', day_start: '', night_start: '', mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sat: 0, sun: 0, ph: 0}]
     //const [rows, setRows] = React.useState(prices as any);
     const processRowUpdate = (newRow: GridRowModel) => {
+      
       const updatedRow = { ...newRow, isNew: false };
       //setRows(rows.map((row: GridRowModel) => (row.id === newRow.id ? updatedRow : row)));
-      //setRows(prices)
-
-      const formatted: PriceList[] = [{
-       id:0, vehicle_type: '', fee_type: '', day_start: '', night_start: '', mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sat: 0, sun: 0, ph: 0}]
         formatted[0].id = newRow.id
         formatted[0].vehicle_type = newRow.vehicle_type
         formatted[0].fee_type = newRow.fee_type
@@ -223,16 +224,9 @@ const PriceEdit = () => {
         formatted[0].sat = parseInt(newRow.sat)
         formatted[0].sun = parseInt(newRow.sun)
         formatted[0].ph = parseInt(newRow.ph)
-      appDispatch(editPrices(formatted)).unwrap().then(res=>{
-        console.log(`thunk: ${res}`)
-      }).catch((err)=>{
-        console.log(`thunk: ${err.message}`)
-      })
-      appDispatch(fetchDatePrices(minDate())).unwrap().then(res=>{
-        console.log(`priceEdit fetch: ${res}`)
-      }).catch((err)=>{
-        console.log(`priceEdit fetch: ${err.message}`)
-      })
+
+        setModalValue(formatted[0])
+
       return updatedRow;
     };
 
@@ -243,13 +237,33 @@ const PriceEdit = () => {
       }
     };
 
+    //modal
+    const [open, setModalOpen] = React.useState(false);
+    //open
+    const handleModalOpen = (newRow: GridRowModel) => {
+      //console.log(newRow)
+      setModalOpen(true);
+      processRowUpdate(newRow)
+      return newRow
+    };
+    //close
+    const handleModalClose = (newValue?: string | GridRowModel) => {
+      appDispatch(fetchDatePrices(minDate())).unwrap().then(res=>{
+        console.log(`fetch after closing modal: ${res}`)
+      }).catch((err)=>{
+        console.log(`fetch after closing modal: ${err.message}`)
+      })
+      setModalOpen(false);
+    }
+    const [modalValue, setModalValue] = React.useState(formatted[0])
+
     return (
       <Paper elevation={3} className="ePrice-comp" 
       sx={{borderRadius: "20px", p: 2}} 
       style={{height: "100%"}}>
         <Typography variant='h5' className="ePriceHeader">價目表</Typography>
         <div className="parkName">
-            <div className='dateInput' style={{display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "0.5em", marginTop: "0.5em"}}>
+            <div className='dateInput' style={{display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "0.3em", marginTop: "0.3em"}}>
               <form onSubmit={submitDateHandler}><input type='date'
                   style={{ marginRight: "10px", borderRadius: "10px", borderWidth: "1px", padding: "2px", border: "none" }}
                   value={selectedStart}
@@ -264,7 +278,8 @@ const PriceEdit = () => {
             className='ePriceDataGrid'
             editMode='row'
             onRowEditStop={handleRowEditStop}
-            processRowUpdate={processRowUpdate}
+            processRowUpdate={handleModalOpen}
+            //processRowUpdate={processRowUpdate}
             rows={prices}
             columns={columns}
             sortModel={sortModel}
@@ -301,6 +316,14 @@ const PriceEdit = () => {
                 borderRadius: 2,
               },
             }}
+          />
+          {/* dialog box */}
+          <ModalMsg
+            id="confirmation-msg"
+            keepMounted
+            open={open}
+            onClose={handleModalClose}
+            value={modalValue}
           />
           </div>
     </Paper>

@@ -48,7 +48,7 @@ const Navbar = () => {
             庇利街停車場
           </Typography>
           <div className='navbarButtons'>
-            <DarkModeOutlinedIcon />
+            {/* <DarkModeOutlinedIcon /> */}
             {/* <LocalPhoneOutlinedIcon />
             <CalendarMonthOutlinedIcon />
             <NotificationsNoneOutlinedIcon /> */}

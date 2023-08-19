@@ -62,4 +62,29 @@ export type PriceList = {
     sun: number,
     ph: number
 }
+export type Mapping = {
+    vehicle_type: string, 
+    fee_type: string, 
+    day_start: string, 
+    night_start: string, 
+    mon: string,
+    tue: string,
+    wed: string,
+    thu: string,
+    fri: string,
+    sat: string,
+    sun: string,
+    ph: string
+}
 
+export type MapCarType = {
+    small_car: string,
+    middle_car: string,
+    motorcycle: string
+}
+
+export type MapTime = {
+    hour: string,
+    day: string,  
+    night: string
+}
