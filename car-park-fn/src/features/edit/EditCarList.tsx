@@ -1,15 +1,16 @@
 import React, {  useCallback, useEffect, useState } from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridEventListener, GridPreProcessEditCellProps, GridRowEditStopReasons, GridRowModel } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import "./EditCarList.scss";
 import { Car } from "../models";
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useAppSelector } from "../../app/hook";
+import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
 import { formatDate } from "../../app/format";
 import { Paper } from "@mui/material";
+import EditCarModal from "./DialogEditCar";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "次序", editable: false, width: 50, flex: 1 },
@@ -25,7 +26,7 @@ const columns: GridColDef[] = [
     field: "vehicle_type",
     headerName: "車類",
     width: 70,
-    editable: true,
+    editable: false,
     valueFormatter(params) {
       if (params.value === 'small_car') {
         return '小型車';
@@ -38,7 +39,7 @@ const columns: GridColDef[] = [
     field: "in_out",
     headerName: "進／出",
     minWidth: 65,
-    editable: true,
+    editable: false,
     valueFormatter(params) {
       if (params.value === 'in') {
         return '進';
@@ -76,6 +77,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 80,
     editable: true,
+    preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
+      let hasError;
+      if (params.props.value===null || params.props.value < 0) {
+        hasError = true
+      }
+      return { ...params.props, error: hasError };
+    },
     valueFormatter(params) {
       if (params.value === null) {
         return '計算中';
@@ -91,6 +99,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 70,
     editable: true,
+    preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
+      let hasError;
+      if (params.props.value===null || params.props.value < 0) {
+        hasError = true
+      }
+      return { ...params.props, error: hasError };
+    },
     valueFormatter(params) {
       if (params.value === null) {
         return '計算中';
@@ -106,6 +121,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 70,
     editable: true,
+    preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
+      let hasError;
+      if (params.props.value===null || params.props.value < 0) {
+        hasError = true
+      }
+      return { ...params.props, error: hasError };
+    },
     valueFormatter(params) {
       if (params.value === null) {
         return '計算中';
@@ -121,6 +143,13 @@ const columns: GridColDef[] = [
     type: "number",
     width: 70,
     editable: true,
+    preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
+      let hasError;
+      if (params.props.value===null || params.props.value < 0) {
+        hasError = true
+      }
+      return { ...params.props, error: hasError };
+    },
     valueFormatter(params) {
       if (params.value === null) {
         return '計算中';
@@ -135,7 +164,7 @@ const columns: GridColDef[] = [
     headerName: "總收費",
     type: "number",
     width: 100,
-    editable: true,
+    editable: false,
     valueFormatter(params) {
       if (params.value === null) {
         return '計算中';
@@ -179,6 +208,53 @@ const EditCarList: React.FC = () => {
   useEffect(() => {
     cbSearch()
   },[cbSearch])
+
+  //modal
+  const appDispatch = useAppDispatch()
+  const [open, setModalOpen] = React.useState(false);
+  //close
+  const handleModalClose = () => {
+    //appDispatch().unwrap().then(res=>{
+    //  console.log(`fetch after closing modal: ${res}`)
+    //}).catch((err)=>{
+    //  console.log(`fetch after closing modal: ${err.message}`)
+    //})
+    setModalOpen(false);
+  }
+  //open
+  const [cars, setCars] = React.useState(carList as any)
+    const handleModalOpen = (newRow: GridRowModel) => {
+      switch (newRow.in_out) {
+        case "out" : 
+        setModalOpen(true);
+        processRowUpdate(newRow)
+        break;
+        case "in" : 
+          if (newRow.parked_days !== null || newRow.parked_hours !== null || newRow.parked_nights !== null || newRow.total_hours !== null) {
+            newRow.parked_days = null;
+            newRow.parked_hours = null;
+            newRow.parked_nights = null;
+            newRow.total_hours = null;
+            setCars(cars.map((car: GridRowModel) => (car.id === newRow.id ? newRow : car)));
+            setModalOpen(false)
+          } else {
+            setModalOpen(true);
+            processRowUpdate(newRow)
+          }  
+      }
+      return newRow
+    };
+  //handle inline edit submission
+  const [modalValue, setModalValue] = React.useState({} as any)
+  const processRowUpdate = (newRow: GridRowModel) => {
+    setModalValue(newRow)
+  }
+  //discard unsubmitted changes
+  const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
+    if (params.reason === GridRowEditStopReasons.rowFocusOut) {
+      event.defaultMuiPrevented = true;
+    }
+  };
 
   return (
     <Paper 
@@ -251,11 +327,21 @@ const EditCarList: React.FC = () => {
           },
         }}
         pageSizeOptions={[5, 10]}
+        onRowEditStop={handleRowEditStop}
+        processRowUpdate={handleModalOpen}
+        //isCellEditable={(params) => params.row.in_out === "out"}
         disableRowSelectionOnClick
         disableColumnMenu
       />
       </div>
       </Box>
+      <EditCarModal 
+        id="confirmation-msg"
+        keepMounted
+        open={open}
+        onClose={handleModalClose}
+        value={modalValue}
+      />
       </Paper>
   );
 };

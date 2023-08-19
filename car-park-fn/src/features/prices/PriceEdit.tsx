@@ -10,28 +10,29 @@ import SearchIcon from '@mui/icons-material/Search';
 import ModalMsg from './DialogEditPrice';
 
 //on change hook of date input
-    export const minDate = () => {
-        const today = new Date().toISOString().split('T')[0];
-        return today;
-    };
+export const minDate = () => {
+    const today = new Date().toISOString().split('T')[0];
+    return today;
+};
 
 const PriceEdit = () => {
-  const appDispatch = useAppDispatch()
-  const prices = useAppSelector((state: RootState) => state.ePriceState.prices)
-  const [sortModel, setSortModel] = React.useState([{field: 'vehicle_type', sort: 'desc'}] as any);
+    const appDispatch = useAppDispatch()
   
+    //empty array as initial state
+    const prices = useAppSelector((state: RootState) => state.ePriceState.prices)
     //fetch price list as rendered
-    React.useEffect(()=>{
-      appDispatch(fetchPrices("")).unwrap().then(res=>{
-        console.log(`priceEdit fetch: ${res}`)
-      }).catch((err)=>{
-        console.log(`priceEdit fetch: ${err.message}`)
-      })
-    },[appDispatch]) 
-
+      React.useEffect(()=>{
+        appDispatch(fetchPrices("")).unwrap().then(res=>{
+          console.log(`priceEdit fetch: ${res}`)
+        }).catch((err)=>{
+          console.log(`priceEdit fetch: ${err.message}`)
+        })
+      },[appDispatch])  
+    const [sortModel, setSortModel] = React.useState([{field: 'vehicle_type', sort: 'desc'}] as any);
+    
     //get today from Global State
     let priceDate = useAppSelector((state: RootState) => state.ePriceState.date)
-
+    
     //enable edit with condition
     const setEditable = ()=> {
       if (priceDate === selectedStart) {
@@ -40,7 +41,6 @@ const PriceEdit = () => {
         return false
       }
     }
-    
     const [selectedStart, setSelectedDate] = React.useState(minDate());
 
     //column header setting
@@ -193,7 +193,7 @@ const PriceEdit = () => {
        },
     ]; 
     
-    //handle submit to fetch prices of the day
+    //handle date submit to fetch prices of the day
     const submitDateHandler = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       appDispatch(fetchDatePrices(selectedStart)).unwrap().then(res=>{
@@ -203,14 +203,12 @@ const PriceEdit = () => {
       })
     }
 
-    //handle submit (inline edting)
+    //handle inline edit submission
     const formatted: PriceList[] = [{
     id:0, vehicle_type: '', fee_type: '', day_start: '', night_start: '', mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sat: 0, sun: 0, ph: 0}]
-    //const [rows, setRows] = React.useState(prices as any);
     const processRowUpdate = (newRow: GridRowModel) => {
       
       const updatedRow = { ...newRow, isNew: false };
-      //setRows(rows.map((row: GridRowModel) => (row.id === newRow.id ? updatedRow : row)));
         formatted[0].id = newRow.id
         formatted[0].vehicle_type = newRow.vehicle_type
         formatted[0].fee_type = newRow.fee_type
@@ -241,13 +239,12 @@ const PriceEdit = () => {
     const [open, setModalOpen] = React.useState(false);
     //open
     const handleModalOpen = (newRow: GridRowModel) => {
-      //console.log(newRow)
       setModalOpen(true);
       processRowUpdate(newRow)
       return newRow
     };
     //close
-    const handleModalClose = (newValue?: string | GridRowModel) => {
+    const handleModalClose = () => {
       appDispatch(fetchDatePrices(minDate())).unwrap().then(res=>{
         console.log(`fetch after closing modal: ${res}`)
       }).catch((err)=>{
@@ -279,7 +276,6 @@ const PriceEdit = () => {
             editMode='row'
             onRowEditStop={handleRowEditStop}
             processRowUpdate={handleModalOpen}
-            //processRowUpdate={processRowUpdate}
             rows={prices}
             columns={columns}
             sortModel={sortModel}

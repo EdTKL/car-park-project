@@ -88,3 +88,24 @@ export type MapTime = {
     day: string,  
     night: string
 }
+
+export type MapIn = {
+    invoice_num: string,
+    plate_num: string,
+    vehicle_type: string,
+    entry_time: string,
+    staff_id: string
+}
+
+export type MapOut = {
+  invoice_num: string,
+  plate_num: string,
+  vehicle_type: string,
+  exit_time: string,
+  staff_id: string,
+  total_hours: string,
+  parked_hours:string,
+  parked_days: string,
+  parked_nights: string,
+  payment:string
+}
