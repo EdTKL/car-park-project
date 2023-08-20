@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { CSSObject, Theme, Typography, styled } from '@mui/material';
+import { CSSObject, Theme, styled } from '@mui/material';
 import { Link } from 'react-router-dom'
 import "./Sidebar.scss";
 import { useSelector } from 'react-redux';
@@ -21,6 +21,7 @@ import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { setSelected } from './selected/selectedSlice';
 import { AuthState } from '../../redux/interface/model';
+import logo from "./dummy-logo2.png"
 
 const Sidebar = () => {
     const sBarBtns: Array<SidebarButton> = [
@@ -86,22 +87,27 @@ const Sidebar = () => {
         <List>
             {open ? (
             <ListItem className="brand" onClick={()=>dispatch(setSelected({path: '/home'}))}>
-              <Link to={'/home'}><Typography variant="h2" sx={{
-                color: 'white',
-                fontFamily: 'Black Han Sans',
-                textAlign: 'center',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-              }}>GW</Typography></Link>
+              <Link to={'/home'}>
+                <img src={logo} alt='主頁'/>
+                {/* <Typography variant="h2" sx={{
+                  color: 'white',
+                  fontFamily: 'Black Han Sans',
+                  textAlign: 'center',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+                }}>GW</Typography> */}
+              </Link>
             </ListItem>
           ) : (
             <ListItem onClick={()=>dispatch(setSelected({path: '/home'}))}>
-              <Link to={'/home'}><Typography variant="h6" sx={{
-                color: 'white',
-                fontFamily: 'Black Han Sans',
-                textAlign: 'center',
-                textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
-                marginBottom: '75px'
-              }}>GW</Typography>
+              <Link to={'/home'} >
+                <img src={logo} style={{width: "40px"}}  alt='主頁'  />
+                {/* <Typography variant="h6" sx={{
+                  color: 'white',
+                  fontFamily: 'Black Han Sans',
+                  textAlign: 'center',
+                  textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+                  marginBottom: '75px'
+                }}>GW</Typography> */}
               </Link>
             </ListItem>
           )}

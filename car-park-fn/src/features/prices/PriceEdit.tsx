@@ -4,7 +4,7 @@ import "./EditPrice.scss";
 import { Button, Paper, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { RootState } from '../../app/store';
-import { editPrices, fetchDatePrices, fetchPrices } from './priceSlice';
+import { fetchDatePrices, fetchPrices } from './priceSlice';
 import { PriceList } from '../models';
 import SearchIcon from '@mui/icons-material/Search';
 import ModalMsg from './DialogEditPrice';

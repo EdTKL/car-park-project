@@ -3,7 +3,7 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Avatar, styled } from '@mui/material';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+//import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 //import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 //import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 //import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
@@ -45,7 +45,7 @@ const Navbar = () => {
         <AppBar position="fixed" open={open} elevation={0}>
         <Toolbar>
           <Typography className="navbarCarparkName" variant="h6" noWrap component="div">
-            庇利街停車場
+            海盛路停車場
           </Typography>
           <div className='navbarButtons'>
             {/* <DarkModeOutlinedIcon /> */}

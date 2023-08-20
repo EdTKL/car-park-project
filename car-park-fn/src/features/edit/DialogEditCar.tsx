@@ -55,19 +55,20 @@ export default function EditCarModal(props: ModalProps) {
   const appDispatch = useAppDispatch()
 
   const { onClose, value: valueProp, open } = props;
-  const [value, setValue] = React.useState(valueProp);
+  const [value, setValue] = React.useState({});
 
   React.useEffect(() => {
     if (!open) {
-      setValue(valueProp);
+      setValue(value);
     } else {
       setValue(valueProp)
     }
-  }, [valueProp, open]);
+  }, [value, valueProp, open]);
 
 
   const handleCancel = () => {
     console.log("cancel clicked")
+    //setValue(value)
     onClose();
   };
 

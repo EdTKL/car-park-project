@@ -8,7 +8,11 @@
 //   color: #fff;
 //   text-shadow: 5px 5px 3px rgba(0,0,0,0.3);
 // }
-
+img {
+    width: 150px;
+    -webkit-filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  }
 .brand {
   display: flex;
   justify-content: center!important;

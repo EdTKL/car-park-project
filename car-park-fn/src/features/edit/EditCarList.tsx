@@ -6,7 +6,7 @@ import { Car } from "../models";
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useAppDispatch, useAppSelector } from "../../app/hook";
+import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
 import { formatDate } from "../../app/format";
 import { Paper } from "@mui/material";
@@ -217,15 +217,9 @@ const EditCarList: React.FC = () => {
   },[cbSearch])
 
   //modal
-  const appDispatch = useAppDispatch()
   const [open, setModalOpen] = React.useState(false);
   //close
   const handleModalClose = () => {
-    //appDispatch().unwrap().then(res=>{
-    //  console.log(`fetch after closing modal: ${res}`)
-    //}).catch((err)=>{
-    //  console.log(`fetch after closing modal: ${err.message}`)
-    //})
     setModalOpen(false);
   }
   //open
