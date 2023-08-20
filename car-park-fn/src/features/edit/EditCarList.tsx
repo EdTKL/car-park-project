@@ -76,7 +76,7 @@ const columns: GridColDef[] = [
     headerName: "總時數",
     type: "number",
     width: 80,
-    editable: true,
+    editable: false,
     preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
       let hasError;
       if (params.props.value===null || params.props.value < 0) {
@@ -98,7 +98,7 @@ const columns: GridColDef[] = [
     headerName: "時",
     type: "number",
     width: 70,
-    editable: true,
+    editable: false,
     preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
       let hasError;
       if (params.props.value===null || params.props.value < 0) {
@@ -120,7 +120,7 @@ const columns: GridColDef[] = [
     headerName: "日",
     type: "number",
     width: 70,
-    editable: true,
+    editable: false,
     preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
       let hasError;
       if (params.props.value===null || params.props.value < 0) {
@@ -142,7 +142,7 @@ const columns: GridColDef[] = [
     headerName: "夜",
     type: "number",
     width: 70,
-    editable: true,
+    editable: false,
     preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
       let hasError;
       if (params.props.value===null || params.props.value < 0) {
@@ -184,9 +184,16 @@ const columns: GridColDef[] = [
   },
   {
     field: "edited",
-    headerName: "修改",
+    headerName: "曾修改",
     width: 80,
     editable: false,
+    valueFormatter(params) {
+      if (params.value === true) {
+        return '是';
+      } else {
+       return null
+      }
+    },
     flex: 1
   },
 ];
@@ -224,6 +231,7 @@ const EditCarList: React.FC = () => {
   //open
   const [cars, setCars] = React.useState(carList as any)
     const handleModalOpen = (newRow: GridRowModel) => {
+      //console.log(newRow)
       switch (newRow.in_out) {
         case "out" : 
         setModalOpen(true);

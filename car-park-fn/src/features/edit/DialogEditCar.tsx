@@ -6,10 +6,11 @@ import DialogActions from '@mui/material/DialogActions';
 import Dialog from '@mui/material/Dialog';
 import { GridRowModel } from '@mui/x-data-grid';
 //import { editPrices, fetchDatePrices, formatDate } from './priceSlice';
-import { Car, MapCarType, MapIn, MapOut } from '../models';
-import { useAppDispatch } from '../../app/hook';
+import { Car, MapCarType, MapIn } from '../models';
+import { useAppDispatch, useAppSelector } from '../../app/hook';
 import "./DialogEditCar.scss"
-
+import { editIn, editOut } from '../cars/carSlice';
+import { RootState } from '../../app/store';
 
 export interface ModalProps {
   id: string;
@@ -26,30 +27,31 @@ const mapIn = {
 	"entry_time": "泊入時間",
 	"staff_id": "職員編號"
 }
-const mapOut = {
-  "invoice_num": "收據編號",
-  "plate_num": "車牌",
-  "vehicle_type": "車類",
-  "exit_time": "駛出時間",
-  "staff_id": "職員編號",
-  "total_hours": "總時數",
-  "parked_hours": "時租",
-  "parked_days": "日租",
-  "parked_nights": "夜租",
-  "payment": "總收費"
-}
+//const mapOut = {
+//  "invoice_num": "收據編號",
+//  "plate_num": "車牌",
+//  "vehicle_type": "車類",
+//  "exit_time": "駛出時間",
+//  "staff_id": "職員編號",
+//  "total_hours": "總時數",
+//  "parked_hours": "時租",
+//  "parked_days": "日租",
+//  "parked_nights": "夜租",
+//  "payment": "總收費"
+//}
 const mapCarType = {
   "small_car": "小型車",
   "middle_car": "中型車",
   "motorcycle": "電單車"
 }
-const mapTime = {
-  "hour": "時租",
-  "day": "日租",
-  "night": "夜租"
-}
+//const mapTime = {
+//  "hour": "時租",
+//  "day": "日租",
+//  "night": "夜租"
+//}
 
 export default function EditCarModal(props: ModalProps) {
+  const carList: Car[] = useAppSelector((state: RootState) => state.carState.carList);
   const appDispatch = useAppDispatch()
 
   const { onClose, value: valueProp, open } = props;
@@ -71,16 +73,22 @@ export default function EditCarModal(props: ModalProps) {
 
   const handleOk = () => {
     console.log("ok clicked")
-      //appDispatch(editPrices([valueProp])).unwrap().then(res=>{
-      //  console.log(`thunk: ${res}`)
-      //}).catch((err)=>{
-      //  console.log(`thunk: ${err.message}`)
-      //})
-      //appDispatch(fetchDatePrices(minDate())).unwrap().then(res=>{
-      //  console.log(`fetch after edit price: ${res}`)
-      //}).catch((err)=>{
-      //  console.log(`fetch after edit price: ${err.message}`)
-      //})
+    //console.log(valueProp)
+    valueProp.edited = true
+    valueProp.id = carList.length + 1
+    if(valueProp.in_out==="in") {
+      appDispatch(editIn(valueProp)).unwrap().then(res=>{
+        console.log(`thunk: ${res}`)
+      }).catch((err)=>{
+        console.log(`thunk: ${err.message}`)
+      })
+    } else if (valueProp.in_out==="out") {
+      appDispatch(editOut(valueProp)).unwrap().then(res=>{
+        console.log(`thunk: ${res}`)
+      }).catch((err)=>{
+        console.log(`thunk: ${err.message}`)
+      })
+    }
     onClose();
   };
 
@@ -101,8 +109,8 @@ export default function EditCarModal(props: ModalProps) {
       <DialogTitle style={{color: "#5A8300", fontWeight: "bold"}}>更改紀錄</DialogTitle>
       <DialogContent className='ePrice-dialog-body'>
         <div>
-          {valueProp.in_out === "in" ? 
-            Object.keys(valueProp).map((key)=>
+          {/* {valueProp.in_out === "in" ?  */}
+            {Object.keys(valueProp).map((key)=>
             <div key={key} className='modal-msg-row' style={{display: "flex"}}>
               <div style={{width: "130px"}}>
                 {Object.keys(mapIn).map((inKey)=>inKey===key?`${mapIn[inKey as keyof MapIn]}:`:null)}
@@ -113,8 +121,8 @@ export default function EditCarModal(props: ModalProps) {
                 {key==="vehicle_type" && Object.keys(mapCarType).map((typeKey)=>typeKey===valueProp[key as keyof Car]? mapCarType[typeKey as keyof MapCarType] : null)}
                 {key==="staff_id" && valueProp[key as keyof Car]}
               </div>
-            </div>)
-            :
+            </div>)}
+            {/* :
             Object.keys(valueProp).map((key)=>
             <div key={key} className='modal-msg-row' style={{display: "flex"}}>
               <div style={{width: "130px"}}>
@@ -131,8 +139,8 @@ export default function EditCarModal(props: ModalProps) {
                 {key==="parked_nights" && valueProp[key as keyof Car]}
                 {key==="payment" && `$ ${valueProp[key as keyof Car] as number/100}`}
               </div>
-            </div>)
-          }
+            </div>) */}
+          
           <p>確認送出?</p>
         </div>
       </DialogContent>
