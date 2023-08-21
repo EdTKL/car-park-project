@@ -30,7 +30,7 @@ const HomePage = () => {
   
   return (
       <Layout>
-        <Grid container direction="row" xs={12}  columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 1, mb: 0, maxHeight: '40%'}} >
+        <Grid container direction="row" xs={12}  columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, mb: 0, maxHeight: '40%'}} >
           <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
             <Space parkingList={parkingList}/>
           </Grid>
