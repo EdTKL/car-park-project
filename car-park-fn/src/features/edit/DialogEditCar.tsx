@@ -25,6 +25,7 @@ const mapIn = {
 	"plate_num": "車牌",
 	"vehicle_type": "車類",
 	"entry_time": "泊入時間",
+  //"in_out": "進／出",
 	"staff_id": "職員編號"
 }
 //const mapOut = {
@@ -68,6 +69,7 @@ export default function EditCarModal(props: ModalProps) {
 
   const handleCancel = () => {
     console.log("cancel clicked")
+    console.log(valueProp)
     //setValue(value)
     onClose();
   };
@@ -120,6 +122,7 @@ export default function EditCarModal(props: ModalProps) {
                 {key==="invoice_num" && valueProp[key as keyof Car]}
                 {key==="plate_num" && valueProp[key as keyof Car]}
                 {key==="vehicle_type" && Object.keys(mapCarType).map((typeKey)=>typeKey===valueProp[key as keyof Car]? mapCarType[typeKey as keyof MapCarType] : null)}
+                {/* {key==="in_out" && valueProp[key as keyof Car] === "in" ? "進":"出"} */}
                 {key==="staff_id" && valueProp[key as keyof Car]}
               </div>
             </div>)}
