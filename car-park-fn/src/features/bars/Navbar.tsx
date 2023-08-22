@@ -2,7 +2,7 @@ import * as React from 'react';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Avatar, styled } from '@mui/material';
+import { Avatar, IconButton, styled } from '@mui/material';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
@@ -19,6 +19,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import DownloadPDF from '../../pages/Report/DownloadPDF';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import { useState } from 'react';
 
 const Navbar = () => {
   const drawerWidth = useSelector((state: RootState) => { return state.drawerState.drawerWidth });
@@ -54,6 +56,13 @@ const Navbar = () => {
 
   const handleClose = () => {
     setOpen(false);
+    setIsEnabled(!isEnabled);
+  };
+
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const handleClick = () => {
+    setIsEnabled(!isEnabled);
   };
 
   return (
@@ -66,7 +75,7 @@ const Navbar = () => {
           <div className='navbarButtons'>
 
 
-          <PictureAsPdfIcon onClick={handleClickOpen} />
+            <PictureAsPdfIcon onClick={handleClickOpen} />
             <Dialog
               open={openD}
               onClose={handleClose}
@@ -78,10 +87,14 @@ const Navbar = () => {
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  金偉停車場出入記錄
+                  停車場出入記錄
                   （近三個月）
                 </DialogContentText>
-                <DownloadPDF />
+
+                {!isEnabled && <Button variant="contained" endIcon={<DownloadForOfflineIcon />} onClick={handleClick}>
+                  按此載入
+                </Button>}
+                {isEnabled && <DownloadPDF />}
               </DialogContent>
               <DialogActions>
                 {/* <Button onClick={handleClose}>Disagree</Button> */}
