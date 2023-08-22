@@ -132,7 +132,7 @@ const ParkingList = ({ parkingList }: Props) => {
   const [rows, setRows] = useState<Car[]>(parkingList);
 
   //set default sorting model
-  const [sortModel, setSortModel] = React.useState([{field: 'id', sort: 'desc'}] as any);
+  const [sortModel, setSortModel] = React.useState([{field: 'time', sort: 'desc'}] as any);
 
   const cbSearch = useCallback(() => {
     const searchedList = parkingList.filter((car) => {

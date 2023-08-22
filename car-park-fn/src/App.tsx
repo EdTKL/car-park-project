@@ -10,10 +10,10 @@ import { login, logout } from './redux/slice/authSlice';
 import Register from './features/auth/Register';
 import { AuthState } from './redux/interface/model';
 import SetPrice from './pages/setPrice/SetPrice';
-import Home from './pages/Home/HomePage';
-import StatPage from './pages/Stat/StatPage';
-import EditPage from './pages/Edit/EditPage';
-import ParkingPage from './pages/Parking/ParkingPage';
+import Home from './pages/home/HomePage';
+import StatPage from './pages/stat/StatPage';
+import EditPage from './pages/edit/EditPage';
+import ParkingPage from './pages/parking/ParkingPage';
 
 function App() {
   const authListener = useAppSelector((state):AuthState=> state.auth)
