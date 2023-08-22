@@ -27,7 +27,7 @@ export default function ParkingPage() {
                 <ParkingList parkingList={parkingList}/>
             </Grid>
             <Grid item xs={4} display='flex' justifyContent='center' flexDirection='column' gap={{ sm: 1, lg: 1, xl: 3 }}>
-              <Space parkingList={parkingList}/>          
+              <Space parkingList={parkingList} />          
               <Camera/>
               <Camera2/>
             </Grid>

@@ -65,7 +65,7 @@ const Camera2 = () => {
   }, [cbLoadModel]);
 
   return (
-    <Paper elevation={3} sx={{borderRadius: '20px', height: '47.5%'}}>
+    <Paper elevation={3} sx={{borderRadius: '20px', height: '50%'}}>
       <div className="camera-container">
         {loading.loading && (
           <Loader>

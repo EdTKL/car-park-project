@@ -35,10 +35,10 @@ export type SidebarButton = {
 
 export type Price = {
     key: string,
-    timeslot: string, 
-    small: number, 
-    middle: number, 
-    motor: number
+    timeslot: "day" | "night" | "hour", 
+    small_car: number | string, 
+    middle_car: number | string, 
+    motorcycle: number | string
 }
 
 export type PriceEdit = {
@@ -48,15 +48,64 @@ export type PriceEdit = {
 }
 
 export type PriceList = {
-    type: string, 
-    timeslot: string, 
-    duration: string, 
+    id: number,
+    vehicle_type: string, 
+    fee_type: string, 
+    day_start: string, 
+    night_start: string, 
     mon: number,
     tue: number,
-    wes: number,
+    wed: number,
     thu: number,
     fri: number,
     sat: number,
     sun: number,
     ph: number
+}
+export type Mapping = {
+    vehicle_type: string, 
+    fee_type: string, 
+    day_start: string, 
+    night_start: string, 
+    mon: string,
+    tue: string,
+    wed: string,
+    thu: string,
+    fri: string,
+    sat: string,
+    sun: string,
+    ph: string
+}
+
+export type MapCarType = {
+    small_car: string,
+    middle_car: string,
+    motorcycle: string
+}
+
+export type MapTime = {
+    hour: string,
+    day: string,  
+    night: string
+}
+
+export type MapIn = {
+    invoice_num: string,
+    plate_num: string,
+    vehicle_type: string,
+    entry_time: string,
+    staff_id: string
+}
+
+export type MapOut = {
+  invoice_num: string,
+  plate_num: string,
+  vehicle_type: string,
+  exit_time: string,
+  staff_id: string,
+  total_hours: string,
+  parked_hours:string,
+  parked_days: string,
+  parked_nights: string,
+  payment:string
 }

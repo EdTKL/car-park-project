@@ -28,13 +28,14 @@ export default function ParkingTL({ shortParkingList }: Props) {
       className="timeline-comp"
       sx={{
         borderRadius: "20px",
+        overflow: "auto",
       }}
        style={{height: "100%"}}
     >
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
         最近停泊車輛
       </Typography>
-      <Grid item xs={12} justifyContent="center" alignItems="center" style={{maxHeight: "100%", height: "90%"}} className="timeLineBody">
+      <Grid item xs={12} justifyContent="center" style={{maxHeight: "100%", height: "90%"}} className="timeLineBody">
       <Timeline
         sx={{
           [`& .${timelineOppositeContentClasses.root}`]: {

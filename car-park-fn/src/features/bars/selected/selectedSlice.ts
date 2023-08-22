@@ -5,7 +5,8 @@ export type SelectedState = {
 }
 
 export const initialState: SelectedState = {
-    path: "/home"
+    //path: "/home"
+    path: window.location.pathname
 }
 
 export const selectedSlice = createSlice({

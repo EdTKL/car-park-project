@@ -8,11 +8,12 @@
   .ePriceHeader {
     color: #476800 !important;
     font-weight: bold !important;
-  }
-  .parkName {
-    display: block !important;
-  }
-  .parkName > .epHeading {
+}
+.parkName {
+    display: flex;
+    justify-content: flex-end;
+}
+.parkName > .epHeading {
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
@@ -21,8 +22,28 @@
   }
   .parkName > p {
     font-size: 0.85em !important;
-  }
-  .ePrice {
+}
+.parkName > .dateInput {
+    width: 300px;
+    border: 1px solid grey;
+    padding: 0.1em;
+    border-radius: 10px;
+
+    > form {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 3px;
+    }
+}
+.parkName > .dateInput > form > .submit {
+    color: white;
+    border: 0px;
+    background:#5A8300;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+}
+.ePrice {
     height: 17em;
 
     //Applying only to the DataGrid under .ePrice div
@@ -49,7 +70,7 @@
     }
 
     .MuiDataGrid-virtualScrollerRenderZone > div:nth-of-type(even)>* {
-      background-color: #f1ffd3;
+      background-color: #F1FFD3;
       //border-radius: 10px !important;
     }
 }

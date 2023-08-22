@@ -23,7 +23,7 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
 
   const shortParkingList = useMemo(() => 
-    parkingList.slice(0, 3), [parkingList]);
+    parkingList.slice(0, 4), [parkingList]);
 
   useEffect(()=> {
     dispatch(fetchCars());
@@ -32,7 +32,7 @@ const HomePage = () => {
   
   return (
       <Layout>
-        <Grid container direction="row" columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 1, mb: 0, maxHeight: '40%'}} >
+        <Grid container direction="row" columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, mb: 0, maxHeight: '40%'}} >
           <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
             <Space parkingList={parkingList}/>
           </Grid>
@@ -47,7 +47,7 @@ const HomePage = () => {
           <Grid item xs={8} justifyContent="center" alignItems="center" style={{height: "97%"}}>
             <CarList carList={carList}/>
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{height: "97%"}} >
+          <Grid item xs={4} display="flex" justifyContent="center" flexDirection='column' gap={{ sm: 0, lg: 1, xl: 3 }} style={{height: "97%"}} >
             <Camera />
             <Camera2 />
           </Grid>

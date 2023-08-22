@@ -3,7 +3,7 @@ import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-backend-webgl"; // set backend to webgl
 import Loader from "./components/loader";
 import ButtonHandler from "./components/btn-handler";
-import { detect, detectVideo } from "./utils/detect";
+import { detectVideo } from "./utils/detect";
 import  Paper  from "@mui/material/Paper";
 import './style/Camera.scss'
 
@@ -65,7 +65,7 @@ const Camera = () => {
   }, [cbLoadModel]);
 
   return (
-    <Paper elevation={3} sx={{borderRadius: '20px', height: '47.5%'}}>
+    <Paper elevation={3} sx={{borderRadius: '20px', height: '50%'}}>
       <div className="camera-container">
         {loading.loading && (
           <Loader>
