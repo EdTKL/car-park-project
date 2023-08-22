@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import EditCarList from "../../features/edit/EditCarList";
 import Layout from "../../features/bars/Layout";
 import "./Editpage.scss"
+import ConfirmationDialog from "../../features/prices/DialogEditPrice";
 
 export default function EditPage() {
 

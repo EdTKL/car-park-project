@@ -7,6 +7,7 @@ import { authReducer } from "../redux/slice/authSlice";
 import ePriceReducer, { ePriceState } from "../features/prices/priceSlice";
 import { ParkingState } from "../features/parking/parkingSlice";
 import  parkingReducer  from "../features/parking/parkingSlice"
+import { SelectedState, selectedReducer } from "../features/bars/selected/selectedSlice";
 
 export interface RootState {
   auth:AuthState,
@@ -14,7 +15,8 @@ export interface RootState {
   spaceState: SpaceState,
   drawerState: DrawerState,
   ePriceState: ePriceState,
-  parkingState: ParkingState
+  parkingState: ParkingState,
+  selectedState: SelectedState
 }
 
 const combine_reducer = combineReducers<RootState>({
@@ -24,6 +26,7 @@ const combine_reducer = combineReducers<RootState>({
   drawerState: navSideReducer,
   ePriceState: ePriceReducer,
   parkingState: parkingReducer,
+  selectedState: selectedReducer
 })
 
 export type AppDispatch = typeof store.dispatch;

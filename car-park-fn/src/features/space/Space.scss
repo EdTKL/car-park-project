@@ -80,3 +80,9 @@
     }
   }
 }
+.pie-comp {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center !important;
+  height: 90%;
+}

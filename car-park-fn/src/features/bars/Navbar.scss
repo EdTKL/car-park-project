@@ -21,11 +21,17 @@ header.MuiPaper-root {
 }
 /* navbar buttons */
 .navbarButtons {
-  width: 200px;
+  width: 90px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  //margin-right: 10px;
+
+  > .pdfIcon {
+    width: 35px;
+    height: auto;
+  }
 }
 .MuiBox-root.css-k008qs > header > div > div > svg {
   color: #131f00;

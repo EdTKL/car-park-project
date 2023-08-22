@@ -8,7 +8,11 @@
 //   color: #fff;
 //   text-shadow: 5px 5px 3px rgba(0,0,0,0.3);
 // }
-
+img {
+    width: 150px;
+    -webkit-filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  }
 .brand {
   display: flex;
   justify-content: center!important;
@@ -69,4 +73,18 @@ li.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.css-1p823my-MuiListI
 .MuiBox-root.css-k008qs > div > div > div > ul > li > div > .svg {
   width: 30px;
   margin-left: 10px;
+}
+a > div > div {
+  display: flex;
+  align-items: center;
+}
+// selected
+.selected {
+    background-color: #f2f4f4;
+    border-radius: 15px 0 0 15px;
+    color: #476800;
+    
+    > a > div > .svg, > a > div > div > span {
+        color: #476800;
+    }
 }

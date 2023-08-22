@@ -10,7 +10,8 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import "./Navbar.scss";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
-
+import { useAppSelector } from '../../app/hook';
+import { AuthState } from '../../redux/interface/model';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -20,11 +21,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DownloadPDF from '../../pages/Report/DownloadPDF';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import { useState } from 'react';
 
 const Navbar = () => {
-  const drawerWidth = useSelector((state: RootState) => { return state.drawerState.drawerWidth });
-  const open = useSelector((state: RootState) => { return state.drawerState.open });
+    const drawerWidth = useSelector((state: RootState)=> { return state.drawerState.drawerWidth});
+    const open = useSelector((state: RootState)=> { return state.drawerState.open});
+    const auth = useAppSelector((state):AuthState=> state.auth)
 
   interface AppBarProps extends MuiAppBarProps {
     open?: boolean | any;
@@ -70,12 +73,13 @@ const Navbar = () => {
       <AppBar position="fixed" open={open} elevation={0}>
         <Toolbar>
           <Typography className="navbarCarparkName" variant="h6" noWrap component="div">
-            庇利街停車場
+            海盛路停車場
           </Typography>
           <div className='navbarButtons'>
 
 
             <PictureAsPdfIcon onClick={handleClickOpen} />
+          <PictureAsPdfOutlinedIcon className="pdfIcon" onClick={handleClickOpen} />
             <Dialog
               open={openD}
               onClose={handleClose}
@@ -103,12 +107,7 @@ const Navbar = () => {
                 </Button>
               </DialogActions>
             </Dialog>
-
-            <DarkModeOutlinedIcon />
-            <LocalPhoneOutlinedIcon />
-            <CalendarMonthOutlinedIcon />
-            <NotificationsNoneOutlinedIcon />
-            <Avatar className='staffProfile'>俊</Avatar>
+            <Avatar className='staffProfile' >{auth.username.slice(0,1).toUpperCase()}</Avatar>
           </div>
         </Toolbar>
       </AppBar></>)

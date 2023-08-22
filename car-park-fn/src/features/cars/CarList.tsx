@@ -115,6 +115,9 @@ const CarList = ({ carList }: Props) => {
   const [input, setInput] = useState<string>("");
   const [rows, setRows] = useState<Car[]>(carList);
 
+  //set default sorting model
+  const [sortModel, setSortModel] = React.useState([{field: 'id', sort: 'desc'}] as any);
+
   const cbSearch = useCallback(() => {
     const searchedList = carList.filter((car) => {
       return car.plate_num.toLowerCase().includes(input.toLowerCase());
@@ -135,7 +138,7 @@ const CarList = ({ carList }: Props) => {
         // flexDirection: "column",
         //height: "410px",
         //width: "100%",
-        borderRadius: 3,
+        borderRadius: 3
       }}
       style={{height: "100%"}}
     >
@@ -172,6 +175,7 @@ const CarList = ({ carList }: Props) => {
             borderRadius: 3,
             color: "info.main",
             border: "none",
+            overflow: "hidden",
             boxShadow: "none",
             "& .MuiDataGrid-withBorderColor": {
               borderColor: "white",
@@ -193,17 +197,21 @@ const CarList = ({ carList }: Props) => {
               backgroundColor: "#FFE08A",
               borderRadius: 2,
             },
+            '& .MuiDataGrid-virtualScroller::-webkit-scrollbar': {display: 'none' }
           }}
           rows={rows}
           columnHeaderHeight={45}
           rowHeight={45}
           columns={columns}
+          sortModel={sortModel}
+          onSortModelChange={(model) => setSortModel(model)}
           initialState={{
             pagination: {
               paginationModel: {
                 pageSize: 5,
               },
             },
+            
           }}
           pageSizeOptions={[5, 10]}
           disableColumnMenu
