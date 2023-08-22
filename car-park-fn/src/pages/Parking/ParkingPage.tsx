@@ -8,6 +8,8 @@ import { Box, Grid } from "@mui/material";
 import { useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
 import { useEffect } from "react";
+import Camera from "../../features/camera/Camera";
+import Camera2 from "../../features/camera/Camera2";
 
 export default function ParkingPage() {
   const parkingList = useAppSelector((state: RootState) => state.parkingState.parkingList);
@@ -20,14 +22,14 @@ export default function ParkingPage() {
   return (
       <Layout>
         {/* <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}> */}
-          <Grid container spacing={2} xs={12} columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ pt: 0 }} style={{ maxHeight: "100%" }}>
+          <Grid container spacing={2} columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ pt: 0 }} style={{ maxHeight: "100%" }}>
             <Grid item xs={8} style={{ maxHeight: "100%" }} sx={{ margin: 0, pt: 0 }}>
                 <ParkingList parkingList={parkingList}/>
             </Grid>
-            <Grid item xs={4} display='flex' flexDirection='column' >
+            <Grid item xs={4} display='flex' justifyContent='center' flexDirection='column' gap={{ sm: 1, lg: 1, xl: 3 }}>
               <Space parkingList={parkingList}/>          
-              <Box bgcolor="info.main" height='100%' mt={2} borderRadius={4}/>
-              <Box bgcolor="info.main" height='100%' mt={2} borderRadius={4}/>
+              <Camera/>
+              <Camera2/>
             </Grid>
           </Grid>
         {/* </Container> */}

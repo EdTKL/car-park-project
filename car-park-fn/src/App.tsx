@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { StaffRoutes } from './StaffRoutes';
 import { AdminRoutes } from './AdminRoutes';
@@ -21,7 +21,7 @@ function App() {
   const navigate = useNavigate();
     let cb_get_auth = useCallback(async ()=>{
         let authState = localStorage.getItem("auth");
-        //console.log('auth Guard',authState)
+        // console.log('auth Guard',authState)
         if(authState){
             let state = await JSON.parse(authState)
             appDispatch(login(state))
@@ -42,10 +42,10 @@ function App() {
   <CssBaseline enableColorScheme />
     <div className='App'>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="login" element={<Login />} />
 
-        {authListener.isAuth && authListener.role === "staff" ? 
+        {authListener.isAuth && authListener.role === "staff" && 
           <Route element={<StaffRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
@@ -53,10 +53,8 @@ function App() {
           {/* <Route path="/stat" element={<StatPage />} /> */}
           <Route path="/logout" element={<Home />} />
         </Route>
-        :
-        null
         }
-        {authListener.isAuth && authListener.role === "admin" ? 
+        {authListener.isAuth && authListener.role === "admin" && 
         <Route element={<AdminRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/parking" element={<ParkingPage />} />
@@ -66,11 +64,10 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Home />} />
         </Route>
-        :
-        null
         }
 
         {/* <Route path="*" element={<NotFound />} /> */}
+        {/* <Route path="*" element={<Navigate to="/login" />} /> */}
       </Routes>
     </div>
   </ThemeProvider>

@@ -184,9 +184,10 @@ const EditCarList: React.FC = () => {
     <Paper 
       elevation={3} 
       sx={{
-        borderRadius: 3,
-        p: 2,}} 
-      style={{maxHeight: "100%",}}
+        borderRadius: '20px',
+        p: 2,
+        maxHeight: '100%',
+      }} 
       >
       <Box sx={{ height: "80%", width: "100%" }}>
       <Typography
@@ -216,7 +217,7 @@ const EditCarList: React.FC = () => {
       <div className="eCarList" style={{ maxWidth: '100%', maxHeight: "100%" }}>
       <DataGrid
         sx={{
-          borderRadius: 3,
+          borderRadius: 2,
           color: "info.main",
           border: "none",
           boxShadow: "none",

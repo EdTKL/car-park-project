@@ -135,7 +135,7 @@ const CarList = ({ carList }: Props) => {
         // flexDirection: "column",
         //height: "410px",
         //width: "100%",
-        borderRadius: 3
+        borderRadius: '20px'
       }}
       style={{height: "100%"}}
     >
@@ -169,7 +169,7 @@ const CarList = ({ carList }: Props) => {
 
         <DataGrid
           sx={{
-            borderRadius: 3,
+            borderRadius: 2,
             color: "info.main",
             border: "none",
             overflow: "hidden",
@@ -194,7 +194,7 @@ const CarList = ({ carList }: Props) => {
               backgroundColor: "#FFE08A",
               borderRadius: 2,
             },
-            '& .MuiDataGrid-virtualScroller::-webkit-scrollbar': {display: 'none' }
+            // '& .MuiDataGrid-virtualScroller::-webkit-scrollbar': {display: 'none' }
           }}
           rows={rows}
           columnHeaderHeight={45}

@@ -15,7 +15,8 @@ const PowerBI = () => {
         p: 2,
         display: "flex",
         flexDirection: "column",
-        height: "95%",
+        justifyContent: "center",
+        height: "fit-content",
         width: "100%",
         borderRadius: 3,
       }}

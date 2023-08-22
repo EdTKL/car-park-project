@@ -151,7 +151,7 @@ const ParkingList = ({ parkingList }: Props) => {
           flexDirection: "column",
           height: "100%",
           width: "100%",
-          borderRadius: 3,
+          borderRadius: '20px',
         }}
       >
         <Box sx={{ maxHeight: "90%", height: "90%", width: "100%" }}>
@@ -184,7 +184,7 @@ const ParkingList = ({ parkingList }: Props) => {
   
           <DataGrid
             sx={{
-              borderRadius: 3,
+              borderRadius: 2,
               color: "info.main",
               border: "none",
               boxShadow: "none",

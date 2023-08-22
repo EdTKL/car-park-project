@@ -75,7 +75,7 @@ const PriceEdit = () => {
             }}
             pageSizeOptions={[3, 6, 9]}
             sx={{
-              borderRadius: 3,
+              borderRadius: 2,
               color: "info.main",
               border: "none",
               boxShadow: "none",

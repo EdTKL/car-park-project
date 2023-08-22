@@ -15,7 +15,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import { ParkingState, edit_Space, parkingSlice } from "./spaceSlice";
+import { ParkingState, edit_Space, parkingSlice } from "./editSpaceSlice";
 import "./EditSpace.scss"
 import { FitnessCenter } from "@mui/icons-material";
 

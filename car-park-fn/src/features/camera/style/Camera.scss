@@ -1,0 +1,26 @@
+.camera-container > video {
+    display: block;
+    width: 100%;
+    max-width: 720px;
+    max-height: 500px;
+    border-radius: 10px;
+  }
+  
+  .camera-container {
+    position: relative;
+    height: 100%;
+  }
+  
+  .camera-container > canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
