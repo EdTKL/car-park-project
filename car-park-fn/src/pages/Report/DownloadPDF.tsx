@@ -2,13 +2,12 @@ import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { PDFDownloadLink, Page, Text, Document, StyleSheet, View, Font } from '@react-pdf/renderer';
 import { Car } from '../../features/models';
-import "./PDF.scss"
 
 import NotoSan from './NotoSansTC-Regular.otf'
-
-// import 'reactjs-popup/dist/index.css';
-
-// import "./DownloadPDF.css";
+import { Button, LinearProgress } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const fetchData = async () => {
 
@@ -65,10 +64,10 @@ const PdfDocument = ({ data }: { data: any }) => (
             <Text style={styles.columnThin}>{car.parked_hours}</Text>
             <Text style={styles.columnThin}>{car.parked_days}</Text>
             <Text style={styles.columnThin}>{car.parked_nights}</Text>
+            {/* <Text style={styles.columnThin}>{car.id}</Text>
             <Text style={styles.columnThin}>{car.id}</Text>
             <Text style={styles.columnThin}>{car.id}</Text>
-            <Text style={styles.columnThin}>{car.id}</Text>
-            <Text style={styles.columnThin}>{car.id}</Text>
+            <Text style={styles.columnThin}>{car.id}</Text> */}
             <Text style={styles.tableCell}>{car.payment}</Text>
             <Text style={styles.tableCell}>{car.status === "left" ? "已出車" : "/"}</Text>
             <Text style={styles.tableCellRight}>{car.staff_id}</Text>
@@ -188,17 +187,21 @@ const DownloadPDF = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>載入中...</div>;
   }
 
   if (isError) {
-    return <div>Error fetching data</div>;
+    return <div>Error</div>;
   }
   console.log(data)
   return (
     <div>
-      <PDFDownloadLink document={<PdfDocument data={data} />} fileName="car-data.pdf" className='pdfModal'>
-        {({ blob, url, loading, error:any  }) => (loading ? '載入中...' : '點擊下載')}
+      <PDFDownloadLink document={<PdfDocument data={data} />} fileName="car-data.pdf">
+        {({ blob, url, loading, error }) => (loading ?
+          <LinearProgress color="secondary" /> :
+          <Button variant="contained" endIcon={<CheckCircleIcon />}>
+            點擊下載
+          </Button>)}
       </PDFDownloadLink>
     </div>
   );
