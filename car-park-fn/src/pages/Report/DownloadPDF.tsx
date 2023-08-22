@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { PDFDownloadLink, Page, Text, Document, StyleSheet, View, Font } from '@react-pdf/renderer';
 import { Car } from '../../features/models';
+import "./PDF.scss"
 
 import NotoSan from './NotoSansTC-Regular.otf'
 
