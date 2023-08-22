@@ -203,6 +203,9 @@ const EditCarList: React.FC = () => {
   const carList: Car[] = useAppSelector((state: RootState) => state.carState.carList);
   const [rows, setRows] = useState<Car[]>(carList)
 
+  //set default sorting model
+  const [sortModel, setSortModel] = React.useState([{field: 'id', sort: 'desc'}] as any);
+
   const cbSearch = useCallback(
     ()=>{
       const searchedList = carList.filter((car) => {
@@ -321,6 +324,8 @@ const EditCarList: React.FC = () => {
         }}
         rows={rows}
         columns={columns}
+        sortModel={sortModel}
+        onSortModelChange={(model) => setSortModel(model)}
         initialState={{
           pagination: {
             paginationModel: {

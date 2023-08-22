@@ -77,7 +77,7 @@ export default function EditCarModal(props: ModalProps) {
   const handleOk = () => {
     console.log("ok clicked")
     //console.log(valueProp)
-    valueProp.edited = true
+    //valueProp.edited = true
     valueProp.id = carList.length + 1
     if(valueProp.in_out==="in") {
       appDispatch(editIn(valueProp)).unwrap().then(res=>{

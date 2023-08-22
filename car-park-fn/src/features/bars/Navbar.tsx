@@ -14,8 +14,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import DownloadPDF from '../../pages/Report/DownloadPDF';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import DownloadPDF from '../../pages/report/DownloadPDF';
+//import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
 
 const Navbar = () => {
     const drawerWidth = useSelector((state: RootState)=> { return state.drawerState.drawerWidth});
@@ -64,7 +65,7 @@ const Navbar = () => {
           <div className='navbarButtons'>
 
 
-          <PictureAsPdfIcon onClick={handleClickOpen} />
+          <PictureAsPdfOutlinedIcon className="pdfIcon" onClick={handleClickOpen} />
             <Dialog
               open={openD}
               onClose={handleClose}

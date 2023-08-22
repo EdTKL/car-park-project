@@ -131,6 +131,9 @@ const ParkingList = ({ parkingList }: Props) => {
   const [input, setInput] = useState<string>("");
   const [rows, setRows] = useState<Car[]>(parkingList);
 
+  //set default sorting model
+  const [sortModel, setSortModel] = React.useState([{field: 'id', sort: 'desc'}] as any);
+
   const cbSearch = useCallback(() => {
     const searchedList = parkingList.filter((car) => {
       return car.plate_num.toLowerCase().includes(input.toLowerCase());
@@ -211,6 +214,8 @@ const ParkingList = ({ parkingList }: Props) => {
             }}
             rows={rows}
             columns={columns}
+            sortModel={sortModel}
+            onSortModelChange={(model) => setSortModel(model)}
             initialState={{
               pagination: {
                 paginationModel: {
