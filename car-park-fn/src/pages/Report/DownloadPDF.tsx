@@ -41,10 +41,10 @@ const PdfDocument = ({ data }: { data: any }) => (
           <Text style={styles.columnThin}>時</Text>
           <Text style={styles.columnThin}>日</Text>
           <Text style={styles.columnThin}>夜</Text>
-          <Text style={styles.columnThin}>24</Text>
+          {/* <Text style={styles.columnThin}>24</Text>
           <Text style={styles.columnThin}>全</Text>
           <Text style={styles.columnThin}>失</Text>
-          <Text style={styles.columnThin}>+/-</Text>
+          <Text style={styles.columnThin}>+/-</Text> */}
           <Text style={styles.tableHeaderCell}>總金額</Text>
           <Text style={styles.tableHeaderCell}>狀況</Text>
           <Text style={styles.tableHeaderCellRight}>職員編號</Text>
@@ -196,7 +196,7 @@ const DownloadPDF = () => {
   console.log(data)
   return (
     <div>
-      <PDFDownloadLink document={<PdfDocument data={data} />} fileName="car-data.pdf">
+      <PDFDownloadLink document={<PdfDocument data={data} />} fileName="car-data.pdf" className='pdfModal'>
         {({ blob, url, loading, error:any  }) => (loading ? '載入中...' : '點擊下載')}
       </PDFDownloadLink>
     </div>
