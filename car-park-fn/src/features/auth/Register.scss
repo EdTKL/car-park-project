@@ -3,17 +3,18 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    min-width: 100%;
-    background-image: url("wxp.jpeg");
+    // min-width: 100%;
+    // background-image: url("wxp.jpeg");
 }
 
 .register-form {
     border: none;
     padding: 20px;
     background-color: #f5f5f5;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 300px;
     box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.25);
+
 }
 
 .register-title {

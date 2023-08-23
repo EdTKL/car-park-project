@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hook";
 import { registerThunk } from "../../redux/slice/authSlice";
 import './Register.scss'
-import { FormControl, FormControlLabel, FormLabel, IconButton, InputAdornment, InputLabel, OutlinedInput, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { FormControl, FormControlLabel, FormLabel, IconButton, InputAdornment, InputLabel, OutlinedInput, Radio, RadioGroup, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Stack from '@mui/material/Stack';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
@@ -54,42 +54,8 @@ function Register() {
 
 
   return (
-    //   <form onSubmit={submitHandler}>
-    //     <h3>Register</h3>
-    //     <div>
-    //       <label htmlFor="username">Username</label>
-    //       <input
-    //         id="username"
-    //         type="text"
-    //         value={username}
-    //         onChange={(e) => setUsername(e.target.value)}
-    //       ></input>
-    //       <label htmlFor="password">Password</label>
-    //       <input
-    //         id="password"
-    //         type="password"
-    //         value={password}
-    //         onChange={(e) => setPassword(e.target.value)}
-    //       ></input>
-    //       <label htmlFor="confirm_password">Confirm Password</label>
-    //       <input
-    //         id="confirm_password"
-    //         type="confirm_password"
-    //         value={confirm_password}
-    //         onChange={(e) => setConfirmPassword(e.target.value)}
-    //       ></input>
-    //       <label htmlFor="role">Role</label>
-    //       <select
-    //         id="role"
-    //         value={role}
-    //         onChange={(e) => setRole(e.target.value)}
-    //       >
-    //         <option value="admin">Admin</option>
-    //         <option value="staff">Staff</option>
-    //       </select>
-    //     </div>
-    //     <button type="submit">Register</button>
-    //   </form>
+    <>
+    <div className="bg-container"></div>
     <div className="register-container">
       <form onSubmit={submitHandler} className="register-form">
         <div className="register-title">
@@ -195,6 +161,7 @@ function Register() {
 
       </form>
     </div>
+    </>
   );
 }
 
