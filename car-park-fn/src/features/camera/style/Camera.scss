@@ -1,17 +1,26 @@
-.camera-container > video {
+  .camera1-paper{
+    height: fit-content;
+
+  }
+
+  .camera2-paper{
+    height: fit-content;
+  }
+
+
+  .camera-container {
+    position: relative;
+    height: fit-content;
+  }
+  
+  .camera-container > video {
     display: block;
     width: 100%;
-    // height: 100%;
     max-width: 720px;
     max-height: 500px;
     border-radius: 20px;
   }
-  
-  .camera-container {
-    position: relative;
-    height: 100%;
-  }
-  
+
   .camera-container > canvas {
     position: absolute;
     top: 0;

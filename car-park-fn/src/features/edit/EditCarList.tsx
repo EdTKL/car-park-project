@@ -328,6 +328,9 @@ const EditCarList: React.FC = () => {
               pageSize: 10,
             },
           },
+          sorting: {
+            sortModel: [{ field: 'time', sort: 'desc' }],
+          },
         }}
         pageSizeOptions={[5, 10]}
         onRowEditStop={handleRowEditStop}

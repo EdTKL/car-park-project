@@ -140,6 +140,7 @@ const ParkingList = ({ parkingList }: Props) => {
 
   useEffect(() => {
     cbSearch();
+    
   }, [cbSearch]);
   
     return (
@@ -216,6 +217,9 @@ const ParkingList = ({ parkingList }: Props) => {
                 paginationModel: {
                   pageSize: 10,
                 },
+              },
+              sorting: {
+                sortModel: [{ field: 'time', sort: 'desc' }],
               },
             }}
             pageSizeOptions={[5, 10]}

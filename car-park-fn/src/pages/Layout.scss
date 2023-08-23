@@ -11,11 +11,12 @@ $appbar_height: 64px;
 .contentContainer {
     background-color: #f2f4f4 !important;
     height: 100% !important;
+    min-height: fit-content !important;
     width: 100%;
     padding: 1em;
     display: flex;
     flex-wrap: nowrap;
-    border-bottom-left-radius: 20px;
+    // border-bottom-left-radius: 20px;
 }
 .home-container{
     background: #F2F4F4;
@@ -23,16 +24,16 @@ $appbar_height: 64px;
     flex-wrap: nowrap !important;
 }
 
-.first-row {
-    justify-content: space-evenly;
-    align-items: center;
-    min-height: 40%;
-    max-height: 40%;
-}
+// .first-row {
+//     justify-content: space-evenly;
+//     align-items: center;
+//     min-height: 40%;
+//     max-height: 40%;
+// }
 
-.second-row {
-    justify-content: space-evenly;
-    align-items: center;
-    min-height: 60%;
-    max-height: 60%;
-}
+// .second-row {
+//     justify-content: space-evenly;
+//     // align-items: center;
+//     min-height: 60%;
+//     max-height: 60%;
+// }

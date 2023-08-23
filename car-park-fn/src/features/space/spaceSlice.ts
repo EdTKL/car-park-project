@@ -11,7 +11,7 @@ const initialState: SpaceState = {
     {
       id: 0,
       name: "baileyStreet",
-      smCarSpace: 40,
+      smCarSpace: 60,
       mdCarSpace: 3,
       motoSpace: 7,
       get totalSpace() {

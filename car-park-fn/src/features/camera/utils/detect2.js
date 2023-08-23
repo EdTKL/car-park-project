@@ -58,8 +58,13 @@ const captureVideoFrame = (video, width, height) => {
 
 //Cooldown for capturing car image
 let isOnCooldown = false;
+let isProcessing = false;
+let noBoxFramesCounter = 0;
 
 export const detect2 = async (source, model, canvasRef, callback = () => {}) => {
+  if (isProcessing) return;
+  isProcessing = true;
+  try {
   const [modelWidth, modelHeight] = model.inputShape.slice(1, 3); // get model width and height
 
   tf.engine().startScope(); // start scoping tf engine
@@ -93,9 +98,44 @@ export const detect2 = async (source, model, canvasRef, callback = () => {}) => 
 
   const nms = await tf.image.nonMaxSuppressionAsync(boxes, scores, 500, 0.45, 0.2); // NMS to filter boxes
 
-  const boxes_data = boxes.gather(nms, 0).dataSync(); // indexing boxes by nms index
-  const scores_data = scores.gather(nms, 0).dataSync(); // indexing scores by nms index
-  const classes_data = classes.gather(nms, 0).dataSync(); // indexing classes by nms index
+  const gatherAndSyncData = (tensor, indices) => {
+    if (!tensor.isDisposed) {
+      return tensor.gather(indices, 0).dataSync();
+    }
+    return [];
+  }
+  
+  const boxes_data = gatherAndSyncData(boxes, nms);
+  const scores_data = gatherAndSyncData(scores, nms);
+  const classes_data = gatherAndSyncData(classes, nms);
+
+
+  const NO_BOX_THRESHOLD = 3;
+
+  if (boxes_data.length === 0) {
+    noBoxFramesCounter++;
+  } else {
+    noBoxFramesCounter = 0;
+  }
+
+  let needsReinit = noBoxFramesCounter >= NO_BOX_THRESHOLD;
+
+  const reinitializeDetector = () => {
+    noBoxFramesCounter = 0;  // Reset the counter
+    const ctx = canvasRef.getContext("2d");
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clean canvas
+  
+  };
+
+  if (needsReinit) {
+    reinitializeDetector();
+    
+    console.warn("Detector reinitialized due to continuous no-box frames.");
+  }
+
+  // const boxes_data = boxes.gather(nms, 0).dataSync(); // indexing boxes by nms index
+  // const scores_data = scores.gather(nms, 0).dataSync(); // indexing scores by nms index
+  // const classes_data = classes.gather(nms, 0).dataSync(); // indexing classes by nms index
 
   renderBoxes(canvasRef, boxes_data, scores_data, classes_data, [xRatio, yRatio]); // render boxes
 
@@ -146,14 +186,19 @@ export const detect2 = async (source, model, canvasRef, callback = () => {}) => 
     setTimeout(() => {
       isOnCooldown = false;
     }, 13000);
-
   }
 
-  tf.dispose([res, transRes, boxes, scores, classes, nms]); // clear memory
+    tf.dispose([res, transRes, boxes, scores, classes, nms]); // clear memory
+
+  }catch (error) {
+    console.error(error.message);
+  }
 
   callback();
 
   tf.engine().endScope(); // end of scoping
+
+  isProcessing = false;
 };
 
 

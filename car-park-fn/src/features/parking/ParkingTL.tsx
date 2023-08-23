@@ -28,7 +28,7 @@ export default function ParkingTL({ shortParkingList }: Props) {
       className="timeline-comp"
       sx={{
         borderRadius: "20px",
-        overflow: "auto",
+        overflow: "hidden",
       }}
        style={{height: "100%"}}
     >

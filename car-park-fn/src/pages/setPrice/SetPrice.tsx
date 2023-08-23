@@ -15,7 +15,7 @@ export default function SetPrice () {
         </Grid>
         <Grid item xs={6} justifyContent="center" alignItems="center"></Grid>
       </Grid> */}
-      <Grid container xs={12} sx={{ margin: 0 }} style={{maxHeight: "100%", maxWidth: "98%"}}>
+      <Grid container sx={{ margin: 0 }} style={{maxHeight: "100%", maxWidth: "98%"}}>
         <Grid item xs={12} justifyContent="center" alignItems="stretch" style={{height: "95%"}}>
           <PriceEdit />
         </Grid>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import { login, loginThunk } from "./authSlice";
 import { useAppDispatch } from "../../app/hook";
 import { useNavigate } from "react-router-dom";
-import { login, loginThunk } from "../../redux/slice/authSlice";
+import { loginThunk } from "../../redux/slice/authSlice";
 import './Login.scss'
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -32,6 +32,8 @@ export function Login() {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
+    <>
+    <div className="bg-container"></div>
     <div className="login-container">
       <form onSubmit={submitHandler} className="login-form">
         <div className="login-title">
@@ -104,6 +106,7 @@ export function Login() {
 
       </form>
     </div>
+    </>
 
   );
 }

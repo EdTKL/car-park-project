@@ -24,6 +24,8 @@ const HomePage = () => {
 
   const shortParkingList = useMemo(() => 
     parkingList.slice(0, 4), [parkingList]);
+  
+
 
   useEffect(()=> {
     dispatch(fetchCars());
@@ -43,11 +45,11 @@ const HomePage = () => {
             <ParkingTL shortParkingList={shortParkingList}/>
           </Grid>
         </Grid>
-        <Grid container direction="row" className='second-row' columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, maxHeight: '60%' }}>
-          <Grid item xs={8} justifyContent="center" alignItems="center" style={{height: "97%"}}>
+        <Grid container direction="row" columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, mb: 1, maxHeight: '60%' }}>
+          <Grid item xs={8} justifyContent="center" alignItems="center" >
             <CarList carList={carList}/>
           </Grid>
-          <Grid item xs={4} display="flex" justifyContent="center" flexDirection='column' gap={{ sm: 0, lg: 1, xl: 3 }} style={{height: "97%"}} >
+          <Grid item xs={4} display="flex" flexDirection="column" justifyContent="space-between" alignItems="center" >
             <Camera />
             <Camera2 />
           </Grid>

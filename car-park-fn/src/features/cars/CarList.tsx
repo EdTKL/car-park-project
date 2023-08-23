@@ -135,9 +135,11 @@ const CarList = ({ carList }: Props) => {
         // flexDirection: "column",
         //height: "410px",
         //width: "100%",
-        borderRadius: '20px'
+        height: '100%',
+        borderRadius: '20px',
+        mb: 1,
       }}
-      style={{height: "100%"}}
+      // style={{height: "100%"}}
     >
       <Box sx={{ height: "82%", width: "100%", mb: 0 }}>
         <Typography
@@ -206,7 +208,9 @@ const CarList = ({ carList }: Props) => {
                 pageSize: 5,
               },
             },
-            
+            sorting: {
+              sortModel: [{ field: 'time', sort: 'desc' }],
+            }
           }}
           pageSizeOptions={[5, 10]}
           disableColumnMenu
