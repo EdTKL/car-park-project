@@ -6,11 +6,12 @@ import { Car } from "../models";
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useAppSelector } from "../../app/hook";
+import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
 import { formatDate } from "../../app/format";
 import { Paper } from "@mui/material";
 import EditCarModal from "./DialogEditCar";
+import { fetchCars } from "../cars/carSlice";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "次序", editable: false, width: 50, flex: 1 },
@@ -20,7 +21,9 @@ const columns: GridColDef[] = [
     width: 75,
     editable: true,
     cellClassName: 'plate-cell',
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "vehicle_type",
@@ -33,7 +36,9 @@ const columns: GridColDef[] = [
       } else if (params.value === 'motorcycle'){
        return '電單車';
       }},
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "in_out",
@@ -46,7 +51,9 @@ const columns: GridColDef[] = [
       } else {
        return '出';
       }},
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "time",
@@ -56,12 +63,14 @@ const columns: GridColDef[] = [
     editable: false,
     valueFormatter(params) {
       if (!params.value) {
-        return '計算中';
+        return '-';
       } else {
       return formatDate(params.value)
       }
     },
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "invoice_num",
@@ -69,7 +78,9 @@ const columns: GridColDef[] = [
     type: "number",
     minWidth: 100,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "total_hours",
@@ -86,12 +97,14 @@ const columns: GridColDef[] = [
     },
     valueFormatter(params) {
       if (params.value === null) {
-        return '計算中';
+        return '-';
       } else {
        return params.value;
       }
     },
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "parked_hours",
@@ -108,12 +121,14 @@ const columns: GridColDef[] = [
     },
     valueFormatter(params) {
       if (params.value === null) {
-        return '計算中';
+        return '-';
       } else {
         return params.value;
       }
     },
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "parked_days",
@@ -130,12 +145,14 @@ const columns: GridColDef[] = [
     },
     valueFormatter(params) {
       if (params.value === null) {
-        return '計算中';
+        return '-';
       } else {
         return params.value;
       }
     },
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "parked_nights",
@@ -152,12 +169,14 @@ const columns: GridColDef[] = [
     },
     valueFormatter(params) {
       if (params.value === null) {
-        return '計算中';
+        return '-';
       } else {
         return params.value;
       }
     },
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "payment",
@@ -167,12 +186,14 @@ const columns: GridColDef[] = [
     editable: false,
     valueFormatter(params) {
       if (params.value === null) {
-        return '計算中';
+        return '-';
       } else {
        return `${params.value/100}`
       }
     },
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "staff_id",
@@ -180,7 +201,9 @@ const columns: GridColDef[] = [
     type: "string",
     minWidth: 90,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "edited",
@@ -194,14 +217,21 @@ const columns: GridColDef[] = [
        return null
       }
     },
-    flex: 1
+    // flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
 ];
 
 const EditCarList: React.FC = () => {
+  const dispatch = useAppDispatch();
+  
   const [input, setInput] = useState<string>("");
   const carList: Car[] = useAppSelector((state: RootState) => state.carState.carList);
   const [rows, setRows] = useState<Car[]>(carList)
+
+  //set default sorting model
+  const [sortModel, setSortModel] = React.useState([{field: 'id', sort: 'desc'}] as any);
 
   const cbSearch = useCallback(
     ()=>{
@@ -230,6 +260,7 @@ const EditCarList: React.FC = () => {
         case "out" : 
         setModalOpen(true);
         processRowUpdate(newRow)
+        dispatch(fetchCars())
         break;
         case "in" : 
           if (newRow.parked_days !== null || newRow.parked_hours !== null || newRow.parked_nights !== null || newRow.total_hours !== null) {
@@ -242,6 +273,7 @@ const EditCarList: React.FC = () => {
           } else {
             setModalOpen(true);
             processRowUpdate(newRow)
+            dispatch(fetchCars())
           }  
       }
       return newRow
@@ -250,6 +282,7 @@ const EditCarList: React.FC = () => {
   const [modalValue, setModalValue] = React.useState({} as any)
   const processRowUpdate = (newRow: GridRowModel) => {
     setModalValue(newRow)
+    
   }
   //discard unsubmitted changes
   const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
@@ -260,11 +293,12 @@ const EditCarList: React.FC = () => {
 
   return (
     <Paper 
-      elevation={3} 
+      elevation={2} 
       sx={{
-        borderRadius: '20px',
-        p: 2,
+        padding: '10px',
         maxHeight: '100%',
+        borderRadius: '20px',
+        width: '100%',
       }} 
       >
       <Box sx={{ height: "80%", width: "100%" }}>
@@ -277,8 +311,9 @@ const EditCarList: React.FC = () => {
       >
         所有進出紀錄
       </Typography>
-      <Box className="btns" mb={0.5}>
-        <button>排序</button>
+      <Box className="btns" mb={0.5} paddingX="6px">
+        <div></div>
+        {/* <button>排序</button> */}
         <span>
           <input
             style={{ paddingLeft: "10px" }}
@@ -295,6 +330,7 @@ const EditCarList: React.FC = () => {
       <div className="eCarList" style={{ maxWidth: '100%', maxHeight: "100%" }}>
       <DataGrid
         sx={{
+          paddingX: "6px",
           borderRadius: 2,
           color: "info.main",
           border: "none",
@@ -322,17 +358,18 @@ const EditCarList: React.FC = () => {
         }}
         rows={rows}
         columns={columns}
+        sortModel={sortModel}
+        onSortModelChange={(model) => setSortModel(model)}
         initialState={{
           pagination: {
             paginationModel: {
               pageSize: 10,
             },
           },
-          sorting: {
-            sortModel: [{ field: 'time', sort: 'desc' }],
-          },
         }}
-        pageSizeOptions={[5, 10]}
+        columnHeaderHeight={52}
+        rowHeight={48}
+        pageSizeOptions={[10, 15]}
         onRowEditStop={handleRowEditStop}
         processRowUpdate={handleModalOpen}
         //isCellEditable={(params) => params.row.in_out === "out"}

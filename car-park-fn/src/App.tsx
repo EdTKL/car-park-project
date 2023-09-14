@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { StaffRoutes } from './StaffRoutes';
 import { AdminRoutes } from './AdminRoutes';
@@ -42,7 +42,7 @@ function App() {
   <CssBaseline enableColorScheme />
     <div className='App'>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="login" element={<Login />} />
 
         {authListener.isAuth && authListener.role === "staff" && 
@@ -51,9 +51,10 @@ function App() {
           <Route path="/parking" element={<ParkingPage />} />
           <Route path="/edit" element={<EditPage />} />
           {/* <Route path="/stat" element={<StatPage />} /> */}
-          <Route path="/logout" element={<Home />} />
+          <Route path="/logout" element={<Login />} />
         </Route>
         }
+
         {authListener.isAuth && authListener.role === "admin" && 
         <Route element={<AdminRoutes />}>
           <Route path="/home" element={<Home />} />
@@ -62,12 +63,12 @@ function App() {
           <Route path="/stat" element={<StatPage />} />
           <Route path="/pricing" element={<SetPrice />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Home />} />
+          <Route path="/logout" element={<Login />} />
         </Route>
         }
 
         {/* <Route path="*" element={<NotFound />} /> */}
-        {/* <Route path="*" element={<Navigate to="/login" />} /> */}
+        <Route path="*" element={<Home />} />
       </Routes>
     </div>
   </ThemeProvider>

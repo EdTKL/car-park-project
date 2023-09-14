@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { RootState } from "../../app/store";
-import { IconButton, Input, Stack, SvgIconProps, TextField, Typography } from "@mui/material";
+import { IconButton, Stack, SvgIconProps, TextField, Typography } from "@mui/material";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
 import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
@@ -52,7 +52,7 @@ export function EditSpace() {
         // <div className="edit-space-container">
             <form onSubmit={submitHandler} className="edit-space-form">
 
-                <TableContainer className="edit-table-container" component={Paper} elevation={3} sx={{ overflow: 'hidden', height: "100%", borderRadius: 3 }}  style={{height: "100%"}}>
+                <TableContainer className="edit-table-container" component={Paper} elevation={2} sx={{ overflow: 'hidden', height: "100%", borderRadius: 3 }}  style={{height: "100%"}}>
                     <Table sx={{ width: 500 }} aria-label="spanning table">
                         <TableHead>
                             <div className="edit-space-title">

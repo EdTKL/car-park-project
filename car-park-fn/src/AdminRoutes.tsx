@@ -1,7 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAppSelector } from "./app/hook";
-
-import { AuthState } from "./redux/interface/model";
+import { Outlet } from "react-router-dom";
 
 export function AdminRoutes(){
     // const authListener = useAppSelector((state):AuthState=> state.auth)

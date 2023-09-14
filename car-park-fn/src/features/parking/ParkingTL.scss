@@ -1,8 +1,10 @@
 .timeline-comp {
     background: #FFF;
     padding: 0.5em;
-    height: 17em;
-    border-radius: 20px;
+
+    &::-webkit-scrollbar {
+      display: none; 
+    }
 
   .labels {
     min-height: 0;
@@ -17,8 +19,8 @@
       box-shadow: none;
     }
   }
+  //decreasing the height of the last row
+  .MuiTimelineItem-root:nth-last-of-type(1) {
+    min-height: 30px;
+  }
 }
-// .timeLineBody {
-//   display: flex;
-//   align-items: center !important;
-// }

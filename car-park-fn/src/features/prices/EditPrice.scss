@@ -12,6 +12,8 @@
 .parkName {
     display: flex;
     justify-content: flex-end;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 .parkName > .epHeading {
     display: flex;
@@ -43,34 +45,38 @@
     border-radius: 10px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
 }
-.ePrice {
-    height: 17em;
 
-    //Applying only to the DataGrid under .ePrice div
-    .MuiDataGrid-root {
-      border: none !important;
-    }
-    
-    .MuiDataGrid-columnHeaders {
-      background-color: #a6d654;
-      border-radius: 10px !important;
-
-      .MuiDataGrid-columnHeaderTitle {
-        font-weight: bold;
-      }
-    }
-    // .ePriceDataGrid {
-    //     height: 100% !important;
-    // }
-    .MuiTablePagination-root > div > p {
-      margin: 0;
-    }
-    .MuiDataGrid-footerContainer {
-      border: none !important;
-    }
-
-    .MuiDataGrid-virtualScrollerRenderZone > div:nth-of-type(even)>* {
-      background-color: #F1FFD3;
-      //border-radius: 10px !important;
-    }
+.vehicle-type {
+    font-weight: 700;
 }
+// .ePrice {
+//     height: 17em;
+
+//     //Applying only to the DataGrid under .ePrice div
+//     .MuiDataGrid-root {
+//       border: none !important;
+//     }
+    
+//     .MuiDataGrid-columnHeaders {
+//       background-color: #a6d654;
+//       border-radius: 10px !important;
+
+//       .MuiDataGrid-columnHeaderTitle {
+//         font-weight: bold;
+//       }
+//     }
+//     // .ePriceDataGrid {
+//     //     height: 100% !important;
+//     // }
+//     .MuiTablePagination-root > div > p {
+//       margin: 0;
+//     }
+//     .MuiDataGrid-footerContainer {
+//       border: none !important;
+//     }
+
+//     .MuiDataGrid-virtualScrollerRenderZone > div:nth-of-type(even)>* {
+//       background-color: #F1FFD3;
+//       //border-radius: 10px !important;
+//     }
+// }

@@ -15,8 +15,8 @@ export default function EditPage() {
 
   return (
     <Layout>
-      <Grid container sx={{ margin: 0 }} style={{maxHeight: "100%", maxWidth: "98%"}}>
-        <Grid item xs={12} justifyContent="center" alignItems="center" style={{maxHeight: "100%"}} >
+      <Grid container spacing={1} paddingX={2} >
+        <Grid item xs={12} >
             <EditCarList />
         </Grid>
       </Grid>

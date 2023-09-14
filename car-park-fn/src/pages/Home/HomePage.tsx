@@ -1,14 +1,12 @@
 import * as React from 'react';
 import "../../features/bars/Sidebar.scss";
 import "../../features/bars/Navbar.scss";
-import "../../pages/Layout.scss"
-
+import "../../features/bars/Layout.scss"
 import { Grid } from '@mui/material';
 import Space from '../../features/space/Space';
 import Prices from '../../features/prices/Prices';
 import ParkingTL from '../../features/parking/ParkingTL';
 import CarList from '../../features/cars/CarList';
-import Layout from '../../features/bars/Layout';
 import { useEffect, useMemo } from 'react';
 import { fetchCars } from "../../features/cars/carSlice"
 import { fetchParking } from "../../features/parking/parkingSlice"
@@ -16,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { RootState } from '../../app/store';
 import Camera from '../../features/camera/Camera';
 import Camera2 from '../../features/camera/Camera2';
+import Layout from '../../features/bars/Layout';
 
 const HomePage = () => {
   const carList = useAppSelector((state: RootState) => state.carState.carList);
@@ -25,8 +24,6 @@ const HomePage = () => {
   const shortParkingList = useMemo(() => 
     parkingList.slice(0, 4), [parkingList]);
   
-
-
   useEffect(()=> {
     dispatch(fetchCars());
     dispatch(fetchParking())
@@ -34,27 +31,30 @@ const HomePage = () => {
   
   return (
       <Layout>
-        <Grid container direction="row" columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, mb: 0, maxHeight: '40%'}} >
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
-            <Space parkingList={parkingList}/>
+        <Grid container spacing={1} paddingX={2} height="fit-content">
+          <Grid container item columnSpacing={1} >
+            <Grid item xs={4} >
+              <Space parkingList={parkingList}/>
+            </Grid>
+            <Grid item xs={4} >
+              <Prices />
+            </Grid>
+            <Grid item xs={4} >
+              <ParkingTL shortParkingList={shortParkingList}/>
+            </Grid>
           </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
-            <Prices />
-          </Grid>
-          <Grid item xs={4} justifyContent="center" alignItems="center" style={{maxHeight: "97%"}}>
-            <ParkingTL shortParkingList={shortParkingList}/>
-          </Grid>
-        </Grid>
-        <Grid container direction="row" columnSpacing={{ sm: 1, lg: 1, xl: 3 }} sx={{ margin: 0, mb: 1, maxHeight: '60%' }}>
-          <Grid item xs={8} justifyContent="center" alignItems="center" >
-            <CarList carList={carList}/>
-          </Grid>
-          <Grid item xs={4} display="flex" flexDirection="column" justifyContent="space-between" alignItems="center" >
-            <Camera />
-            <Camera2 />
+          <Grid container item columnSpacing={1} >
+            <Grid item xs={8} >
+              <CarList carList={carList}/>
+            </Grid>
+            <Grid container item xs={4} flexDirection='column' justifyContent='flex-start' flexWrap='nowrap' gap={1.5}>
+              <Camera />
+              <Camera2 />
+            </Grid>
           </Grid>
         </Grid>
       </Layout>
+
 )};
 
 export default HomePage

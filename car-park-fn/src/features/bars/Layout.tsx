@@ -1,30 +1,27 @@
-import { Box, CssBaseline, Grid } from "@mui/material"
-import Sidebar from "./Sidebar"
-import Collapse from "./Collapse"
-import Navbar from "./Navbar"
+import { Box, CssBaseline } from "@mui/material";
+import Sidebar from "./Sidebar";
+import Collapse from "./Collapse";
+import Navbar from "./Navbar";
 
-export interface AuxProps  { 
-    children: React.ReactNode
- }
-
+export interface AuxProps {
+  children: React.ReactNode;
+}
 
 const Layout = ({ children }: AuxProps) => {
   return (
     <>
-     <Collapse />
-      <Box sx={{ display: 'flex' }}  className="contentBackground">
+      <Collapse />
+      <Box sx={{ display: "flex" }} className="contentBackground">
         <CssBaseline />
         <Navbar />
         <Sidebar />
-      {/* content */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', margin: 0, pt: 0}} className="contentContainer">
-            <Grid container sx={{ margin: 0 }}>
-                { children }
-            </Grid>
+        {/* content */}
+        <Box className="contentContainer">
+          {children}
         </Box>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

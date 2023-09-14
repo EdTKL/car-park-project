@@ -7,7 +7,7 @@ import Dialog from '@mui/material/Dialog';
 import { GridRowModel } from '@mui/x-data-grid';
 import { editPrices, fetchDatePrices, formatDate } from './priceSlice';
 import { MapCarType, MapTime, Mapping, PriceList } from '../models';
-import { minDate } from './PriceEdit';
+import { minDate } from './EditPrice';
 import { useAppDispatch } from '../../app/hook';
 import "./DialogEditPrice.scss"
 

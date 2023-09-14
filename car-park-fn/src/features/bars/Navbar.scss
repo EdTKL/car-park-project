@@ -1,5 +1,5 @@
 header.MuiPaper-root {
-  background-color: #bdee69 !important;
+  background: linear-gradient(180deg, #A6D654 22%, #C1F36D 100%);  
 }
 
 /* navbar */
@@ -8,24 +8,31 @@ header.MuiPaper-root {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  border-radius: 20px 0 0 0 ;
+  border-radius: 28px 0 0 0 ;
 }
 /* car park name in navbar */
 .MuiBox-root.css-k008qs > header > div > .navbarCarparkName {
-  color: #000;
+  color: #131F00;
   font-weight: bold;
   background-color: #c1f36d;
+  margin-left: 0px;
   padding: 3px 10px;
   border-radius: 10px;
   box-shadow: 0 3px 3px rgba(0,0,0,0.5);
 }
 /* navbar buttons */
 .navbarButtons {
-  width: 70px;
+  width: 90px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  //margin-right: 10px;
+
+  > .pdfIcon {
+    width: 35px;
+    height: auto;
+  }
 }
 .MuiBox-root.css-k008qs > header > div > div > svg {
   color: #131f00;

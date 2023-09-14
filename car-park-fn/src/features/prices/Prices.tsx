@@ -1,8 +1,8 @@
-import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Typography, Button, Grid } from "@mui/material";
+import { TableContainer, Paper, Table, TableRow, TableCell, TableHead, TableBody, tableCellClasses, Typography, Grid, Box } from "@mui/material";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
 import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Price, PriceList } from "../models";
 import "./Prices.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
@@ -16,7 +16,21 @@ const Prices = () => {
   let day = new Date().toLocaleString("default", {weekday: 'short'}).toLowerCase();
   let weekday = day as 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun' 
 
-  const displayDay = ()=>{
+  // const displayDay = () => {
+  //   const dayMapping = [
+  //   {key: "mon" , display: "星期一"},
+  //   {key: "tue" , display: "星期二"},
+  //   {key: "wed" , display: "星期三"},
+  //   {key: "thu" , display: "星期四"},
+  //   {key: "fri" , display: "星期五"},
+  //   {key: "sat" , display: "星期六"},
+  //   {key: "sun" , display: "星期日"},
+  // ]
+  //   let display = dayMapping.filter((day)=>day.key === weekday)[0].display
+  //   return display
+  // }
+
+  const displayDay: string = useMemo(() => {
     const dayMapping = [
     {key: "mon" , display: "星期一"},
     {key: "tue" , display: "星期二"},
@@ -26,9 +40,9 @@ const Prices = () => {
     {key: "sat" , display: "星期六"},
     {key: "sun" , display: "星期日"},
   ]
-    let display = dayMapping.filter((day)=>day.key === weekday).map((filtered)=>filtered.display)
+    let display = dayMapping.filter((day)=>day.key === weekday)[0].display
     return display
-  }
+  }, [weekday]);
   
   const priceList: Array<Price> = [
     {key: "hour", timeslot: "hour", small_car: "", middle_car: "", motorcycle: ""},
@@ -69,7 +83,7 @@ const Prices = () => {
 
     return (
       <>
-      <TableContainer component={Paper} elevation={3} className="tableContainer" sx={{ overflow: 'hidden', height: "100%" }}  style={{height: "100%"}}>
+      <TableContainer component={Paper} elevation={2} className="tableContainer" sx={{ overflow: 'hidden', height: "280px" }}>
         <Grid container sx={{ margin: 0, maxHeight: "100%" }} style={{height: "90%"}}>
         <Typography variant='h6' color='success.main' fontWeight={700} ml={1}>
           今日收費
@@ -78,7 +92,7 @@ const Prices = () => {
           <Table sx={{ [`& .${tableCellClasses.root}`]: { borderBottom: "none"}, tableLayout: "fixed"}} aria-label="simple table" className="priceTableRoot">
             <TableHead>
               <TableRow className="price-row">
-                <TableCell align="center"><Button className="weekday Button">{displayDay()[0].toString()}</Button></TableCell>
+                <TableCell align="center"><Box className="weekday">{displayDay}</Box></TableCell>
                 <TableCell align="center"><div className="carIcon"><DirectionsCarFilledOutlinedIcon /></div><div className="carcategory">小型車</div></TableCell>
                 <TableCell align="center"><div className="carIcon"><AirportShuttleOutlinedIcon /></div><div className="carcategory">中型車</div></TableCell>
                 <TableCell align="center"><div className="carIcon"><MopedOutlinedIcon /></div><div className="carcategory">電單車</div></TableCell>
@@ -95,8 +109,8 @@ const Prices = () => {
                       {price.timeslot === "day" && "日租"}
                       {price.timeslot === "night" && "夜租"}
                       </div>
-                    {priceList.indexOf(price)===1 && <div className="halfDayRent">8:00 am - 6:00 pm</div>}
-                    {priceList.indexOf(price)===2 && <div className="halfDayRent">6:00 pm - 8:00 am</div>}
+                    {priceList.indexOf(price)===1 && <div className="halfDayRent">8 a.m. - 6 p.m.</div>}
+                    {priceList.indexOf(price)===2 && <div className="halfDayRent">6 p.m. - 8 a.m.</div>}
                   </TableCell>
                   <TableCell align="center" className="priceValue">${price.small_car}</TableCell>
                   <TableCell align="center" className="priceValue">${price.middle_car}</TableCell>

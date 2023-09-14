@@ -15,15 +15,3 @@ code {
 .App, #root, body, html {
   height: 100%;
 }
-
-/* hardcode camera div */
-.dummy:first-child {
-  margin-bottom: 15px;
-}
-.dummy {
-  background: #FFF;
-  padding: 10px 10px;
-  height: 12.5em;
-  border-radius: 20px !important;
-  border: 2px solid #131f00;
-}

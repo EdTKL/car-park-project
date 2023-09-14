@@ -4,10 +4,11 @@ import { useAppDispatch } from "../../app/hook";
 import { useNavigate } from "react-router-dom";
 import { loginThunk } from "../../redux/slice/authSlice";
 import './Login.scss'
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from "@mui/material";
+import { FormControl, IconButton, InputAdornment, InputLabel, ListItem, OutlinedInput, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Stack from '@mui/material/Stack';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import logo from "../bars/sidebarLogo.png"
 
 
 export function Login() {
@@ -34,6 +35,9 @@ export function Login() {
   return (
     <>
     <div className="bg-container"></div>
+    <ListItem sx={{position: 'absolute', pt: 2, pl: 3 }} >
+        <img src={logo} alt='主頁'/>
+    </ListItem>
     <div className="login-container">
       <form onSubmit={submitHandler} className="login-form">
         <div className="login-title">
@@ -43,9 +47,9 @@ export function Login() {
         </div>
         <div id="login-input-blank">
         <FormControl sx={{ m: 1, width: '25ch'}} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password" >用戶名稱</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-username" >用戶名稱</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-password"
+              id="outlined-adornment-username"
               color='success'
 
               value={username}

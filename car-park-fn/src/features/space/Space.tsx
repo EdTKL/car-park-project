@@ -36,11 +36,11 @@ const Space = ({parkingList}: Props) => {
 
   return (
     <Paper
-      elevation={3}
+      elevation={2}
       className="space-comp"
       sx={{
         borderRadius: "20px",
-        height: "100%",
+        height: "280px",
       }}
     >
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
@@ -65,8 +65,8 @@ const Space = ({parkingList}: Props) => {
                 cornerRadius: 3,
                 startAngle: -180,
                 endAngle: 180,
-                cx: 90,
-                cy: 100,
+                cx: 100,
+                cy: 90,
               },
             ]}
             width={200}

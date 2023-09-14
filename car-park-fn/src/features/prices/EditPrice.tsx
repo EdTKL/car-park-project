@@ -15,7 +15,7 @@ export const minDate = () => {
     return today;
 };
 
-const PriceEdit = () => {
+const EditPrice = () => {
     const appDispatch = useAppDispatch()
   
     //empty array as initial state
@@ -23,9 +23,9 @@ const PriceEdit = () => {
     //fetch price list as rendered
       React.useEffect(()=>{
         appDispatch(fetchPrices("")).unwrap().then(res=>{
-          console.log(`priceEdit fetch: ${res}`)
+          console.log(`editPrice fetch: ${res}`)
         }).catch((err)=>{
-          console.log(`priceEdit fetch: ${err.message}`)
+          console.log(`editPrice fetch: ${err.message}`)
         })
       },[appDispatch])  
     const [sortModel, setSortModel] = React.useState([{field: 'vehicle_type', sort: 'desc'}] as any);
@@ -46,7 +46,8 @@ const PriceEdit = () => {
     //column header setting
     const columns: GridColDef[] = [
       { field: 'vehicle_type', 
-        headerName: '車型', 
+        headerName: '車型',
+        cellClassName: 'vehicle-type', 
         minWidth: 100, 
         sortable: true, 
         flex: 1,
@@ -255,75 +256,76 @@ const PriceEdit = () => {
     const [modalValue, setModalValue] = React.useState(formatted[0])
 
     return (
-      <Paper elevation={3} className="ePrice-comp" 
-      sx={{borderRadius: "20px", p: 2}} 
-      style={{height: "100%"}}>
-        <Typography variant='h5' className="ePriceHeader">價目表</Typography>
-        <div className="parkName">
-            <div className='dateInput' style={{display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "0.3em", marginTop: "0.3em"}}>
-              <form onSubmit={submitDateHandler}><input type='date'
-                  style={{ marginRight: "10px", borderRadius: "10px", borderWidth: "1px", padding: "2px", border: "none" }}
-                  value={selectedStart}
-                  //min={minDate()}
-                  onChange={(e) => setSelectedDate(e.target.value)} />
-                  <Button className="submit" type='submit' sx={{pt: "2px", pb: "2px", pl: "0px", pr: "3px"}}><SearchIcon fontSize='small' />查閱</Button>
-              </form>
-            </div>
-        </div>
-        <div className="ePrice" style={{ width: '100%', height: "90%" }}>
-        <DataGrid 
-            className='ePriceDataGrid'
-            editMode='row'
-            onRowEditStop={handleRowEditStop}
-            processRowUpdate={handleModalOpen}
-            rows={prices}
-            columns={columns}
-            sortModel={sortModel}
-            onSortModelChange={(model) => setSortModel(model)}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 9 },
-              },
-            }}
-            pageSizeOptions={[3, 6, 9]}
-            sx={{
-              borderRadius: 2,
-              color: "info.main",
-              border: "none",
-              boxShadow: "none",
-              "& .MuiDataGrid-withBorderColor": {
-                borderColor: "white",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: "primary.main",
-                borderRadius: 2,
-              },
-              "& .MuiDataGrid-columnHeaderTitle": {
-                fontWeight: "700",
-              },
-              "& .MuiDataGrid-row": {
-                borderRadius: 2,
-                "&:nth-of-type(even)": {
-                  backgroundColor: "#F1FFD3",
-                },
-              },
-              "& .MuiDataGrid-row:hover": {
-                backgroundColor: "#FFE08A",
-                borderRadius: 2,
-              },
-            }}
-          />
-          {/* dialog box */}
-          <ModalMsg
-            id="confirmation-msg"
-            keepMounted
-            open={open}
-            onClose={handleModalClose}
-            value={modalValue}
-          />
+      <Paper elevation={2} className="ePrice-comp" 
+        sx={{borderRadius: "20px", padding: '10px', height: "100%", maxHeight: "680px"}} 
+      >
+          <Typography variant='h6' pl={1} className="ePriceHeader">價目表</Typography>
+          <div className="parkName">
+              <div className='dateInput' style={{display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "0.3em", marginTop: "0.3em"}}>
+                <form onSubmit={submitDateHandler}><input type='date'
+                    style={{ marginRight: "10px", borderRadius: "10px", borderWidth: "1px", padding: "2px", border: "none" }}
+                    value={selectedStart}
+                    //min={minDate()}
+                    onChange={(e) => setSelectedDate(e.target.value)} />
+                    <Button className="submit" type='submit' sx={{pt: "2px", pb: "2px", pl: "0px", pr: "3px"}}><SearchIcon fontSize='small' />查閱</Button>
+                </form>
+              </div>
+          </div>
+          <div className="ePrice" style={{ width: '100%', height: "90%" }}>
+            <DataGrid 
+                className='ePriceDataGrid'
+                editMode='row'
+                onRowEditStop={handleRowEditStop}
+                processRowUpdate={handleModalOpen}
+                rows={prices}
+                columns={columns}
+                sortModel={sortModel}
+                onSortModelChange={(model) => setSortModel(model)}
+                initialState={{
+                  pagination: {
+                    paginationModel: { page: 0, pageSize: 9 },
+                  },
+                }}
+                pageSizeOptions={[3, 6, 9]}
+                sx={{
+                  px: '6px',
+                  borderRadius: 2,
+                  color: "info.main",
+                  border: "none",
+                  boxShadow: "none",
+                  "& .MuiDataGrid-withBorderColor": {
+                    borderColor: "white",
+                  },
+                  "& .MuiDataGrid-columnHeaders": {
+                    backgroundColor: "primary.main",
+                    borderRadius: 2,
+                  },
+                  "& .MuiDataGrid-columnHeaderTitle": {
+                    fontWeight: "700",
+                  },
+                  "& .MuiDataGrid-row": {
+                    borderRadius: 2,
+                    "&:nth-of-type(even)": {
+                      backgroundColor: "#F1FFD3",
+                    },
+                  },
+                  "& .MuiDataGrid-row:hover": {
+                    backgroundColor: "#FFE08A",
+                    borderRadius: 2,
+                  },
+                }}
+              />
+              {/* dialog box */}
+              <ModalMsg
+                id="confirmation-msg"
+                keepMounted
+                open={open}
+                onClose={handleModalClose}
+                value={modalValue}
+              />
           </div>
     </Paper>
     )
 }
 
-export default PriceEdit
+export default EditPrice;

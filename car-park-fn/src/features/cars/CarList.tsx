@@ -17,7 +17,9 @@ const columns: GridColDef[] = [
     minWidth: 75,
     editable: false,
     cellClassName: 'plate-cell',
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "vehicle_type",
@@ -30,7 +32,9 @@ const columns: GridColDef[] = [
        return '電單車';
       }},
     minWidth: 70,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "in_out",
@@ -43,7 +47,9 @@ const columns: GridColDef[] = [
       }},
     minWidth: 65,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "time",
@@ -58,7 +64,9 @@ const columns: GridColDef[] = [
     },
     minWidth: 130,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "invoice_num",
@@ -66,7 +74,9 @@ const columns: GridColDef[] = [
     type: "number",
     minWidth: 100,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "payment",
@@ -74,36 +84,40 @@ const columns: GridColDef[] = [
     type: "number",
     valueFormatter(params) {
       if (params.value === null) {
-        return '計算中';
+        return '-';
       } else {
        return `${params.value/100}`
       }
     },
     minWidth: 70,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
-  {
-    field: "status",
-    headerName: "狀態",
-    type: "string",
-    valueFormatter(params) {
-      if (params.value === 'parking') {
-        return '停泊中';
-      } else if (params.value === 'out'){
-       return '已出車';
-      }},
-    minWidth: 70,
-    editable: false,
-    flex: 1
-  },
+  // {
+  //   field: "status",
+  //   headerName: "狀態",
+  //   type: "string",
+  //   valueFormatter(params) {
+  //     if (params.value === 'parking') {
+  //       return '停泊中';
+  //     } else if (params.value === 'out'){
+  //      return '已出車';
+  //     }},
+  //   minWidth: 70,
+  //   editable: false,
+  //   flex: 1
+  // },
   {
     field: "staff_id",
     headerName: "職員編號",
     type: "string",
     minWidth: 100,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
 ];
 
@@ -114,6 +128,9 @@ interface Props {
 const CarList = ({ carList }: Props) => {
   const [input, setInput] = useState<string>("");
   const [rows, setRows] = useState<Car[]>(carList);
+
+  //set default sorting model
+  const [sortModel, setSortModel] = React.useState([{field: 'id', sort: 'desc'}] as any);
 
   const cbSearch = useCallback(() => {
     const searchedList = carList.filter((car) => {
@@ -128,20 +145,16 @@ const CarList = ({ carList }: Props) => {
 
   return (
     <Paper
-      elevation={3}
+      elevation={2}
       sx={{
-        p: 2,
-        // display: "flex",
-        // flexDirection: "column",
-        //height: "410px",
-        //width: "100%",
-        height: '100%',
+        padding: "10px",
+        height: "100%",
+        maxHeight: "100%",
+        minHeight: "420px",
         borderRadius: '20px',
-        mb: 1,
       }}
-      // style={{height: "100%"}}
     >
-      <Box sx={{ height: "82%", width: "100%", mb: 0 }}>
+      <Box sx={{ height: "87%", width: "100%", mb: 0 }}>
         <Typography
           variant="h6"
           mb={0}
@@ -151,8 +164,9 @@ const CarList = ({ carList }: Props) => {
         >
           進出車輛紀錄
         </Typography>
-        <Box className="btns" mb={0.5}>
-          <button>排序</button>
+        <Box className="btns" mb={0.5} paddingX="6px">
+          <div></div>
+          {/* <button>排序</button> */}
           <span>
             <input
               style={{ paddingLeft: "10px" }}
@@ -171,6 +185,7 @@ const CarList = ({ carList }: Props) => {
 
         <DataGrid
           sx={{
+            paddingX: "6px",
             borderRadius: 2,
             color: "info.main",
             border: "none",
@@ -196,23 +211,21 @@ const CarList = ({ carList }: Props) => {
               backgroundColor: "#FFE08A",
               borderRadius: 2,
             },
-            // '& .MuiDataGrid-virtualScroller::-webkit-scrollbar': {display: 'none' }
           }}
           rows={rows}
-          columnHeaderHeight={45}
-          rowHeight={45}
+          columnHeaderHeight={40}
+          rowHeight={38}
           columns={columns}
+          sortModel={sortModel}
+          onSortModelChange={(model) => setSortModel(model)}
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 5,
+                pageSize: 10,
               },
             },
-            sorting: {
-              sortModel: [{ field: 'time', sort: 'desc' }],
-            }
           }}
-          pageSizeOptions={[5, 10]}
+          pageSizeOptions={[5, 10, 15]}
           disableColumnMenu
           disableRowSelectionOnClick
         />

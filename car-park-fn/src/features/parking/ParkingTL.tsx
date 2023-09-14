@@ -13,7 +13,6 @@ import { Car } from "../models";
 import "./ParkingTL.scss";
 import Typography from "@mui/material/Typography";
 import { formatDate } from "../../app/format";
-import { Grid } from "@mui/material";
 
 
 interface Props {
@@ -24,25 +23,26 @@ export default function ParkingTL({ shortParkingList }: Props) {
 
   return (
     <Paper
-      elevation={3}
+      elevation={2}
       className="timeline-comp"
       sx={{
         borderRadius: "20px",
-        overflow: "hidden",
+        overflow: "auto",
+        height: "280px",
       }}
-       style={{height: "100%"}}
     >
       <Typography variant='h6' color='success.main' fontWeight={700} ml={1} mb={0}>
         最近停泊車輛
       </Typography>
-      <Grid item xs={12} justifyContent="center" style={{maxHeight: "100%", height: "90%"}} className="timeLineBody">
+
       <Timeline
         sx={{
           [`& .${timelineOppositeContentClasses.root}`]: {
-            flex: 1.1,
+            flex: 1.4,
           },
-          mt: 0,
-          pl: 1
+          m: 0,
+          p: 0,
+          pl: 2,
         }}
       >
         <TimelineItem className="labels">
@@ -54,23 +54,23 @@ export default function ParkingTL({ shortParkingList }: Props) {
           <TimelineContent className="columnHead">車型</TimelineContent>
         </TimelineItem>
         {shortParkingList.map((car, idx) => (
-          <TimelineItem key={idx} sx={{ minHeight: "60px", padding: 0 }}>
-            <TimelineOppositeContent className="carTime">{formatDate(car.time as unknown as Date)}</TimelineOppositeContent>
-            <TimelineSeparator className="timelineWrap">
+          <TimelineItem key={idx} sx={{ minHeight: "53px", padding: 0, color: 'info.main'}}>
+            <TimelineOppositeContent sx={{fontSize: "14px"}}>{formatDate(car.time as unknown as Date)}</TimelineOppositeContent>
+            <TimelineSeparator >
               <TimelineDot sx={{ backgroundColor: "#EBC243" }} />
               {idx !== shortParkingList.length - 1 && <TimelineConnector />}
             </TimelineSeparator>
-            <TimelineContent sx={{ color: "#008399", fontWeight: 700 }} className="carPlate">
+            <TimelineContent sx={{ color: "#008399", fontWeight: 700 }} >
               {car.plate_num}
             </TimelineContent>
-            <TimelineContent className="carType">
+            <TimelineContent >
               {car.vehicle_type === "small_car" && ("小型車")}
               {car.vehicle_type === "motor" && ("電單車")}
             </TimelineContent>
           </TimelineItem>
         ))}
       </Timeline>
-      </Grid>
+
     </Paper>
   );
 }

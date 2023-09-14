@@ -22,18 +22,19 @@ img {
 .sidebar > div {
   display: flex;
   justify-content: space-between;
-  background-color: #bdee69;
+  //background-color: #bdee69;
+  background: rgb(213,255,142);
+  background: linear-gradient(190deg, #A6D654 0%, #C1F36D 24%, #B3E460 78%, #D5FF8E 100%);  
   border: none;
 }
-.sidebar > div > ul:nth-child(1) > li:nth-child(2) > div {
-  margin-top: 20px;
-}
+
 .sidebar > div > ul:nth-child(2) > li,
 .sidebar > div > div > ul:nth-child(2) > li,
 .sidebar > div > ul:nth-child(1) > li:not(:first-child), 
 .sidebar > div > div > ul:nth-child(1) > li:not(:first-child) {
   margin: 10px 0 10px 10px;
 }
+
 .sidebar > div > ul:nth-child(2), 
 .sidebar > div > div > ul:nth-child(2) {
   margin-bottom: 30px;
@@ -57,16 +58,16 @@ a {
   border-radius: 15px 0 0 15px;
   color: #476800;
 }
-.MuiListItemText-root.css-1cag644-MuiListItemText-root {
-  opacity: 1 !important;
-} 
+// .MuiListItemText-root.css-1cag644-MuiListItemText-root {
+//   opacity: 1 !important;
+// } 
 
 //fixing 1st button of each array not shown
-.sidebar {
-  .css-d9387g {
-    opacity: 1!important;
-  }
-}
+// .sidebar {
+//   .css-d9387g {
+//     opacity: 1!important;
+//   }
+// }
 
 .sidebar > div > ul:nth-child(1) > li:not(:first-child):hover .sidebarButtonText, 
 .sidebar > div > ul:nth-child(2) > li:hover .sidebarButtonText, 
@@ -93,6 +94,6 @@ a > div > div {
     color: #476800;
     
     > a > div > .svg, > a > div > div > span {
-        color: #476800;
+        color: #ccef7f;
     }
 }

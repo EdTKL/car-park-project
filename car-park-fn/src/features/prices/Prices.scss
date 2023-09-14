@@ -24,9 +24,15 @@
     .weekday {
         background-color: #008399;
         font-weight: bold;
-
+        min-height: 40px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 10px;
         color: #fff;
+        box-shadow:  0px 2px 6px rgba(0, 0, 0, 0.3);
         
     }
     .carIcon {

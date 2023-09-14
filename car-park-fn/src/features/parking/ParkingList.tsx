@@ -10,15 +10,17 @@ const columns: GridColDef[] = [
   {
     field: "plate_num",
     headerName: "車牌",
-    minWidth: 80,
+    minWidth: 100,
     editable: false,
     cellClassName: "plate-cell",
-    flex: 1
+    headerAlign: 'center',
+    align:'center'
+    // flex: 1
   },
   {
     field: "vehicle_type",
     headerName: "車類",
-    minWidth: 80,
+    minWidth: 100,
     editable: false,
     valueFormatter(params) {
       if (params.value === "small_car") {
@@ -27,7 +29,9 @@ const columns: GridColDef[] = [
         return "電單車";
       }
     },
-    flex: 1
+    headerAlign: 'center',
+    align:'center'
+    // flex: 1
   },
 
   {
@@ -41,9 +45,11 @@ const columns: GridColDef[] = [
         return formatDate(params.value);
       }
     },
-    minWidth: 130,
+    minWidth: 100,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "invoice_num",
@@ -51,75 +57,79 @@ const columns: GridColDef[] = [
     type: "number",
     minWidth: 100,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
-  {
-    field: "total_hours",
-    headerName: "總時數",
-    type: "number",
-    valueFormatter(params) {
-      if (params.value === null) {
-        return "計算中";
-      } else {
-        return params.value;
-      }
-    },
-    minWidth: 70,
-    editable: true,
-    flex: 1
-  },
-  {
-    field: "parked_hours",
-    headerName: "時",
-    type: "number",
-    valueFormatter(params) {
-      if (params.value === null) {
-        return 0;
-      } else {
-        return params.value;
-      }
-    },
-    minWidth: 60,
-    editable: true,
-    flex: 1
-  },
-  {
-    field: "parked_days",
-    headerName: "日",
-    type: "number",
-    valueFormatter(params) {
-      if (params.value === null) {
-        return 0;
-      } else {
-        return params.value;
-      }
-    },
-    minWidth: 60,
-    editable: true,
-    flex: 1
-  },
-  {
-    field: "parked_nights",
-    headerName: "夜",
-    type: "number",
-    valueFormatter(params) {
-      if (params.value === null) {
-        return 0;
-      } else {
-        return params.value;
-      }
-    },
-    minWidth: 60,
-    editable: true,
-    flex: 1
-  },
+  // {
+  //   field: "total_hours",
+  //   headerName: "總時數",
+  //   type: "number",
+  //   valueFormatter(params) {
+  //     if (params.value === null) {
+  //       return "計算中";
+  //     } else {
+  //       return params.value;
+  //     }
+  //   },
+  //   minWidth: 70,
+  //   editable: true,
+  //   flex: 1
+  // },
+  // {
+  //   field: "parked_hours",
+  //   headerName: "時",
+  //   type: "number",
+  //   valueFormatter(params) {
+  //     if (params.value === null) {
+  //       return 0;
+  //     } else {
+  //       return params.value;
+  //     }
+  //   },
+  //   minWidth: 60,
+  //   editable: true,
+  //   flex: 1
+  // },
+  // {
+  //   field: "parked_days",
+  //   headerName: "日",
+  //   type: "number",
+  //   valueFormatter(params) {
+  //     if (params.value === null) {
+  //       return 0;
+  //     } else {
+  //       return params.value;
+  //     }
+  //   },
+  //   minWidth: 60,
+  //   editable: true,
+  //   flex: 1
+  // },
+  // {
+  //   field: "parked_nights",
+  //   headerName: "夜",
+  //   type: "number",
+  //   valueFormatter(params) {
+  //     if (params.value === null) {
+  //       return 0;
+  //     } else {
+  //       return params.value;
+  //     }
+  //   },
+  //   minWidth: 60,
+  //   editable: true,
+  //   flex: 1
+  // },
   {
     field: "staff_id",
     headerName: "職員編號",
     type: "number",
     minWidth: 100,
     editable: false,
-    flex: 1
+    flex: 1,
+    headerAlign: 'center',
+    align:'center'
   },
 ];
 
@@ -130,6 +140,9 @@ interface Props {
 const ParkingList = ({ parkingList }: Props) => {
   const [input, setInput] = useState<string>("");
   const [rows, setRows] = useState<Car[]>(parkingList);
+
+  //set default sorting model
+  const [sortModel, setSortModel] = React.useState([{field: 'time', sort: 'desc'}] as any);
 
   const cbSearch = useCallback(() => {
     const searchedList = parkingList.filter((car) => {
@@ -145,11 +158,9 @@ const ParkingList = ({ parkingList }: Props) => {
   
     return (
       <Paper
-        elevation={3}
+        elevation={2}
         sx={{
-          p: 2,
-          display: "flex",
-          flexDirection: "column",
+          padding: "10px",
           height: "100%",
           width: "100%",
           borderRadius: '20px',
@@ -165,8 +176,9 @@ const ParkingList = ({ parkingList }: Props) => {
           >
             現時停泊車輛
           </Typography>
-          <Box className="btns" mb={0.5}>
-            <button>排序</button>
+          <Box className="btns" mb={0.5} px='6px'>
+            <div></div>
+            {/* <button>排序</button> */}
             <span>
               <input
                 style={{ paddingLeft: "10px" }}
@@ -176,7 +188,7 @@ const ParkingList = ({ parkingList }: Props) => {
                   setInput(e.target.value);
                 }}
               ></input>
-              <Button className="Button">
+              <Button className="Button" >
                 <SearchIcon fontSize="small" />
                 搜尋
               </Button>
@@ -185,6 +197,7 @@ const ParkingList = ({ parkingList }: Props) => {
   
           <DataGrid
             sx={{
+              px: '6px',
               borderRadius: 2,
               color: "info.main",
               border: "none",
@@ -212,17 +225,16 @@ const ParkingList = ({ parkingList }: Props) => {
             }}
             rows={rows}
             columns={columns}
+            sortModel={sortModel}
+            onSortModelChange={(model) => setSortModel(model)}
             initialState={{
               pagination: {
                 paginationModel: {
                   pageSize: 10,
                 },
               },
-              sorting: {
-                sortModel: [{ field: 'time', sort: 'desc' }],
-              },
             }}
-            pageSizeOptions={[5, 10]}
+            pageSizeOptions={[5, 10, 15]}
             disableRowSelectionOnClick
             disableColumnMenu
           />

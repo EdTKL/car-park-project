@@ -1,21 +1,17 @@
 import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { PDFDownloadLink, Page, Text, Document, StyleSheet, View, Font } from '@react-pdf/renderer';
-import { Car } from '../../features/models';
+import { Car } from '../models';
 
 import NotoSan from './NotoSansTC-Regular.otf'
-
-// import 'reactjs-popup/dist/index.css';
-
-// import "./DownloadPDF.css";
+import { Button, CircularProgress } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const fetchData = async () => {
-
   const response = await fetch(`${process.env.REACT_APP_API_BASE}carpark/getReadTable`);
   const result = await response.json();
-  return result.data as Car[]
+  return result.data.sort((a: { id: number; }, b: { id: number; }) => a.id - b.id) as Car[]
 };
-console.log(fetchData)
 
 Font.register({
   family: 'NotoSan',
@@ -41,10 +37,6 @@ const PdfDocument = ({ data }: { data: any }) => (
           <Text style={styles.columnThin}>時</Text>
           <Text style={styles.columnThin}>日</Text>
           <Text style={styles.columnThin}>夜</Text>
-          <Text style={styles.columnThin}>24</Text>
-          <Text style={styles.columnThin}>全</Text>
-          <Text style={styles.columnThin}>失</Text>
-          <Text style={styles.columnThin}>+/-</Text>
           <Text style={styles.tableHeaderCell}>總金額</Text>
           <Text style={styles.tableHeaderCell}>狀況</Text>
           <Text style={styles.tableHeaderCellRight}>職員編號</Text>
@@ -64,11 +56,7 @@ const PdfDocument = ({ data }: { data: any }) => (
             <Text style={styles.columnThin}>{car.parked_hours}</Text>
             <Text style={styles.columnThin}>{car.parked_days}</Text>
             <Text style={styles.columnThin}>{car.parked_nights}</Text>
-            <Text style={styles.columnThin}>{car.id}</Text>
-            <Text style={styles.columnThin}>{car.id}</Text>
-            <Text style={styles.columnThin}>{car.id}</Text>
-            <Text style={styles.columnThin}>{car.id}</Text>
-            <Text style={styles.tableCell}>{car.payment}</Text>
+            <Text style={styles.tableCell}>{car.payment/100}</Text>
             <Text style={styles.tableCell}>{car.status === "left" ? "已出車" : "/"}</Text>
             <Text style={styles.tableCellRight}>{car.staff_id}</Text>
 
@@ -187,17 +175,24 @@ const DownloadPDF = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>載入中...</div>;
   }
 
   if (isError) {
-    return <div>Error fetching data</div>;
+    return <div>Error</div>;
   }
   console.log(data)
   return (
     <div>
-      <PDFDownloadLink document={<PdfDocument data={data} />} fileName="car-data.pdf">
-        {({ blob, url, loading, error:any  }) => (loading ? '載入中...' : '點擊下載')}
+      <PDFDownloadLink document={<PdfDocument data={data} />} fileName="car-data.pdf" 
+        style={{
+          textAlign: 'center'
+        }}>
+        {({ blob, url, loading, error }) => (loading ?
+          <CircularProgress disableShrink sx={{mt: 1}}/> :
+          <Button variant="contained" sx={{mt: 1}} endIcon={<CheckCircleIcon />}>
+            點擊下載
+          </Button>)}
       </PDFDownloadLink>
     </div>
   );

@@ -80,7 +80,7 @@ export const registerThunk = createAsyncThunk<
     return ""
     // return {jwt:"jwtsdad",role:"admin"}
   } catch (error) {
-    throw new Error('AUTH Login failed')
+    throw new Error('AUTH Register failed')
     // return thunkAPI.rejectWithValue("AUTH Login failed");
   }
 });

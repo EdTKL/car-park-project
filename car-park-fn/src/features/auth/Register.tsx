@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hook";
 import { registerThunk } from "../../redux/slice/authSlice";
 import './Register.scss'
-import { FormControl, FormControlLabel, FormLabel, IconButton, InputAdornment, InputLabel, OutlinedInput, Radio, RadioGroup, Typography } from "@mui/material";
+import { FormControl, FormControlLabel, FormLabel, IconButton, InputAdornment, InputLabel, ListItem, OutlinedInput, Radio, RadioGroup, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Stack from '@mui/material/Stack';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import Divider from '@mui/material/Divider';
+import { setSelected } from "../bars/selected/selectedSlice";
+import logo from "../bars/sidebarLogo.png"
 // import { setUserRole } from "./authSlice";
 
 function Register() {
@@ -24,7 +26,7 @@ function Register() {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== confirm_password) {
-      throw new Error("password and confirm password doesn't match")
+      alert("密碼與確認密碼不符合。")
     }
     dispatch(registerThunk({ username, password, confirm_password, role }))
       .unwrap()
@@ -45,9 +47,7 @@ function Register() {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const [value, setValue] = React.useState('female');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
     setRole(event.target.value)
   }
 
@@ -56,6 +56,11 @@ function Register() {
   return (
     <>
     <div className="bg-container"></div>
+    <ListItem sx={{position: 'absolute', pt: 2, pl: 3 }} onClick={()=>dispatch(setSelected({path: '/home'}))}>
+      <Link to={'/home'}>
+        <img src={logo} alt='主頁'/>
+      </Link>
+    </ListItem>
     <div className="register-container">
       <form onSubmit={submitHandler} className="register-form">
         <div className="register-title">
@@ -88,9 +93,9 @@ function Register() {
 
         <div id="register-input-blank">
           <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password" >用戶名稱</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-username" >用戶名稱</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-password"
+              id="outlined-adornment-username"
               color='success'
 
               value={username}
@@ -126,10 +131,10 @@ function Register() {
             />
           </FormControl>
           <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password" sx={{ color: 'success.main' }}>確認密碼</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-cfPassword" sx={{ color: 'success.main' }}>確認密碼</InputLabel>
             <OutlinedInput
 
-              id="outlined-adornment-password"
+              id="outlined-adornment-cfPassword"
               type={showPassword ? 'text' : 'password'}
               color='success'
 

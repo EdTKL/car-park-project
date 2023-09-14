@@ -47,6 +47,7 @@ export const editIn = createAsyncThunk('edit/in', async (editIn: Car, thunkAPI)=
           ),
         })
         const json = await res.json()
+        console.log(json.data)
         thunkAPI.dispatch(add_car(editIn))
         return thunkAPI.fulfillWithValue("success"); 
     } catch (err:any) {

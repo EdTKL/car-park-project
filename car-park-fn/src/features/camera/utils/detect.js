@@ -1,6 +1,8 @@
 import * as tf from "@tensorflow/tfjs";
 import { renderBoxes } from "./renderBox";
 import labels from "./labels.json";
+import { fetchCars } from "../../cars/carSlice";
+import { fetchParking } from "../../parking/parkingSlice";
 
 const numClass = labels.length;
 
@@ -60,7 +62,14 @@ let isOnCooldown = false;
 let isProcessing = false;
 let noBoxFramesCounter = 0;
 
-export const detect = async (source, model, canvasRef, callback = () => {}) => {
+export const detect = async (
+  source,
+  model,
+  canvasRef,
+  staffID,
+  dispatch,
+  callback = () => {}
+) => {
   if (isProcessing) return;
   isProcessing = true;
   try {
@@ -104,43 +113,46 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
       0.45,
       0.2
     ); // NMS to filter boxes
-    
+
     const gatherAndSyncData = (tensor, indices) => {
       if (!tensor.isDisposed) {
-          return tensor.gather(indices, 0).dataSync();
+        return tensor.gather(indices, 0).dataSync();
       }
       return [];
-      
-  }
-  
-  const boxes_data = gatherAndSyncData(boxes, nms);
-  const scores_data = gatherAndSyncData(scores, nms);
-  const classes_data = gatherAndSyncData(classes, nms);
+    };
 
+    const boxes_data = gatherAndSyncData(boxes, nms);
+    const scores_data = gatherAndSyncData(scores, nms);
+    const classes_data = gatherAndSyncData(classes, nms);
 
-  const NO_BOX_THRESHOLD = 3;
+    const NO_BOX_THRESHOLD = 3;
 
-  if (boxes_data.length === 0) {
-    noBoxFramesCounter++;
-  } else {
-    noBoxFramesCounter = 0;
-  }
+    if (boxes_data.length === 0) {
+      noBoxFramesCounter++;
+    } else {
+      noBoxFramesCounter = 0;
+    }
 
-  let needsReinit = noBoxFramesCounter >= NO_BOX_THRESHOLD;
+    let needsReinit = noBoxFramesCounter >= NO_BOX_THRESHOLD;
 
-  const reinitializeDetector = () => {
-    noBoxFramesCounter = 0;  // Reset the counter
-    const ctx = canvasRef.getContext("2d");
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clean canvas
-  
-  };
+    const reinitializeDetector = () => {
+      noBoxFramesCounter = 0; // Reset the counter
+    };
 
-  if (needsReinit) {
-    reinitializeDetector();
-    
-    console.warn("Detector reinitialized due to continuous no-box frames.");
-  }
-
+    if (needsReinit) {
+      reinitializeDetector();
+      const ctx = canvasRef.getContext("2d");
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clean canvas
+      detect (
+        source,
+        model,
+        canvasRef,
+        staffID,
+        dispatch,
+        callback = () => {}
+      )
+      console.log("cam1 reinitialized");
+    }
 
     // const boxes_data = boxes.gather(nms, 0).dataSync(); // indexing boxes by nms index
     // const scores_data = scores.gather(nms, 0).dataSync(); // indexing scores by nms index
@@ -152,23 +164,24 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
     ]); // render boxes
 
     let carDetected = false;
-    let vehicle_type = "small_car";
+    let vehicleType = "small_car";
+    // let staffID = staffID
 
     for (let i = 0; i < classes_data.length; i++) {
       if (
         (labels[classes_data[i]] === "car" ||
           labels[classes_data[i]] === "truck" ||
           labels[classes_data[i]] === "motorcycle") &&
-        scores_data[i] > 0.7
+        scores_data[i] > 0.5
       ) {
         // assuming a threshold
         carDetected = true;
         if (labels[classes_data[i]] === "car") {
-          vehicle_type = "small_car";
+          vehicleType = "small_car";
         } else if (labels[classes_data[i]] === "truck") {
-          vehicle_type = "small_car";
+          vehicleType = "small_car";
         } else if (labels[classes_data[i]] === "motorcycle") {
-          vehicle_type = "motorcycle";
+          vehicleType = "motorcycle";
         }
         break;
       }
@@ -189,15 +202,17 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               image: base64_string,
-              vehicle_type: vehicle_type,
-              staff_id: "C1111A11",
+              vehicle_type: vehicleType,
+              staff_id: staffID,
             }),
           });
-          console.log(await res.json()); 
+          console.log(await res.json());
+          dispatch(fetchCars());
+          dispatch(fetchParking());
         } catch (err) {
           console.error(err);
         }
-      }, 3000);
+      }, 2000);
 
       isOnCooldown = true;
 
@@ -205,16 +220,16 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
         isOnCooldown = false;
       }, 13000);
     }
-
-
-      tf.dispose([res, transRes, boxes, scores, classes, nms]); // clear memory
-
+    if ([res, transRes, boxes, scores, classes, nms]) {
+      tf.dispose([res, transRes, boxes, scores, classes, nms]);
+    }
+     // clear memory
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 
   callback();
-
+  
   tf.engine().endScope(); // end of scoping
 
   isProcessing = false;
@@ -226,11 +241,11 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
  * @param {tf.GraphModel} model loaded YOLOv8 tensorflow.js model
  * @param {HTMLCanvasElement} canvasRef canvas reference
  */
-export const detectVideo = (vidSource, model, canvasRef) => {
+export const detectVideo = (vidSource, model, canvasRef, staffID, dispatch) => {
   /**
    * Function to detect every frame from video
    */
-  
+
   const detectFrame = async () => {
     if (vidSource.videoWidth === 0 && vidSource.srcObject === null) {
       const ctx = canvasRef.getContext("2d");
@@ -238,7 +253,7 @@ export const detectVideo = (vidSource, model, canvasRef) => {
       return; // handle if source is closed
     }
 
-    detect(vidSource, model, canvasRef, () => {
+    detect(vidSource, model, canvasRef, staffID, dispatch, () => {
       setTimeout(() => {
         requestAnimationFrame(detectFrame);
       }, 1000); // get another frame

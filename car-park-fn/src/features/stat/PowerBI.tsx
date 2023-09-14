@@ -7,6 +7,7 @@ import './PowerBI.scss'
 import React from "react";
 
 const PowerBI = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [report, setReport] = useState();
   return (
     <Paper
@@ -18,7 +19,7 @@ const PowerBI = () => {
         justifyContent: "center",
         height: "fit-content",
         width: "100%",
-        borderRadius: 3,
+        borderRadius: '20px',
       }}
     >
       <PowerBIEmbed

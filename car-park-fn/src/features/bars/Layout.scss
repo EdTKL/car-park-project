@@ -1,0 +1,20 @@
+$appbar_height: 64px;
+
+.contentBackground {
+  background-color: #bdee69 !important;
+  height: calc(100% - $appbar_height);
+  width: 100%;
+  position: absolute !important;
+  bottom: 0 !important;
+}
+
+.contentContainer {
+    background-color: #f2f4f4 !important;
+    height: fit-content;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 8px 8px 16px 8px;
+}
